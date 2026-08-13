@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="fa" dir="rtl">
 <head>
@@ -7,33 +6,60 @@
 
     <title>V2GUARD | واسطه معاملات اکانت کالاف دیوتی</title>
 
-    <meta name="description" content="سامانه واسطه‌گری معاملات اکانت Call of Duty با مدیریت و تأیید معامله توسط V2GUARD">
+    <meta
+        name="description"
+        content="سامانه واسطه‌گری معاملات اکانت Call of Duty با مدیریت V2GUARD"
+    >
 
     <style>
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
 
+        html {
+            scroll-behavior: smooth;
+        }
+
         body {
             font-family: Tahoma, Arial, sans-serif;
             background:
-                radial-gradient(circle at top right, #1b1b1b 0%, transparent 35%),
-                radial-gradient(circle at bottom left, #111 0%, transparent 35%),
+                radial-gradient(
+                    circle at 80% 0%,
+                    rgba(255, 40, 40, 0.12),
+                    transparent 35%
+                ),
+                radial-gradient(
+                    circle at 10% 100%,
+                    rgba(255, 40, 40, 0.06),
+                    transparent 30%
+                ),
                 #050505;
             color: #fff;
             min-height: 100vh;
         }
 
+        /* HEADER */
+
         header {
             width: 100%;
-            padding: 22px 7%;
+            height: 72px;
+            padding: 0 7%;
+
             display: flex;
-            justify-content: space-between;
             align-items: center;
+            justify-content: space-between;
+
             border-bottom: 1px solid rgba(255,255,255,0.08);
-            backdrop-filter: blur(10px);
+
+            background: rgba(5,5,5,0.75);
+            backdrop-filter: blur(15px);
+
+            position: sticky;
+            top: 0;
+            z-index: 100;
         }
 
         .logo {
@@ -43,181 +69,416 @@
         }
 
         .logo span {
-            color: #ff3b3b;
+            color: #ff3030;
         }
 
         .status {
-            font-size: 12px;
-            color: #8cff9b;
             display: flex;
             align-items: center;
-            gap: 7px;
+            gap: 8px;
+
+            color: #8cff9b;
+            font-size: 12px;
         }
 
         .status-dot {
             width: 8px;
             height: 8px;
+
             background: #43ff64;
             border-radius: 50%;
-            box-shadow: 0 0 12px #43ff64;
+
+            box-shadow:
+                0 0 8px #43ff64,
+                0 0 18px rgba(67,255,100,0.5);
         }
+
+
+        /* MAIN */
 
         main {
-            max-width: 1100px;
+            max-width: 1150px;
             margin: auto;
-            padding: 80px 25px;
+            padding: 85px 25px;
         }
 
+
+        /* HERO */
+
         .hero {
-            text-align: center;
-            max-width: 800px;
+            max-width: 850px;
             margin: auto;
+            text-align: center;
         }
 
         .badge {
             display: inline-block;
-            padding: 8px 16px;
-            border: 1px solid rgba(255,59,59,0.35);
-            background: rgba(255,59,59,0.08);
-            color: #ff6b6b;
+
+            padding: 9px 17px;
+
             border-radius: 50px;
-            font-size: 13px;
+
+            border: 1px solid rgba(255,48,48,0.35);
+
+            background: rgba(255,48,48,0.07);
+
+            color: #ff6b6b;
+
+            font-size: 12px;
+
             margin-bottom: 25px;
         }
 
         h1 {
-            font-size: clamp(38px, 7vw, 72px);
+            font-size: clamp(40px, 7vw, 75px);
+
             line-height: 1.1;
+
             font-weight: 900;
+
             margin-bottom: 25px;
         }
 
         h1 span {
-            color: #ff3b3b;
-            text-shadow: 0 0 30px rgba(255,59,59,0.35);
+            color: #ff3030;
+
+            text-shadow:
+                0 0 30px rgba(255,48,48,0.35);
         }
 
-        .hero p {
-            color: #aaa;
-            font-size: 17px;
-            line-height: 2;
-            max-width: 650px;
+        .hero-text {
+            max-width: 700px;
+
             margin: auto;
+
+            color: #999;
+
+            font-size: 16px;
+
+            line-height: 2;
         }
+
+
+        /* BUTTONS */
 
         .buttons {
             margin-top: 40px;
+
             display: flex;
+
             justify-content: center;
-            gap: 15px;
+
+            gap: 14px;
+
             flex-wrap: wrap;
         }
 
         .btn {
-            border: none;
-            padding: 15px 30px;
+            display: inline-flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            min-width: 190px;
+
+            padding: 15px 28px;
+
             border-radius: 12px;
-            font-size: 15px;
+
+            font-family: inherit;
+
+            font-size: 14px;
+
             font-weight: bold;
+
+            text-decoration: none;
+
             cursor: pointer;
+
             transition: 0.25s;
+
+            border: 1px solid transparent;
         }
 
         .primary {
             background: #ff3030;
-            color: #fff;
-            box-shadow: 0 0 25px rgba(255,48,48,0.2);
+
+            color: white;
+
+            box-shadow:
+                0 0 25px rgba(255,48,48,0.15);
         }
 
         .primary:hover {
+            background: #ff4444;
+
             transform: translateY(-3px);
-            box-shadow: 0 0 35px rgba(255,48,48,0.4);
+
+            box-shadow:
+                0 10px 35px rgba(255,48,48,0.25);
         }
 
         .secondary {
             background: #111;
+
             color: #fff;
-            border: 1px solid #292929;
+
+            border-color: #292929;
         }
 
         .secondary:hover {
-            background: #181818;
+            background: #191919;
+
+            border-color: #444;
+
+            transform: translateY(-3px);
         }
 
+
+        /* FEATURES */
+
         .features {
-            margin-top: 90px;
+            margin-top: 100px;
+
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
+
+            grid-template-columns:
+                repeat(3, 1fr);
+
             gap: 18px;
         }
 
         .card {
-            background: rgba(255,255,255,0.035);
-            border: 1px solid rgba(255,255,255,0.08);
+            padding: 30px;
+
             border-radius: 18px;
-            padding: 28px;
+
+            background:
+                linear-gradient(
+                    145deg,
+                    rgba(255,255,255,0.045),
+                    rgba(255,255,255,0.015)
+                );
+
+            border: 1px solid rgba(255,255,255,0.08);
+
             transition: 0.25s;
         }
 
         .card:hover {
-            transform: translateY(-5px);
-            border-color: rgba(255,59,59,0.35);
+            transform: translateY(-6px);
+
+            border-color:
+                rgba(255,48,48,0.35);
+
+            box-shadow:
+                0 15px 40px rgba(0,0,0,0.25);
         }
 
         .icon {
-            font-size: 28px;
-            margin-bottom: 18px;
+            width: 55px;
+            height: 55px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            border-radius: 14px;
+
+            background: rgba(255,48,48,0.08);
+
+            font-size: 25px;
+
+            margin-bottom: 20px;
         }
 
         .card h3 {
-            margin-bottom: 10px;
             font-size: 17px;
+
+            margin-bottom: 12px;
         }
 
         .card p {
-            color: #888;
+            color: #858585;
+
             font-size: 13px;
-            line-height: 1.9;
+
+            line-height: 2;
         }
+
+
+        /* HOW IT WORKS */
+
+        .how {
+            margin-top: 100px;
+
+            text-align: center;
+        }
+
+        .section-title {
+            font-size: 30px;
+
+            margin-bottom: 12px;
+        }
+
+        .section-subtitle {
+            color: #777;
+
+            font-size: 13px;
+
+            margin-bottom: 40px;
+        }
+
+        .steps {
+            display: grid;
+
+            grid-template-columns:
+                repeat(4, 1fr);
+
+            gap: 15px;
+        }
+
+        .step {
+            padding: 25px 15px;
+
+            background: #0b0b0b;
+
+            border: 1px solid #1c1c1c;
+
+            border-radius: 15px;
+        }
+
+        .step-number {
+            width: 40px;
+            height: 40px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            margin: 0 auto 15px;
+
+            border-radius: 50%;
+
+            background: #ff3030;
+
+            font-weight: bold;
+        }
+
+        .step h4 {
+            margin-bottom: 8px;
+
+            font-size: 14px;
+        }
+
+        .step p {
+            color: #777;
+
+            font-size: 11px;
+
+            line-height: 1.8;
+        }
+
+
+        /* FOOTER */
 
         footer {
-            text-align: center;
+            margin-top: 100px;
+
             padding: 30px;
-            border-top: 1px solid rgba(255,255,255,0.07);
-            color: #666;
-            font-size: 12px;
+
+            text-align: center;
+
+            border-top:
+                1px solid rgba(255,255,255,0.07);
+
+            color: #555;
+
+            font-size: 11px;
         }
 
-        @media (max-width: 750px) {
+
+        /* MOBILE */
+
+        @media (max-width: 800px) {
+
+            header {
+                padding: 0 5%;
+            }
+
+            main {
+                padding-top: 60px;
+            }
+
             .features {
                 grid-template-columns: 1fr;
             }
 
-            main {
-                padding-top: 55px;
+            .steps {
+                grid-template-columns:
+                    repeat(2, 1fr);
             }
 
-            header {
-                padding: 18px 5%;
-            }
         }
+
+        @media (max-width: 500px) {
+
+            h1 {
+                font-size: 42px;
+            }
+
+            .buttons {
+                flex-direction: column;
+            }
+
+            .btn {
+                width: 100%;
+            }
+
+            .steps {
+                grid-template-columns: 1fr;
+            }
+
+        }
+
     </style>
 </head>
 
+
 <body>
 
+
+<!-- HEADER -->
+
 <header>
+
     <div class="logo">
         V2<span>GUARD</span>
     </div>
 
     <div class="status">
+
         <div class="status-dot"></div>
+
         سیستم فعال
+
     </div>
+
 </header>
 
+
+
+<!-- MAIN -->
+
 <main>
+
+
+    <!-- HERO -->
 
     <section class="hero">
 
@@ -225,81 +486,245 @@
             🎮 CALL OF DUTY ACCOUNT MARKET
         </div>
 
+
         <h1>
-            معامله اکانت،<br>
+
+            معامله اکانت،
+
+            <br>
+
             <span>با واسطه مطمئن</span>
+
         </h1>
 
-        <p>
-            V2GUARD بستری برای انجام معاملات اکانت کالاف دیوتی
-            با ایجاد اتاق اختصاصی، ارتباط خریدار و فروشنده
-            و نظارت مدیر بر روند معامله.
+
+        <p class="hero-text">
+
+            V2GUARD بستری برای انجام معاملات اکانت
+            Call of Duty با ایجاد اتاق اختصاصی،
+            ارتباط خریدار و فروشنده و نظارت مدیر
+            بر روند معامله.
+
         </p>
+
+
+        <!-- BUTTONS -->
 
         <div class="buttons">
 
-            <button class="btn primary">
-                ایجاد معامله
-            </button>
 
-            <button class="btn secondary">
-                ورود به معامله
-            </button>
+            <!-- ایجاد معامله -->
+
+            <a
+                href="create-deal.html"
+                class="btn primary"
+            >
+
+                🤝 ایجاد معامله
+
+            </a>
+
+
+            <!-- ورود به معامله -->
+
+            <a
+                href="deal.html"
+                class="btn secondary"
+            >
+
+                🔑 ورود به معامله
+
+            </a>
+
 
         </div>
 
     </section>
 
+
+
+    <!-- FEATURES -->
+
     <section class="features">
 
+
         <div class="card">
-            <div class="icon">🤝</div>
+
+            <div class="icon">
+                🤝
+            </div>
 
             <h3>
                 واسطه‌گری معامله
             </h3>
 
             <p>
-                روند معامله تحت نظارت مدیر انجام می‌شود
-                تا خریدار و فروشنده بتوانند با اطمینان بیشتری
-                معامله را تکمیل کنند.
+
+                روند معامله تحت نظارت مدیر انجام
+                می‌شود تا خریدار و فروشنده بتوانند
+                با اطمینان بیشتری معامله را تکمیل کنند.
+
             </p>
+
         </div>
 
+
+
         <div class="card">
-            <div class="icon">💬</div>
+
+            <div class="icon">
+                💬
+            </div>
 
             <h3>
                 اتاق معامله اختصاصی
             </h3>
 
             <p>
-                برای هر معامله یک اتاق اختصاصی ایجاد می‌شود
-                تا طرفین بتوانند درباره شرایط معامله
-                با یکدیگر گفتگو کنند.
+
+                برای هر معامله یک اتاق اختصاصی ایجاد
+                می‌شود تا طرفین بتوانند درباره شرایط
+                معامله با یکدیگر گفتگو کنند.
+
             </p>
+
         </div>
 
+
+
         <div class="card">
-            <div class="icon">🛡️</div>
+
+            <div class="icon">
+                🛡️
+            </div>
 
             <h3>
                 تأیید توسط مدیر
             </h3>
 
             <p>
-                مراحل مهم معامله توسط مدیر بررسی و تأیید
-                می‌شود تا روند انتقال با کنترل بیشتری انجام شود.
+
+                مراحل مهم معامله توسط مدیر بررسی و
+                تأیید می‌شود تا روند انتقال با کنترل
+                بیشتری انجام شود.
+
             </p>
+
+        </div>
+
+
+    </section>
+
+
+
+    <!-- HOW IT WORKS -->
+
+    <section class="how">
+
+
+        <h2 class="section-title">
+            نحوه انجام معامله
+        </h2>
+
+
+        <p class="section-subtitle">
+            فرآیند معامله در V2GUARD
+        </p>
+
+
+        <div class="steps">
+
+
+            <div class="step">
+
+                <div class="step-number">
+                    1
+                </div>
+
+                <h4>
+                    ایجاد معامله
+                </h4>
+
+                <p>
+                    معامله جدید را ایجاد کنید.
+                </p>
+
+            </div>
+
+
+
+            <div class="step">
+
+                <div class="step-number">
+                    2
+                </div>
+
+                <h4>
+                    توافق طرفین
+                </h4>
+
+                <p>
+                    خریدار و فروشنده شرایط را بررسی می‌کنند.
+                </p>
+
+            </div>
+
+
+
+            <div class="step">
+
+                <div class="step-number">
+                    3
+                </div>
+
+                <h4>
+                    تأیید مدیر
+                </h4>
+
+                <p>
+                    مراحل معامله توسط مدیر بررسی می‌شود.
+                </p>
+
+            </div>
+
+
+
+            <div class="step">
+
+                <div class="step-number">
+                    4
+                </div>
+
+                <h4>
+                    تکمیل معامله
+                </h4>
+
+                <p>
+                    پس از تأیید نهایی، معامله تکمیل می‌شود.
+                </p>
+
+            </div>
+
+
         </div>
 
     </section>
 
+
 </main>
 
+
+
+<!-- FOOTER -->
+
 <footer>
-    © 2026 V2GUARD — Call of Duty Account Middleman
+
+    © 2026 V2GUARD
+    <br>
+    Call of Duty Account Middleman
+
 </footer>
+
 
 </body>
 </html>
