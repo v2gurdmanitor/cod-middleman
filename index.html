@@ -39,10 +39,7 @@ select{
     font-family:inherit;
 }
 
-
-/* =====================================================
-   INTRO
-===================================================== */
+/* INTRO */
 
 #intro{
     position:fixed;
@@ -89,8 +86,7 @@ select{
     font-size:52px;
     font-weight:900;
     letter-spacing:7px;
-    text-shadow:
-        0 0 20px rgba(255,0,0,.5);
+    text-shadow:0 0 20px rgba(255,0,0,.5);
 }
 
 .intro-logo span{
@@ -122,61 +118,40 @@ select{
 }
 
 @keyframes introEnter{
-
     from{
         opacity:0;
         transform:scale(.8) translateY(25px);
         filter:blur(10px);
     }
-
     to{
         opacity:1;
         transform:scale(1) translateY(0);
         filter:blur(0);
     }
-
 }
 
 @keyframes introLine{
-
-    to{
-        width:180px;
-    }
-
+    to{width:180px;}
 }
 
 @keyframes introPulse{
-
     0%,100%{
         transform:scale(1);
         opacity:.5;
     }
-
     50%{
         transform:scale(1.3);
         opacity:1;
     }
-
 }
 
 @keyframes scan{
-
-    from{
-        transform:translateY(0);
-    }
-
-    to{
-        transform:translateY(100px);
-    }
-
+    from{transform:translateY(0);}
+    to{transform:translateY(100px);}
 }
 
 @keyframes fadeIn{
-
-    to{
-        opacity:1;
-    }
-
+    to{opacity:1;}
 }
 
 .intro-hide{
@@ -185,10 +160,7 @@ select{
     pointer-events:none;
 }
 
-
-/* =====================================================
-   HEADER
-===================================================== */
+/* HEADER */
 
 header{
     height:72px;
@@ -219,10 +191,7 @@ header{
     font-size:10px;
 }
 
-
-/* =====================================================
-   CONTAINER
-===================================================== */
+/* CONTAINER */
 
 .container{
     width:92%;
@@ -230,10 +199,7 @@ header{
     margin:auto;
 }
 
-
-/* =====================================================
-   HERO
-===================================================== */
+/* HERO */
 
 .hero{
     text-align:center;
@@ -271,10 +237,7 @@ header{
     line-height:2.2;
 }
 
-
-/* =====================================================
-   EXPERIENCE
-===================================================== */
+/* EXPERIENCE */
 
 .experience{
     max-width:650px;
@@ -309,10 +272,7 @@ header{
     margin-top:7px;
 }
 
-
-/* =====================================================
-   ACTIONS
-===================================================== */
+/* ACTIONS */
 
 .actions{
     display:grid;
@@ -349,10 +309,7 @@ header{
     background:#ff4545;
 }
 
-
-/* =====================================================
-   HOW IT WORKS
-===================================================== */
+/* STEPS */
 
 .section-title{
     text-align:center;
@@ -415,10 +372,7 @@ header{
     line-height:2;
 }
 
-
-/* =====================================================
-   FEE
-===================================================== */
+/* FEE */
 
 .fee{
     margin:45px auto;
@@ -448,10 +402,7 @@ header{
     margin-top:8px;
 }
 
-
-/* =====================================================
-   DEAL BOX
-===================================================== */
+/* BOXES */
 
 .deal-box,
 .enter-box{
@@ -534,10 +485,7 @@ header{
     font-size:10px;
 }
 
-
-/* =====================================================
-   SUPPORT
-===================================================== */
+/* SUPPORT */
 
 #supportButton{
     position:fixed;
@@ -686,10 +634,7 @@ header{
     cursor:pointer;
 }
 
-
-/* =====================================================
-   FOOTER
-===================================================== */
+/* FOOTER */
 
 footer{
     text-align:center;
@@ -698,10 +643,7 @@ footer{
     padding:60px 10px 30px;
 }
 
-
-/* =====================================================
-   MOBILE
-===================================================== */
+/* MOBILE */
 
 @media(max-width:700px){
 
@@ -730,11 +672,6 @@ footer{
 
 <body>
 
-
-<!-- =====================================================
-     INTRO
-===================================================== -->
-
 <div id="intro">
 
     <div class="intro-bg"></div>
@@ -744,24 +681,17 @@ footer{
     <div class="intro-content">
 
         <div class="intro-logo">
-
-            COD
-            <span>MOBILE</span>
-
+            COD <span>MOBILE</span>
         </div>
 
         <div class="intro-sub">
-
             SECURE DEAL SYSTEM
-
         </div>
 
         <div class="intro-line"></div>
 
         <div class="intro-loading">
-
             SECURE CONNECTION...
-
         </div>
 
     </div>
@@ -769,23 +699,14 @@ footer{
 </div>
 
 
-<!-- =====================================================
-     HEADER
-===================================================== -->
-
 <header>
 
     <div class="logo">
-
-        COD
-        <span>MOBILE</span>
-
+        COD <span>MOBILE</span>
     </div>
 
     <div class="header-status">
-
         ● سیستم فعال
-
     </div>
 
 </header>
@@ -793,95 +714,55 @@ footer{
 
 <main class="container">
 
-
-<!-- =====================================================
-     HERO
-===================================================== -->
-
 <section class="hero">
 
     <div class="hero-badge">
-
         🔐 محیط اختصاصی معاملات
-
     </div>
 
     <h1>
-
         معامله
         <span>امن و مطمئن</span>
-
     </h1>
 
     <p>
-
         فروشنده یا خریدار می‌تواند معامله را ایجاد کند.
         پس از ایجاد معامله، لینک یا کد معامله را برای طرف مقابل ارسال کنید
-        تا وارد همان اتاق اختصاصی شود و مراحل معامله را دنبال کنید.
-
+        تا وارد همان اتاق اختصاصی شود.
     </p>
 
 </section>
 
 
-<!-- =====================================================
-     EXPERIENCE
-===================================================== -->
-
 <section class="experience">
 
     <div class="experience-number">
-
         ۷ سال
-
     </div>
 
     <div class="experience-title">
-
         سابقه کاری
-
     </div>
 
     <div class="experience-text">
-
         تجربه، اعتماد و همراهی در مسیر معاملات
-
     </div>
 
 </section>
 
 
-<!-- =====================================================
-     ACTIONS
-===================================================== -->
-
 <section class="actions">
 
-    <button
-        class="btn primary"
-        onclick="showCreate()"
-    >
-
+    <button class="btn primary" onclick="showCreate()">
         ➕ ایجاد معامله
-
     </button>
 
-
-    <button
-        class="btn"
-        onclick="showEnter()"
-    >
-
+    <button class="btn" onclick="showEnter()">
         🚪 ورود به اتاق معامله
-
     </button>
 
 </section>
 
-
-<!-- =====================================================
-     HOW IT WORKS
-===================================================== -->
 
 <section>
 
@@ -897,9 +778,7 @@ footer{
 
     </div>
 
-
     <div class="steps">
-
 
         <div class="step">
 
@@ -916,11 +795,8 @@ footer{
             </h3>
 
             <p>
-
-                خریدار یا فروشنده اطلاعات اولیه معامله
-                را وارد می‌کند و یک اتاق اختصاصی
-                برای معامله ساخته می‌شود.
-
+                اطلاعات اولیه معامله وارد می‌شود
+                و یک اتاق اختصاصی ساخته می‌شود.
             </p>
 
         </div>
@@ -941,10 +817,7 @@ footer{
             </h3>
 
             <p>
-
-                ایجادکننده معامله، لینک یا کد معامله
-                را برای طرف مقابل ارسال می‌کند.
-
+                لینک یا کد معامله برای طرف مقابل ارسال می‌شود.
             </p>
 
         </div>
@@ -965,23 +838,15 @@ footer{
             </h3>
 
             <p>
-
-                طرف مقابل با استفاده از لینک یا وارد کردن
-                کد معامله وارد همان اتاق اختصاصی می‌شود.
-
+                طرف مقابل با لینک یا کد وارد اتاق اختصاصی می‌شود.
             </p>
 
         </div>
-
 
     </div>
 
 </section>
 
-
-<!-- =====================================================
-     FEE
-===================================================== -->
 
 <section class="fee">
 
@@ -990,40 +855,28 @@ footer{
     </h2>
 
     <div class="fee-main">
-
         ۱۰۰,۰۰۰ تومان
-
     </div>
 
     <p>
-
         مبلغ حق واسط برای هر معامله ۱۰۰ هزار تومان است؛
-        این مبلغ به صورت نصف‌نصف بین دو طرف تقسیم می‌شود:
+        این مبلغ نصف‌نصف بین دو طرف تقسیم می‌شود:
         <br>
         <b style="color:#fff;">
             ۵۰,۰۰۰ تومان خریدار
             +
             ۵۰,۰۰۰ تومان فروشنده
         </b>
-
     </p>
 
 </section>
 
 
-<!-- =====================================================
-     CREATE
-===================================================== -->
-
-<section
-    id="createBox"
-    class="deal-box"
->
+<section id="createBox" class="deal-box">
 
     <h2>
         ایجاد معامله
     </h2>
-
 
     <div class="field">
 
@@ -1110,27 +963,17 @@ footer{
         style="width:100%"
         onclick="createDeal()"
     >
-
         ایجاد اتاق معامله
-
     </button>
 
 
-    <div
-        id="createResult"
-        class="create-result"
-    >
+    <div id="createResult" class="create-result">
 
         <b>
             ✅ معامله ایجاد شد
         </b>
 
-
-        <div
-            id="createdCode"
-            class="deal-code"
-        ></div>
-
+        <div id="createdCode" class="deal-code"></div>
 
         <input
             id="createdLink"
@@ -1138,26 +981,20 @@ footer{
             readonly
         >
 
-
         <button
             class="btn"
             style="width:100%;margin-top:12px"
             onclick="copyCreatedLink()"
         >
-
             📋 کپی لینک معامله
-
         </button>
-
 
         <button
             class="btn primary"
             style="width:100%;margin-top:8px"
             onclick="openCreatedDeal()"
         >
-
             🚪 ورود به اتاق معامله
-
         </button>
 
     </div>
@@ -1165,19 +1002,11 @@ footer{
 </section>
 
 
-<!-- =====================================================
-     ENTER
-===================================================== -->
-
-<section
-    id="enterBox"
-    class="enter-box"
->
+<section id="enterBox" class="enter-box">
 
     <h2>
         ورود به اتاق معامله
     </h2>
-
 
     <div class="field">
 
@@ -1193,44 +1022,30 @@ footer{
 
     </div>
 
-
     <button
         class="btn primary"
         style="width:100%"
         onclick="enterDeal()"
     >
-
         ورود به اتاق
-
     </button>
 
 </section>
-
 
 </main>
 
 
 <footer>
-
     COD MOBILE © 2026
-
 </footer>
 
 
-<!-- =====================================================
-     SUPPORT
-===================================================== -->
-
-<div
-    id="supportButton"
-    title="پشتیبانی"
->
+<div id="supportButton" title="پشتیبانی">
     💬
 </div>
 
 
 <div id="supportBox">
-
 
     <div class="support-header">
 
@@ -1241,19 +1056,16 @@ footer{
             </div>
 
             <div class="support-online">
-                ● ارتباط خصوصی با مدیر
+                ● ارتباط خصوصی با مدیریت
             </div>
 
         </div>
-
 
         <button
             class="close-support"
             onclick="closeSupport()"
         >
-
             ✕
-
         </button>
 
     </div>
@@ -1262,9 +1074,7 @@ footer{
     <div id="supportMessages">
 
         <div class="support-empty">
-
             هنوز پیامی ارسال نشده است.
-
         </div>
 
     </div>
@@ -1278,14 +1088,11 @@ footer{
             autocomplete="off"
         >
 
-
         <button
             id="supportSend"
             onclick="sendSupportMessage()"
         >
-
             ارسال
-
         </button>
 
     </div>
@@ -1295,33 +1102,23 @@ footer{
 
 <script>
 
-/* =====================================================
-   INTRO
-===================================================== */
+/* INTRO */
 
-window.addEventListener(
-    "load",
-    function(){
+window.addEventListener("load",function(){
 
-        setTimeout(
-            function(){
+    setTimeout(function(){
 
-                document
-                .getElementById("intro")
-                .classList
-                .add("intro-hide");
+        document
+        .getElementById("intro")
+        .classList
+        .add("intro-hide");
 
-            },
-            2800
-        );
+    },2800);
 
-    }
-);
+});
 
 
-/* =====================================================
-   SUPABASE
-===================================================== */
+/* SUPABASE */
 
 const SUPABASE_URL =
 "https://hctppmmaiqkzcgxncyhi.supabase.co";
@@ -1336,15 +1133,12 @@ window.supabase.createClient(
 );
 
 
-/* =====================================================
-   VISITOR
-===================================================== */
+/* VISITOR */
 
 let visitorId =
 localStorage.getItem(
     "cod_mobile_visitor_id"
 );
-
 
 if(!visitorId){
 
@@ -1359,9 +1153,62 @@ if(!visitorId){
 }
 
 
-/* =====================================================
-   UI
-===================================================== */
+/* DEAL ID */
+
+const urlParams =
+new URLSearchParams(
+    window.location.search
+);
+
+const existingDealId =
+urlParams.get("id");
+
+
+/* اگر لینک دارای id باشد */
+
+async function openExistingDeal(){
+
+    if(!existingDealId)
+        return;
+
+    const code =
+    existingDealId
+    .trim()
+    .toUpperCase();
+
+    if(!code)
+        return;
+
+    const result =
+    await db
+    .from("deals")
+    .select("deal_code")
+    .eq("deal_code",code)
+    .limit(1);
+
+    if(result.error){
+
+        console.error(result.error);
+        return;
+
+    }
+
+    if(
+        result.data &&
+        result.data.length > 0
+    ){
+
+        window.location.replace(
+            "deal.html?id=" +
+            encodeURIComponent(code)
+        );
+
+    }
+
+}
+
+
+/* UI */
 
 function hideBoxes(){
 
@@ -1414,9 +1261,7 @@ function showEnter(){
 }
 
 
-/* =====================================================
-   DEAL CODE
-===================================================== */
+/* CODE */
 
 function generateDealId(){
 
@@ -1426,17 +1271,13 @@ function generateDealId(){
     let result =
     "V2G-";
 
-    for(
-        let i=0;
-        i<6;
-        i++
-    ){
+    for(let i=0;i<6;i++){
 
         result +=
         chars[
             Math.floor(
-                Math.random()
-                * chars.length
+                Math.random() *
+                chars.length
             )
         ];
 
@@ -1447,9 +1288,7 @@ function generateDealId(){
 }
 
 
-/* =====================================================
-   CREATE DEAL
-===================================================== */
+/* CREATE */
 
 async function createDeal(){
 
@@ -1458,13 +1297,11 @@ async function createDeal(){
     .getElementById("createRole")
     .value;
 
-
     const name =
     document
     .getElementById("createName")
     .value
     .trim();
-
 
     const phone =
     document
@@ -1472,13 +1309,11 @@ async function createDeal(){
     .value
     .trim();
 
-
     const price =
     document
     .getElementById("createPrice")
     .value
     .trim();
-
 
     const description =
     document
@@ -1489,18 +1324,13 @@ async function createDeal(){
 
     if(!name){
 
-        alert(
-            "نام یا شناسه را وارد کنید."
-        );
-
+        alert("نام یا شناسه را وارد کنید.");
         return;
 
     }
 
 
-    if(
-        !/^09\d{9}$/.test(phone)
-    ){
+    if(!/^09\d{9}$/.test(phone)){
 
         alert(
             "شماره تلفن باید ۱۱ رقمی و با 09 شروع شود."
@@ -1513,10 +1343,7 @@ async function createDeal(){
 
     if(!price){
 
-        alert(
-            "مبلغ معامله را وارد کنید."
-        );
-
+        alert("مبلغ معامله را وارد کنید.");
         return;
 
     }
@@ -1531,26 +1358,13 @@ async function createDeal(){
     .from("deals")
     .insert({
 
-        deal_code:
-        dealCode,
-
-        role:
-        role,
-
-        name:
-        name,
-
-        phone:
-        phone,
-
-        price:
-        Number(price),
-
-        description:
-        description,
-
-        status:
-        "pending"
+        deal_code:dealCode,
+        role:role,
+        name:name,
+        phone:phone,
+        price:Number(price),
+        description:description,
+        status:"pending"
 
     })
     .select()
@@ -1559,9 +1373,7 @@ async function createDeal(){
 
     if(result.error){
 
-        console.error(
-            result.error
-        );
+        console.error(result.error);
 
         alert(
             "ایجاد معامله انجام نشد:\n" +
@@ -1573,17 +1385,17 @@ async function createDeal(){
     }
 
 
-    const dealLink =
+    const basePath =
     window.location.origin +
     window.location.pathname
-    .replace(
-        "index.html",
-        "deal.html"
-    ) +
-    "?id=" +
-    encodeURIComponent(
-        dealCode
-    );
+    .replace(/\/$/,"")
+    .replace(/\/index\.html$/,"");
+
+
+    const dealLink =
+    basePath +
+    "/deal.html?id=" +
+    encodeURIComponent(dealCode);
 
 
     document
@@ -1605,14 +1417,13 @@ async function createDeal(){
 
 
     localStorage.setItem(
-        "v2guard_role_" +
-        dealCode,
+        "cod_mobile_role_" + dealCode,
         role
     );
 
 
     localStorage.setItem(
-        "v2guard_sender_name",
+        "cod_mobile_sender_name",
         name
     );
 
@@ -1622,17 +1433,10 @@ async function createDeal(){
     .from("deal_participants")
     .insert({
 
-        deal_code:
-        dealCode,
-
-        visitor_id:
-        visitorId,
-
-        name:
-        name,
-
-        role:
-        role
+        deal_code:dealCode,
+        visitor_id:visitorId,
+        name:name,
+        role:role
 
     });
 
@@ -1648,68 +1452,48 @@ async function createDeal(){
 }
 
 
-/* =====================================================
-   COPY LINK
-===================================================== */
+/* COPY */
 
 async function copyCreatedLink(){
 
     const link =
     document
-    .getElementById(
-        "createdLink"
-    )
+    .getElementById("createdLink")
     .value;
-
 
     try{
 
         await navigator
         .clipboard
-        .writeText(
-            link
-        );
+        .writeText(link);
 
-        alert(
-            "لینک معامله کپی شد."
-        );
+        alert("لینک معامله کپی شد.");
 
     }catch{
 
         const input =
         document
-        .getElementById(
-            "createdLink"
-        );
+        .getElementById("createdLink");
 
         input.select();
 
-        document.execCommand(
-            "copy"
-        );
+        document.execCommand("copy");
 
-        alert(
-            "لینک معامله کپی شد."
-        );
+        alert("لینک معامله کپی شد.");
 
     }
 
 }
 
 
-/* =====================================================
-   OPEN DEAL
-===================================================== */
+/* OPEN */
 
 function openCreatedDeal(){
 
     const link =
     document
-    .getElementById(
-        "createdLink"
-    )
+    .getElementById("createdLink")
     .value;
-
 
     if(link){
 
@@ -1721,17 +1505,13 @@ function openCreatedDeal(){
 }
 
 
-/* =====================================================
-   ENTER DEAL
-===================================================== */
+/* ENTER */
 
 async function enterDeal(){
 
     let code =
     document
-    .getElementById(
-        "enterCode"
-    )
+    .getElementById("enterCode")
     .value
     .trim()
     .toUpperCase();
@@ -1739,10 +1519,7 @@ async function enterDeal(){
 
     if(!code){
 
-        alert(
-            "کد معامله را وارد کنید."
-        );
-
+        alert("کد معامله را وارد کنید.");
         return;
 
     }
@@ -1751,13 +1528,8 @@ async function enterDeal(){
     const result =
     await db
     .from("deals")
-    .select(
-        "deal_code"
-    )
-    .eq(
-        "deal_code",
-        code
-    )
+    .select("deal_code")
+    .eq("deal_code",code)
     .limit(1);
 
 
@@ -1778,40 +1550,37 @@ async function enterDeal(){
         result.data.length === 0
     ){
 
-        alert(
-            "این معامله پیدا نشد."
-        );
-
+        alert("این معامله پیدا نشد.");
         return;
 
     }
 
 
+    const basePath =
+    window.location.origin +
+    window.location.pathname
+    .replace(/\/$/,"")
+    .replace(/\/index\.html$/,"");
+
+
     window.location.href =
-    "deal.html?id=" +
-    encodeURIComponent(
-        code
-    );
+    basePath +
+    "/deal.html?id=" +
+    encodeURIComponent(code);
 
 }
 
 
-/* =====================================================
-   SUPPORT OPEN
-===================================================== */
+/* SUPPORT */
 
 document
-.getElementById(
-    "supportButton"
-)
+.getElementById("supportButton")
 .addEventListener(
     "click",
     function(){
 
         document
-        .getElementById(
-            "supportBox"
-        )
+        .getElementById("supportBox")
         .style.display =
         "block";
 
@@ -1824,18 +1593,12 @@ document
 function closeSupport(){
 
     document
-    .getElementById(
-        "supportBox"
-    )
+    .getElementById("supportBox")
     .style.display =
     "none";
 
 }
 
-
-/* =====================================================
-   SUPPORT LOAD
-===================================================== */
 
 async function loadSupportMessages(){
 
@@ -1869,17 +1632,13 @@ async function loadSupportMessages(){
             </div>
         `;
 
-        console.error(
-            result.error
-        );
-
+        console.error(result.error);
         return;
 
     }
 
 
-    box.innerHTML =
-    "";
+    box.innerHTML = "";
 
 
     if(
@@ -1902,15 +1661,10 @@ async function loadSupportMessages(){
         renderSupportMessage
     );
 
-
     scrollSupport();
 
 }
 
-
-/* =====================================================
-   SUPPORT RENDER
-===================================================== */
 
 function renderSupportMessage(message){
 
@@ -1921,14 +1675,11 @@ function renderSupportMessage(message){
 
 
     const div =
-    document.createElement(
-        "div"
-    );
+    document.createElement("div");
 
 
     const admin =
-    message.sender_role ===
-    "admin";
+    message.sender_role === "admin";
 
 
     div.className =
@@ -1943,27 +1694,18 @@ function renderSupportMessage(message){
     div.innerHTML = `
 
         <div class="support-name">
-
             ${
                 admin
-                ? "👑 مدیر"
+                ? "👑 مدیریت"
                 : "👤 شما"
             }
-
         </div>
-
 
         <div class="support-text">
-
-            ${escapeHtml(
-                message.message
-            )}
-
+            ${escapeHtml(message.message)}
         </div>
 
-
         <div class="support-time">
-
             ${
                 message.created_at
                 ?
@@ -1979,22 +1721,15 @@ function renderSupportMessage(message){
                 :
                 ""
             }
-
         </div>
 
     `;
 
 
-    box.appendChild(
-        div
-    );
+    box.appendChild(div);
 
 }
 
-
-/* =====================================================
-   SUPPORT SEND
-===================================================== */
 
 async function sendSupportMessage(){
 
@@ -2018,8 +1753,7 @@ async function sendSupportMessage(){
         return;
 
 
-    button.disabled =
-    true;
+    button.disabled = true;
 
 
     const result =
@@ -2027,17 +1761,10 @@ async function sendSupportMessage(){
     .from("support_messages")
     .insert({
 
-        visitor_id:
-        visitorId,
-
-        sender_role:
-        "user",
-
-        sender_name:
-        "کاربر",
-
-        message:
-        text
+        visitor_id:visitorId,
+        sender_role:"user",
+        sender_name:"کاربر",
+        message:text
 
     })
     .select()
@@ -2051,16 +1778,13 @@ async function sendSupportMessage(){
             result.error.message
         );
 
-        button.disabled =
-        false;
-
+        button.disabled = false;
         return;
 
     }
 
 
-    input.value =
-    "";
+    input.value = "";
 
 
     renderSupportMessage(
@@ -2071,28 +1795,18 @@ async function sendSupportMessage(){
     scrollSupport();
 
 
-    button.disabled =
-    false;
+    button.disabled = false;
 
 }
 
 
-/* =====================================================
-   SUPPORT ENTER
-===================================================== */
-
 document
-.getElementById(
-    "supportInput"
-)
+.getElementById("supportInput")
 .addEventListener(
     "keydown",
     function(event){
 
-        if(
-            event.key ===
-            "Enter"
-        ){
+        if(event.key === "Enter"){
 
             event.preventDefault();
 
@@ -2103,10 +1817,6 @@ document
     }
 );
 
-
-/* =====================================================
-   SUPPORT REALTIME
-===================================================== */
 
 db
 .channel(
@@ -2126,8 +1836,7 @@ db
     payload => {
 
         if(
-            payload.new.sender_role
-            ===
+            payload.new.sender_role ===
             "admin"
         ){
 
@@ -2143,10 +1852,6 @@ db
 )
 .subscribe();
 
-
-/* =====================================================
-   HELPERS
-===================================================== */
 
 function scrollSupport(){
 
@@ -2164,14 +1869,21 @@ function scrollSupport(){
 function escapeHtml(text){
 
     const div =
-    document.createElement(
-        "div"
-    );
+    document.createElement("div");
 
     div.textContent =
     text || "";
 
     return div.innerHTML;
+
+}
+
+
+/* START */
+
+if(existingDealId){
+
+    openExistingDeal();
 
 }
 
