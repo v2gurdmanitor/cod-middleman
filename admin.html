@@ -244,6 +244,45 @@ tr:hover td{
     padding:40px;
 }
 
+.support-button{
+    position:relative;
+    background:#231010;
+    border:1px solid #572020;
+}
+
+.support-badge{
+    position:absolute;
+    top:-7px;
+    left:-7px;
+    min-width:21px;
+    height:21px;
+    padding:0 5px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:#ff3030;
+    border:2px solid #050505;
+    border-radius:50%;
+    font-size:9px;
+}
+
+.support-row{
+    cursor:pointer;
+}
+
+.unread-row td{
+    background:rgba(255,48,48,.035);
+}
+
+.unread-dot{
+    display:inline-block;
+    width:7px;
+    height:7px;
+    background:#ff3030;
+    border-radius:50%;
+    margin-left:6px;
+}
+
 /* MODAL */
 
 .modal{
@@ -309,8 +348,6 @@ tr:hover td{
 .description{
     grid-column:1/-1;
 }
-
-/* STATUS */
 
 .status-actions{
     margin-top:20px;
@@ -417,8 +454,6 @@ tr:hover td{
     margin-top:6px;
 }
 
-/* ADMIN SEND */
-
 .admin-send{
     display:flex;
     gap:8px;
@@ -443,6 +478,220 @@ tr:hover td{
 .admin-send button{
     width:100px;
 }
+
+/* PRIVATE SUPPORT */
+
+.support-modal-box{
+    width:min(620px,100%);
+    height:720px;
+    max-height:90vh;
+    margin:20px auto;
+    background:#0d0d0d;
+    border:1px solid #292929;
+    border-radius:20px;
+    overflow:hidden;
+    display:flex;
+    flex-direction:column;
+}
+
+.support-header{
+    padding:18px;
+    border-bottom:1px solid #222;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+.support-header-title{
+    font-size:15px;
+    font-weight:bold;
+}
+
+.support-header-sub{
+    color:#777;
+    font-size:9px;
+    margin-top:5px;
+}
+
+.support-body{
+    flex:1;
+    overflow-y:auto;
+    padding:15px;
+}
+
+.support-item{
+    background:#111;
+    border:1px solid #242424;
+    border-radius:14px;
+    padding:14px;
+    margin-bottom:10px;
+    cursor:pointer;
+    transition:.2s;
+}
+
+.support-item:hover{
+    border-color:#ff3030;
+    background:#151515;
+}
+
+.support-item.unread{
+    border-color:#652020;
+    background:#180b0b;
+}
+
+.support-item-head{
+    display:flex;
+    justify-content:space-between;
+    gap:10px;
+    align-items:center;
+}
+
+.support-user{
+    font-size:12px;
+    font-weight:bold;
+}
+
+.support-time{
+    color:#555;
+    font-size:9px;
+}
+
+.support-preview{
+    color:#aaa;
+    font-size:11px;
+    margin-top:8px;
+    line-height:1.7;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    white-space:nowrap;
+}
+
+.support-code{
+    color:#ff5555;
+    font-size:9px;
+    margin-top:7px;
+    direction:ltr;
+}
+
+.support-empty{
+    text-align:center;
+    color:#555;
+    padding-top:180px;
+    font-size:12px;
+}
+
+/* SUPPORT CHAT */
+
+.private-chat{
+    display:none;
+    flex-direction:column;
+    height:100%;
+}
+
+.private-chat-head{
+    padding:14px 18px;
+    border-bottom:1px solid #222;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+}
+
+.private-chat-user{
+    font-size:13px;
+    font-weight:bold;
+}
+
+.private-chat-code{
+    color:#ff5555;
+    font-size:9px;
+    margin-top:5px;
+    direction:ltr;
+}
+
+.back-support{
+    background:#222;
+    padding:8px 12px;
+    font-size:10px;
+}
+
+.private-messages{
+    flex:1;
+    overflow-y:auto;
+    padding:15px;
+}
+
+.private-message{
+    max-width:85%;
+    margin-bottom:10px;
+    padding:11px 13px;
+    border-radius:12px;
+    background:#171717;
+    border:1px solid #242424;
+}
+
+.private-message.user{
+    margin-left:auto;
+}
+
+.private-message.admin{
+    margin-right:auto;
+    background:#2b1010;
+    border-color:#652020;
+}
+
+.private-message-name{
+    font-size:10px;
+    font-weight:bold;
+    margin-bottom:5px;
+}
+
+.private-message.user .private-message-name{
+    color:#ff5555;
+}
+
+.private-message.admin .private-message-name{
+    color:#ffcf5a;
+}
+
+.private-message-text{
+    font-size:12px;
+    line-height:1.8;
+    word-break:break-word;
+}
+
+.private-message-time{
+    color:#555;
+    font-size:8px;
+    margin-top:5px;
+}
+
+.private-send{
+    display:flex;
+    gap:8px;
+    padding:10px;
+    border-top:1px solid #222;
+}
+
+.private-send input{
+    flex:1;
+    background:#070707;
+    border:1px solid #292929;
+    color:#fff;
+    border-radius:10px;
+    padding:12px;
+    outline:none;
+    font-family:inherit;
+}
+
+.private-send input:focus{
+    border-color:#ff3030;
+}
+
+.private-send button{
+    width:80px;
+}
+
+/* ERROR */
 
 .error{
     display:none;
@@ -507,6 +756,12 @@ tr:hover td{
         margin:10px auto;
     }
 
+    .support-modal-box{
+        height:calc(100vh - 20px);
+        max-height:none;
+        margin:10px auto;
+    }
+
 }
 
 </style>
@@ -543,12 +798,30 @@ tr:hover td{
 
         </div>
 
-        <button
-            class="refresh"
-            onclick="loadDeals()"
-        >
-            🔄 بروزرسانی
-        </button>
+        <div style="display:flex;gap:8px;">
+
+            <button
+                class="support-button"
+                onclick="openSupportInbox()"
+            >
+                👑 پیام‌های کاربران
+                <span
+                    id="supportBadge"
+                    class="support-badge"
+                    style="display:none;"
+                >
+                    0
+                </span>
+            </button>
+
+            <button
+                class="refresh"
+                onclick="loadDeals()"
+            >
+                🔄 بروزرسانی
+            </button>
+
+        </div>
 
     </div>
 
@@ -690,7 +963,7 @@ tr:hover td{
 </div>
 
 
-<!-- MODAL -->
+<!-- DEAL MODAL -->
 
 <div
     class="modal"
@@ -758,14 +1031,12 @@ tr:hover td{
         </div>
 
 
-        <!-- CHAT -->
-
         <div class="chat-box">
 
             <div class="chat-title">
 
                 <span>
-                    💬 گفت‌وگوی خصوصی معامله
+                    💬 گفت‌وگوی معامله
                 </span>
 
                 <span
@@ -813,6 +1084,137 @@ tr:hover td{
 </div>
 
 
+<!-- PRIVATE SUPPORT MODAL -->
+
+<div
+    class="modal"
+    id="supportModal"
+    onclick="closeSupportOutside(event)"
+>
+
+    <div
+        class="support-modal-box"
+        onclick="event.stopPropagation()"
+    >
+
+        <!-- INBOX -->
+
+        <div
+            id="supportInbox"
+            style="display:flex;flex-direction:column;height:100%;"
+        >
+
+            <div class="support-header">
+
+                <div>
+
+                    <div class="support-header-title">
+                        👑 پیام‌های خصوصی کاربران
+                    </div>
+
+                    <div class="support-header-sub">
+                        پیام‌هایی که کاربران از داخل اتاق معامله ارسال کرده‌اند
+                    </div>
+
+                </div>
+
+                <button
+                    class="close"
+                    onclick="closeSupportInbox()"
+                >
+                    ✕
+                </button>
+
+            </div>
+
+
+            <div
+                id="supportList"
+                class="support-body"
+            >
+
+                <div class="support-empty">
+                    در حال دریافت پیام‌ها...
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- PRIVATE CHAT -->
+
+        <div
+            id="privateChat"
+            class="private-chat"
+        >
+
+            <div class="private-chat-head">
+
+                <div>
+
+                    <div
+                        class="private-chat-user"
+                        id="privateChatUser"
+                    >
+                        کاربر
+                    </div>
+
+                    <div
+                        class="private-chat-code"
+                        id="privateChatCode"
+                    ></div>
+
+                </div>
+
+
+                <button
+                    class="back-support"
+                    onclick="backToSupportList()"
+                >
+                    ← برگشت
+                </button>
+
+            </div>
+
+
+            <div
+                id="privateMessages"
+                class="private-messages"
+            >
+
+                <div class="support-empty">
+                    در حال دریافت پیام‌ها...
+                </div>
+
+            </div>
+
+
+            <div class="private-send">
+
+                <input
+                    id="privateInput"
+                    type="text"
+                    placeholder="پاسخ به کاربر..."
+                    autocomplete="off"
+                >
+
+                <button
+                    id="privateSend"
+                    onclick="sendPrivateAdminMessage()"
+                >
+                    ارسال
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
 <script>
 
 /* =====================================
@@ -842,6 +1244,14 @@ let currentDeal = null;
 
 let currentChannel = null;
 
+let supportChannel = null;
+
+let supportChatChannel = null;
+
+let supportMessages = [];
+
+let currentSupportVisitor = null;
+
 
 /* =====================================
    ERROR / SUCCESS
@@ -857,7 +1267,6 @@ function showError(message){
 
     box.style.display =
         "block";
-
 }
 
 
@@ -865,7 +1274,6 @@ function hideError(){
 
     document.getElementById("error")
         .style.display = "none";
-
 }
 
 
@@ -886,7 +1294,6 @@ function showSuccess(message){
             "none";
 
     },3000);
-
 }
 
 
@@ -954,6 +1361,30 @@ function formatPrice(price){
 
 
 /* =====================================
+   ESCAPE
+===================================== */
+
+function escapeHtml(text){
+
+    const div =
+        document.createElement("div");
+
+    div.textContent =
+        text ?? "";
+
+    return div.innerHTML;
+}
+
+
+function escapeAttribute(text){
+
+    return String(text ?? "")
+        .replace(/\\/g,"\\\\")
+        .replace(/'/g,"\\'");
+}
+
+
+/* =====================================
    LOAD DEALS
 ===================================== */
 
@@ -962,9 +1393,7 @@ async function loadDeals(){
     hideError();
 
     const table =
-        document.getElementById(
-            "dealTable"
-        );
+        document.getElementById("dealTable");
 
 
     table.innerHTML = `
@@ -1045,7 +1474,6 @@ function updateStats(){
         allDeals.filter(
             d => d.status === "completed"
         ).length;
-
 }
 
 
@@ -1056,9 +1484,7 @@ function updateStats(){
 function renderDeals(deals){
 
     const table =
-        document.getElementById(
-            "dealTable"
-        );
+        document.getElementById("dealTable");
 
 
     if(!deals.length){
@@ -1155,9 +1581,7 @@ function filterDeals(){
 
     const value =
         document
-        .getElementById(
-            "searchInput"
-        )
+        .getElementById("searchInput")
         .value
         .trim()
         .toLowerCase();
@@ -1233,9 +1657,7 @@ async function viewDeal(code){
 
 
     const detail =
-        document.getElementById(
-            "detail"
-        );
+        document.getElementById("detail");
 
 
     detail.innerHTML = `
@@ -1377,15 +1799,13 @@ async function viewDeal(code){
 
 
     document
-        .getElementById(
-            "adminMessageInput"
-        )
+        .getElementById("adminMessageInput")
         .focus();
 }
 
 
 /* =====================================
-   LOAD MESSAGES
+   LOAD PUBLIC MESSAGES
 ===================================== */
 
 async function loadMessages(code){
@@ -1464,7 +1884,7 @@ async function loadMessages(code){
 
 
 /* =====================================
-   RENDER MESSAGE
+   RENDER PUBLIC MESSAGE
 ===================================== */
 
 function renderMessage(message){
@@ -1481,11 +1901,8 @@ function renderMessage(message){
         );
 
 
-    if(empty){
-
+    if(empty)
         empty.remove();
-
-    }
 
 
     const div =
@@ -1536,9 +1953,7 @@ function renderMessage(message){
                 ?
                 new Date(
                     message.created_at
-                ).toLocaleString(
-                    "fa-IR"
-                )
+                ).toLocaleString("fa-IR")
                 :
                 ""
             }
@@ -1552,7 +1967,7 @@ function renderMessage(message){
 
 
 /* =====================================
-   SEND ADMIN MESSAGE
+   SEND ADMIN PUBLIC MESSAGE
 ===================================== */
 
 async function sendAdminMessage(){
@@ -1639,12 +2054,6 @@ async function sendAdminMessage(){
         "";
 
 
-    /*
-       پیام مدیر را همینجا نمایش می‌دهیم.
-       Realtime پیام خود مدیر را دوباره
-       نمایش نمی‌دهد.
-    */
-
     if(result.data){
 
         renderMessage(
@@ -1666,7 +2075,7 @@ async function sendAdminMessage(){
 
 
 /* =====================================
-   REALTIME CHAT
+   PUBLIC CHAT REALTIME
 ===================================== */
 
 function startMessageRealtime(code){
@@ -1685,7 +2094,10 @@ function startMessageRealtime(code){
     currentChannel =
         supabaseClient
         .channel(
-            "admin-chat-" + code + "-" + Date.now()
+            "admin-chat-" +
+            code +
+            "-" +
+            Date.now()
         )
         .on(
             "postgres_changes",
@@ -1702,11 +2114,6 @@ function startMessageRealtime(code){
                     payload.new;
 
 
-                /*
-                   اگر پیام مدیر خودمان بود،
-                   قبلاً دستی اضافه شده.
-                */
-
                 if(
                     message.sender_role === "admin"
                     &&
@@ -1717,11 +2124,6 @@ function startMessageRealtime(code){
 
                 }
 
-
-                /*
-                   فقط پیام‌های همین معامله
-                   نمایش داده می‌شوند.
-                */
 
                 if(
                     currentDeal &&
@@ -1744,7 +2146,7 @@ function startMessageRealtime(code){
 
 
 /* =====================================
-   SCROLL CHAT
+   SCROLL PUBLIC
 ===================================== */
 
 function scrollMessages(){
@@ -1822,7 +2224,7 @@ async function changeStatus(status){
 
 
 /* =====================================
-   CLOSE MODAL
+   CLOSE DEAL MODAL
 ===================================== */
 
 function hideModal(){
@@ -1862,37 +2264,995 @@ function closeModal(event){
 
 
 /* =====================================
-   ESCAPE HTML
+   PRIVATE SUPPORT
+   دریافت همه پیام‌های کاربران
 ===================================== */
 
-function escapeHtml(text){
+async function loadSupportMessages(){
+
+    const list =
+        document.getElementById(
+            "supportList"
+        );
+
+
+    list.innerHTML = `
+        <div class="support-empty">
+            در حال دریافت پیام‌ها...
+        </div>
+    `;
+
+
+    const result =
+        await supabaseClient
+        .from("support_messages")
+        .select("*")
+        .order(
+            "created_at",
+            {
+                ascending:false
+            }
+        );
+
+
+    if(result.error){
+
+        console.error(
+            "Support load error:",
+            result.error
+        );
+
+
+        list.innerHTML = `
+            <div class="support-empty"
+                 style="color:#ff6666;">
+                خطا در دریافت پیام‌ها
+                <br><br>
+                ${escapeHtml(
+                    result.error.message
+                )}
+            </div>
+        `;
+
+        return;
+    }
+
+
+    supportMessages =
+        result.data || [];
+
+
+    renderSupportList(
+        supportMessages
+    );
+
+
+    updateSupportBadge();
+}
+
+
+/* =====================================
+   SUPPORT LIST
+===================================== */
+
+function renderSupportList(messages){
+
+    const list =
+        document.getElementById(
+            "supportList"
+        );
+
+
+    if(!messages.length){
+
+        list.innerHTML = `
+            <div class="support-empty">
+                📭 هنوز هیچ پیام خصوصی‌ای دریافت نشده است.
+            </div>
+        `;
+
+        return;
+    }
+
+
+    /*
+       آخرین پیام هر کاربر/معامله
+       به عنوان یک گفت‌وگو نمایش داده می‌شود.
+    */
+
+    const conversations = new Map();
+
+
+    messages.forEach(message => {
+
+        const key =
+            String(
+                message.visitor_id || ""
+            )
+            + "|"
+            +
+            String(
+                message.deal_code || ""
+            );
+
+
+        if(!conversations.has(key)){
+
+            conversations.set(
+                key,
+                message
+            );
+
+        }
+
+    });
+
+
+    list.innerHTML =
+        Array.from(
+            conversations.values()
+        )
+        .map(message => {
+
+            const unread =
+                message.sender_role !== "admin";
+
+
+            return `
+
+                <div
+                    class="support-item ${unread ? "unread" : ""}"
+                    onclick="openSupportChat(
+                        '${escapeAttribute(message.visitor_id)}',
+                        '${escapeAttribute(message.deal_code)}'
+                    )"
+                >
+
+                    <div class="support-item-head">
+
+                        <div class="support-user">
+
+                            ${
+                                unread
+                                ?
+                                '<span class="unread-dot"></span>'
+                                :
+                                ''
+                            }
+
+                            👤
+                            ${escapeHtml(
+                                message.sender_name ||
+                                "کاربر"
+                            )}
+
+                        </div>
+
+                        <div class="support-time">
+
+                            ${
+                                message.created_at
+                                ?
+                                new Date(
+                                    message.created_at
+                                ).toLocaleString(
+                                    "fa-IR"
+                                )
+                                :
+                                ""
+                            }
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="support-preview">
+
+                        ${escapeHtml(
+                            message.message ||
+                            ""
+                        )}
+
+                    </div>
+
+
+                    <div class="support-code">
+
+                        معامله:
+                        ${escapeHtml(
+                            message.deal_code ||
+                            "---"
+                        )}
+
+                    </div>
+
+                </div>
+
+            `;
+
+        })
+        .join("");
+}
+
+
+/* =====================================
+   BADGE
+===================================== */
+
+function updateSupportBadge(){
+
+    /*
+       پیام‌های آخر با sender_role=user
+       به عنوان پیام جدید در نظر گرفته می‌شوند.
+    */
+
+    const unread =
+        supportMessages.filter(
+            message =>
+                message.sender_role !== "admin"
+        ).length;
+
+
+    const badge =
+        document.getElementById(
+            "supportBadge"
+        );
+
+
+    if(unread > 0){
+
+        badge.style.display =
+            "flex";
+
+        badge.textContent =
+            unread > 99
+            ? "99+"
+            : unread;
+
+    }else{
+
+        badge.style.display =
+            "none";
+
+    }
+
+}
+
+
+/* =====================================
+   OPEN SUPPORT INBOX
+===================================== */
+
+async function openSupportInbox(){
+
+    document
+        .getElementById("supportModal")
+        .style.display =
+        "block";
+
+
+    document
+        .getElementById("supportInbox")
+        .style.display =
+        "flex";
+
+
+    document
+        .getElementById("privateChat")
+        .style.display =
+        "none";
+
+
+    await loadSupportMessages();
+
+    startSupportRealtime();
+}
+
+
+/* =====================================
+   SUPPORT REALTIME
+===================================== */
+
+function startSupportRealtime(){
+
+    if(supportChannel){
+
+        supabaseClient.removeChannel(
+            supportChannel
+        );
+
+        supportChannel =
+            null;
+    }
+
+
+    supportChannel =
+        supabaseClient
+        .channel(
+            "admin-support-inbox-" +
+            Date.now()
+        )
+        .on(
+            "postgres_changes",
+            {
+                event:"INSERT",
+                schema:"public",
+                table:"support_messages"
+            },
+            payload => {
+
+                const message =
+                    payload.new;
+
+
+                supportMessages.unshift(
+                    message
+                );
+
+
+                updateSupportBadge();
+
+
+                /*
+                   اگر کاربر داخل لیست پیام‌ها باشد
+                   لیست را دوباره می‌سازیم.
+                */
+
+                if(
+                    document
+                    .getElementById(
+                        "supportInbox"
+                    )
+                    .style.display !== "none"
+                ){
+
+                    renderSupportList(
+                        supportMessages
+                    );
+
+                }
+
+
+                /*
+                   اگر همین کاربر/معامله باز باشد
+                   پیام را مستقیم داخل چت نشان بده.
+                */
+
+                if(
+                    currentSupportVisitor &&
+                    message.visitor_id ===
+                    currentSupportVisitor.visitorId &&
+                    message.deal_code ===
+                    currentSupportVisitor.dealCode
+                ){
+
+                    renderPrivateAdminMessage(
+                        message
+                    );
+
+                }
+
+            }
+        )
+        .subscribe();
+}
+
+
+/* =====================================
+   OPEN PRIVATE CHAT
+===================================== */
+
+async function openSupportChat(
+    visitorId,
+    dealCode
+){
+
+    currentSupportVisitor = {
+        visitorId:
+            visitorId,
+
+        dealCode:
+            dealCode
+    };
+
+
+    document
+        .getElementById("supportInbox")
+        .style.display =
+        "none";
+
+
+    document
+        .getElementById("privateChat")
+        .style.display =
+        "flex";
+
+
+    const related =
+        supportMessages.filter(
+            message =>
+                message.visitor_id ===
+                visitorId
+                &&
+                message.deal_code ===
+                dealCode
+        );
+
+
+    const firstUserMessage =
+        related.find(
+            message =>
+                message.sender_role !== "admin"
+        );
+
+
+    document
+        .getElementById(
+            "privateChatUser"
+        )
+        .textContent =
+        "👤 " +
+        (
+            firstUserMessage?.sender_name ||
+            "کاربر"
+        );
+
+
+    document
+        .getElementById(
+            "privateChatCode"
+        )
+        .textContent =
+        "معامله: " +
+        (
+            dealCode ||
+            "---"
+        );
+
+
+    await loadPrivateAdminMessages(
+        visitorId,
+        dealCode
+    );
+
+
+    startPrivateAdminRealtime(
+        visitorId,
+        dealCode
+    );
+
+
+    document
+        .getElementById(
+            "privateInput"
+        )
+        .focus();
+}
+
+
+/* =====================================
+   LOAD PRIVATE ADMIN CHAT
+===================================== */
+
+async function loadPrivateAdminMessages(
+    visitorId,
+    dealCode
+){
+
+    const box =
+        document.getElementById(
+            "privateMessages"
+        );
+
+
+    box.innerHTML = `
+        <div class="support-empty">
+            در حال دریافت پیام‌ها...
+        </div>
+    `;
+
+
+    const result =
+        await supabaseClient
+        .from("support_messages")
+        .select("*")
+        .eq(
+            "visitor_id",
+            visitorId
+        )
+        .eq(
+            "deal_code",
+            dealCode
+        )
+        .order(
+            "created_at",
+            {
+                ascending:true
+            }
+        );
+
+
+    if(result.error){
+
+        box.innerHTML = `
+            <div class="support-empty"
+                 style="color:#ff6666;">
+                خطا در دریافت پیام‌ها
+            </div>
+        `;
+
+        console.error(
+            result.error
+        );
+
+        return;
+    }
+
+
+    box.innerHTML = "";
+
+
+    if(
+        !result.data ||
+        result.data.length === 0
+    ){
+
+        box.innerHTML = `
+            <div class="support-empty">
+                هنوز پیامی وجود ندارد.
+            </div>
+        `;
+
+        return;
+    }
+
+
+    result.data.forEach(
+        renderPrivateAdminMessage
+    );
+
+
+    box.scrollTop =
+        box.scrollHeight;
+}
+
+
+/* =====================================
+   RENDER PRIVATE ADMIN MESSAGE
+===================================== */
+
+function renderPrivateAdminMessage(
+    message
+){
+
+    const box =
+        document.getElementById(
+            "privateMessages"
+        );
+
+
+    const empty =
+        box.querySelector(
+            ".support-empty"
+        );
+
+
+    if(empty)
+        empty.remove();
+
+
+    /*
+       جلوگیری از نمایش دوباره
+       پیام‌هایی که قبلاً رندر شده‌اند
+    */
+
+    const messageId =
+        message.id;
+
+
+    if(
+        messageId &&
+        box.querySelector(
+            `[data-message-id="${messageId}"]`
+        )
+    ){
+
+        return;
+
+    }
+
 
     const div =
         document.createElement(
             "div"
         );
 
-    div.textContent =
-        text ?? "";
 
-    return div.innerHTML;
+    if(message.id){
+
+        div.dataset.messageId =
+            message.id;
+
+    }
+
+
+    const isAdmin =
+        message.sender_role ===
+        "admin";
+
+
+    div.className =
+        "private-message " +
+        (
+            isAdmin
+            ? "admin"
+            : "user"
+        );
+
+
+    div.innerHTML = `
+
+        <div class="private-message-name">
+
+            ${
+                isAdmin
+                ?
+                "👑 مدیریت"
+                :
+                "👤 " +
+                escapeHtml(
+                    message.sender_name ||
+                    "کاربر"
+                )
+            }
+
+        </div>
+
+
+        <div class="private-message-text">
+
+            ${escapeHtml(
+                message.message ||
+                ""
+            )}
+
+        </div>
+
+
+        <div class="private-message-time">
+
+            ${
+                message.created_at
+                ?
+                new Date(
+                    message.created_at
+                ).toLocaleString(
+                    "fa-IR"
+                )
+                :
+                ""
+            }
+
+        </div>
+
+    `;
+
+
+    box.appendChild(
+        div
+    );
+
+
+    box.scrollTop =
+        box.scrollHeight;
 }
 
 
 /* =====================================
-   ESCAPE ATTRIBUTE
+   SEND PRIVATE ADMIN MESSAGE
 ===================================== */
 
-function escapeAttribute(text){
+async function sendPrivateAdminMessage(){
 
-    return String(text ?? "")
-        .replace(/\\/g,"\\\\")
-        .replace(/'/g,"\\'");
+    if(!currentSupportVisitor){
+
+        alert(
+            "ابتدا یک گفت‌وگو را انتخاب کنید."
+        );
+
+        return;
+    }
+
+
+    const input =
+        document.getElementById(
+            "privateInput"
+        );
+
+
+    const button =
+        document.getElementById(
+            "privateSend"
+        );
+
+
+    const text =
+        input.value.trim();
+
+
+    if(!text)
+        return;
+
+
+    button.disabled =
+        true;
+
+
+    const result =
+        await supabaseClient
+        .from("support_messages")
+        .insert({
+
+            visitor_id:
+                currentSupportVisitor.visitorId,
+
+            deal_code:
+                currentSupportVisitor.dealCode,
+
+            sender_role:
+                "admin",
+
+            sender_name:
+                "مدیریت",
+
+            message:
+                text
+
+        })
+        .select()
+        .single();
+
+
+    if(result.error){
+
+        console.error(
+            "Private admin send error:",
+            result.error
+        );
+
+
+        alert(
+            "ارسال پیام انجام نشد:\n" +
+            result.error.message
+        );
+
+
+        button.disabled =
+            false;
+
+        return;
+    }
+
+
+    input.value =
+        "";
+
+
+    if(result.data){
+
+        renderPrivateAdminMessage(
+            result.data
+        );
+
+
+        /*
+           پیام جدید مدیر را به لیست هم اضافه می‌کنیم.
+        */
+
+        supportMessages.unshift(
+            result.data
+        );
+
+    }
+
+
+    button.disabled =
+        false;
+
+
+    input.focus();
 }
 
 
 /* =====================================
-   ENTER SEND
+   PRIVATE CHAT REALTIME
+===================================== */
+
+function startPrivateAdminRealtime(
+    visitorId,
+    dealCode
+){
+
+    if(supportChatChannel){
+
+        supabaseClient.removeChannel(
+            supportChatChannel
+        );
+
+        supportChatChannel =
+            null;
+    }
+
+
+    supportChatChannel =
+        supabaseClient
+        .channel(
+            "admin-private-chat-" +
+            visitorId +
+            "-" +
+            dealCode +
+            "-" +
+            Date.now()
+        )
+        .on(
+            "postgres_changes",
+            {
+                event:"INSERT",
+                schema:"public",
+                table:"support_messages",
+                filter:
+                    "visitor_id=eq." +
+                    visitorId
+            },
+            payload => {
+
+                const message =
+                    payload.new;
+
+
+                if(
+                    message.deal_code !==
+                    dealCode
+                ){
+
+                    return;
+
+                }
+
+
+                /*
+                   اگر پیام خود مدیر بود،
+                   خودش قبلاً نمایش داده شده.
+                */
+
+                if(
+                    message.sender_role ===
+                    "admin"
+                ){
+
+                    return;
+
+                }
+
+
+                renderPrivateAdminMessage(
+                    message
+                );
+
+
+                supportMessages.unshift(
+                    message
+                );
+
+            }
+        )
+        .subscribe();
+}
+
+
+/* =====================================
+   BACK SUPPORT LIST
+===================================== */
+
+function backToSupportList(){
+
+    if(supportChatChannel){
+
+        supabaseClient.removeChannel(
+            supportChatChannel
+        );
+
+        supportChatChannel =
+            null;
+    }
+
+
+    currentSupportVisitor =
+        null;
+
+
+    document
+        .getElementById(
+            "privateChat"
+        )
+        .style.display =
+        "none";
+
+
+    document
+        .getElementById(
+            "supportInbox"
+        )
+        .style.display =
+        "flex";
+
+
+    renderSupportList(
+        supportMessages
+    );
+
+
+    updateSupportBadge();
+}
+
+
+/* =====================================
+   CLOSE SUPPORT
+===================================== */
+
+function closeSupportInbox(){
+
+    document
+        .getElementById(
+            "supportModal"
+        )
+        .style.display =
+        "none";
+
+
+    if(supportChannel){
+
+        supabaseClient.removeChannel(
+            supportChannel
+        );
+
+        supportChannel =
+            null;
+    }
+
+
+    if(supportChatChannel){
+
+        supabaseClient.removeChannel(
+            supportChatChannel
+        );
+
+        supportChatChannel =
+            null;
+    }
+
+
+    currentSupportVisitor =
+        null;
+}
+
+
+function closeSupportOutside(event){
+
+    if(
+        event.target.id ===
+        "supportModal"
+    ){
+
+        closeSupportInbox();
+
+    }
+}
+
+
+/* =====================================
+   ENTER - PUBLIC ADMIN CHAT
 ===================================== */
 
 document
@@ -1918,7 +3278,33 @@ document
 
 
 /* =====================================
-   ESC CLOSE MODAL
+   ENTER - PRIVATE SUPPORT
+===================================== */
+
+document
+    .getElementById(
+        "privateInput"
+    )
+    .addEventListener(
+        "keydown",
+        function(event){
+
+            if(
+                event.key === "Enter"
+            ){
+
+                event.preventDefault();
+
+                sendPrivateAdminMessage();
+
+            }
+
+        }
+    );
+
+
+/* =====================================
+   ESC
 ===================================== */
 
 document.addEventListener(
@@ -1926,21 +3312,44 @@ document.addEventListener(
     function(event){
 
         if(
-            event.key === "Escape"
+            event.key !== "Escape"
         ){
 
-            const modal =
-                document.getElementById(
-                    "modal"
-                );
+            return;
 
-            if(
-                modal.style.display === "block"
-            ){
+        }
 
-                hideModal();
 
-            }
+        const supportModal =
+            document.getElementById(
+                "supportModal"
+            );
+
+
+        const dealModal =
+            document.getElementById(
+                "modal"
+            );
+
+
+        if(
+            supportModal.style.display ===
+            "block"
+        ){
+
+            closeSupportInbox();
+
+            return;
+
+        }
+
+
+        if(
+            dealModal.style.display ===
+            "block"
+        ){
+
+            hideModal();
 
         }
 
