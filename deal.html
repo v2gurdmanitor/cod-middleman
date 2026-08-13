@@ -1,17 +1,742 @@
-async function loadDeal() {
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    if (!dealId) {
+<title>اتاق معامله | V2GUARD</title>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<style>
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+}
+
+body{
+    font-family:Tahoma,Arial,sans-serif;
+    background:
+        radial-gradient(circle at top right,rgba(255,48,48,.13),transparent 35%),
+        #050505;
+    color:#fff;
+    min-height:100vh;
+}
+
+header{
+    height:70px;
+    padding:0 7%;
+    display:flex;
+    align-items:center;
+    border-bottom:1px solid #222;
+}
+
+.logo{
+    font-size:23px;
+    font-weight:900;
+    letter-spacing:2px;
+}
+
+.logo span{
+    color:#ff3030;
+}
+
+.container{
+    width:92%;
+    max-width:900px;
+    margin:35px auto;
+}
+
+.top{
+    text-align:center;
+    margin-bottom:25px;
+}
+
+.top h1{
+    font-size:28px;
+    margin-bottom:10px;
+}
+
+.top p{
+    color:#777;
+    font-size:13px;
+}
+
+.error{
+    display:none;
+    background:rgba(255,0,0,.08);
+    border:1px solid rgba(255,0,0,.25);
+    color:#ff7777;
+    border-radius:12px;
+    padding:15px;
+    margin-bottom:15px;
+    font-size:12px;
+}
+
+/* اطلاعات معامله */
+
+.deal-info{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:12px;
+    margin-bottom:15px;
+}
+
+.info{
+    background:#0d0d0d;
+    border:1px solid #222;
+    border-radius:13px;
+    padding:17px;
+    text-align:center;
+}
+
+.info-title{
+    color:#777;
+    font-size:11px;
+    margin-bottom:8px;
+}
+
+.info-value{
+    font-size:14px;
+    font-weight:bold;
+    word-break:break-word;
+}
+
+.status{
+    color:#ffcf5a;
+}
+
+/* طرفین */
+
+.participants{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:12px;
+    margin-bottom:20px;
+}
+
+.participant{
+    background:#0d0d0d;
+    border:1px solid #222;
+    border-radius:15px;
+    padding:17px;
+}
+
+.participant-title{
+    color:#777;
+    font-size:11px;
+    margin-bottom:8px;
+}
+
+.participant-name{
+    font-size:14px;
+    font-weight:bold;
+}
+
+.online{
+    color:#62ff82;
+    font-size:10px;
+    margin-top:7px;
+}
+
+.waiting{
+    color:#777;
+    font-size:10px;
+    margin-top:7px;
+}
+
+/* نقش */
+
+.role-selector{
+    background:#0d0d0d;
+    border:1px solid #222;
+    border-radius:18px;
+    padding:22px;
+    margin-bottom:20px;
+    text-align:center;
+}
+
+.role-selector h2{
+    font-size:18px;
+    margin-bottom:8px;
+}
+
+.role-selector p{
+    color:#777;
+    font-size:12px;
+    margin-bottom:20px;
+}
+
+.role-buttons{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:12px;
+}
+
+.role-button{
+    border:1px solid #292929;
+    background:#151515;
+    color:#fff;
+    padding:20px 10px;
+    border-radius:13px;
+    cursor:pointer;
+    font-family:inherit;
+    transition:.2s;
+}
+
+.role-button:hover{
+    border-color:#ff3030;
+    background:#1b0b0b;
+    transform:translateY(-2px);
+}
+
+.role-icon{
+    display:block;
+    font-size:28px;
+    margin-bottom:8px;
+}
+
+.role-name{
+    display:block;
+    font-size:14px;
+    font-weight:bold;
+}
+
+.role-description{
+    display:block;
+    color:#666;
+    font-size:10px;
+    margin-top:6px;
+}
+
+/* چت */
+
+.chat{
+    background:#0d0d0d;
+    border:1px solid #222;
+    border-radius:18px;
+    overflow:hidden;
+}
+
+.chat-header{
+    padding:17px 20px;
+    border-bottom:1px solid #222;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    font-weight:bold;
+}
+
+.my-role{
+    color:#ff5555;
+    font-size:11px;
+}
+
+#messages{
+    height:430px;
+    overflow-y:auto;
+    padding:20px;
+}
+
+.empty{
+    text-align:center;
+    color:#555;
+    padding-top:160px;
+    font-size:13px;
+}
+
+.message{
+    margin-bottom:13px;
+    padding:12px 14px;
+    border-radius:12px;
+    background:#181818;
+    max-width:80%;
+}
+
+.message.me{
+    margin-right:auto;
+    background:#321010;
+}
+
+.message-name{
+    font-size:11px;
+    color:#ff5555;
+    margin-bottom:5px;
+}
+
+.message-text{
+    font-size:13px;
+    line-height:1.8;
+    word-break:break-word;
+}
+
+.message-time{
+    font-size:9px;
+    color:#555;
+    margin-top:5px;
+}
+
+/* ارسال */
+
+.send{
+    display:flex;
+    gap:10px;
+    padding:15px;
+    border-top:1px solid #222;
+}
+
+.send input{
+    flex:1;
+    background:#070707;
+    border:1px solid #292929;
+    color:white;
+    padding:14px;
+    border-radius:10px;
+    outline:none;
+    font-family:inherit;
+}
+
+.send input:focus{
+    border-color:#ff3030;
+}
+
+.send button{
+    width:110px;
+    border:none;
+    border-radius:10px;
+    background:#ff3030;
+    color:#fff;
+    font-family:inherit;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+.send button:disabled{
+    opacity:.5;
+}
+
+.notice{
+    margin-top:18px;
+    background:rgba(255,48,48,.06);
+    border:1px solid rgba(255,48,48,.18);
+    border-radius:12px;
+    padding:15px;
+    color:#aaa;
+    font-size:11px;
+    line-height:1.9;
+}
+
+@media(max-width:650px){
+
+    .deal-info{
+        grid-template-columns:1fr;
+    }
+
+    .participants{
+        grid-template-columns:1fr;
+    }
+
+    .role-buttons{
+        grid-template-columns:1fr;
+    }
+
+    #messages{
+        height:400px;
+    }
+
+    .send button{
+        width:80px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <div class="logo">
+        V2<span>GUARD</span>
+    </div>
+</header>
+
+<div class="container">
+
+    <div class="top">
+        <h1>اتاق معامله</h1>
+        <p>گفت‌وگوی اختصاصی خریدار و فروشنده</p>
+    </div>
+
+    <div id="error" class="error"></div>
+
+    <!-- اطلاعات معامله -->
+
+    <div class="deal-info">
+
+        <div class="info">
+            <div class="info-title">کد معامله</div>
+            <div class="info-value" id="dealCode">
+                در حال بارگذاری...
+            </div>
+        </div>
+
+        <div class="info">
+            <div class="info-title">مبلغ معامله</div>
+            <div class="info-value" id="dealPrice">
+                در حال بارگذاری...
+            </div>
+        </div>
+
+        <div class="info">
+            <div class="info-title">وضعیت</div>
+            <div class="info-value status" id="dealStatus">
+                در حال بارگذاری...
+            </div>
+        </div>
+
+    </div>
+
+    <!-- طرفین -->
+
+    <div class="participants">
+
+        <div class="participant">
+
+            <div class="participant-title">
+                💼 فروشنده
+            </div>
+
+            <div
+                class="participant-name"
+                id="sellerName"
+            >
+                هنوز وارد نشده
+            </div>
+
+            <div
+                class="waiting"
+                id="sellerStatus"
+            >
+                ⏳ منتظر فروشنده
+            </div>
+
+        </div>
+
+        <div class="participant">
+
+            <div class="participant-title">
+                🛒 خریدار
+            </div>
+
+            <div
+                class="participant-name"
+                id="buyerName"
+            >
+                هنوز وارد نشده
+            </div>
+
+            <div
+                class="waiting"
+                id="buyerStatus"
+            >
+                ⏳ منتظر خریدار
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- انتخاب نقش -->
+
+    <div
+        id="roleSelector"
+        class="role-selector"
+        style="display:none;"
+    >
+
+        <h2>انتخاب نقش شما</h2>
+
+        <p id="roleDescription">
+            نقش خود را برای این معامله انتخاب کنید.
+        </p>
+
+        <div class="role-buttons">
+
+            <button
+                id="buyerButton"
+                class="role-button"
+                onclick="selectRole('buyer')"
+            >
+                <span class="role-icon">🛒</span>
+
+                <span class="role-name">
+                    خریدار
+                </span>
+
+                <span class="role-description">
+                    من قصد خرید دارم
+                </span>
+            </button>
+
+            <button
+                id="sellerButton"
+                class="role-button"
+                onclick="selectRole('seller')"
+            >
+                <span class="role-icon">💼</span>
+
+                <span class="role-name">
+                    فروشنده
+                </span>
+
+                <span class="role-description">
+                    من صاحب اکانت هستم
+                </span>
+            </button>
+
+        </div>
+
+    </div>
+
+    <!-- چت -->
+
+    <div class="chat">
+
+        <div class="chat-header">
+
+            <span>
+                💬 گفت‌وگوی معامله
+            </span>
+
+            <span
+                class="my-role"
+                id="myRole"
+            ></span>
+
+        </div>
+
+        <div id="messages">
+
+            <div class="empty">
+                در حال دریافت پیام‌ها...
+            </div>
+
+        </div>
+
+        <div class="send">
+
+            <input
+                id="messageInput"
+                type="text"
+                placeholder="پیام خود را بنویسید..."
+                autocomplete="off"
+            >
+
+            <button
+                id="sendButton"
+                type="button"
+            >
+                ارسال
+            </button>
+
+        </div>
+
+    </div>
+
+    <div class="notice">
+        🔒 این چت فقط برای هماهنگی معامله است.
+        اطلاعات حساس حساب را داخل چت عمومی ارسال نکنید.
+    </div>
+
+</div>
+
+<script>
+
+/* =========================================
+   SUPABASE
+========================================= */
+
+const SUPABASE_URL =
+"https://hctppmmaiqkzcgxncyhi.supabase.co";
+
+const SUPABASE_KEY =
+"sb_publishable_wP43H8AKwtVcTUBwcEzTxg_qKdFxzNa";
+
+const supabaseClient =
+window.supabase.createClient(
+    SUPABASE_URL,
+    SUPABASE_KEY
+);
+
+
+/* =========================================
+   DEAL ID
+========================================= */
+
+const params =
+new URLSearchParams(
+    window.location.search
+);
+
+const dealId =
+params.get("id");
+
+
+/* =========================================
+   VISITOR ID
+========================================= */
+
+let visitorId =
+localStorage.getItem(
+    "v2guard_visitor_id"
+);
+
+if(!visitorId){
+
+    visitorId =
+    crypto.randomUUID();
+
+    localStorage.setItem(
+        "v2guard_visitor_id",
+        visitorId
+    );
+
+}
+
+
+/* =========================================
+   NAME
+========================================= */
+
+let senderName =
+localStorage.getItem(
+    "v2guard_sender_name"
+);
+
+if(!senderName){
+
+    senderName =
+    prompt(
+        "نام شما برای نمایش در معامله:"
+    );
+
+    if(!senderName){
+
+        senderName = "کاربر";
+
+    }
+
+    localStorage.setItem(
+        "v2guard_sender_name",
+        senderName
+    );
+}
+
+
+/* =========================================
+   ROLE
+========================================= */
+
+let myRole =
+localStorage.getItem(
+    "v2guard_role_" + dealId
+);
+
+
+/* =========================================
+   HELPERS
+========================================= */
+
+function showError(message){
+
+    const box =
+    document.getElementById("error");
+
+    box.textContent =
+    message;
+
+    box.style.display =
+    "block";
+}
+
+
+function roleText(role){
+
+    if(role === "buyer"){
+        return "🛒 خریدار";
+    }
+
+    if(role === "seller"){
+        return "💼 فروشنده";
+    }
+
+    return "";
+}
+
+
+function formatPrice(price){
+
+    if(
+        price === null ||
+        price === undefined ||
+        price === ""
+    ){
+        return "---";
+    }
+
+    return Number(price)
+        .toLocaleString("fa-IR")
+        + " تومان";
+}
+
+
+function formatTime(date){
+
+    return new Date(date)
+        .toLocaleTimeString(
+            "fa-IR",
+            {
+                hour:"2-digit",
+                minute:"2-digit"
+            }
+        );
+}
+
+
+function escapeHtml(text){
+
+    const div =
+    document.createElement("div");
+
+    div.textContent =
+    text ?? "";
+
+    return div.innerHTML;
+}
+
+
+/* =========================================
+   LOAD DEAL
+========================================= */
+
+async function loadDeal(){
+
+    if(!dealId){
 
         showError(
             "کد معامله در لینک وجود ندارد."
         );
 
-        return;
+        return false;
     }
 
-    console.log("Loading deal:", dealId);
+    console.log(
+        "Loading deal:",
+        dealId
+    );
 
-    const result = await supabaseClient
+    const result =
+    await supabaseClient
         .from("deals")
         .select(`
             id,
@@ -23,15 +748,20 @@ async function loadDeal() {
             description,
             status
         `)
-        .eq("deal_code", dealId)
+        .eq(
+            "deal_code",
+            dealId
+        )
         .limit(1);
 
-    console.log("Deal result:", result);
+    console.log(
+        "Deal result:",
+        result
+    );
 
-    if (result.error) {
+    if(result.error){
 
         console.error(
-            "Supabase error:",
             result.error
         );
 
@@ -40,104 +770,804 @@ async function loadDeal() {
             result.error.message
         );
 
-        return;
+        return false;
     }
 
-    if (
+    if(
         !result.data ||
         result.data.length === 0
-    ) {
+    ){
 
         showError(
             "این معامله در Supabase پیدا نشد."
         );
 
-        return;
+        return false;
     }
 
     const deal =
-        result.data[0];
-
-    console.log(
-        "Deal found:",
-        deal
-    );
+    result.data[0];
 
 
-    /* ==========================
-       کد معامله
-    ========================== */
+    /* کد معامله */
 
     const codeElement =
-        document.getElementById(
-            "dealCode"
-        );
+    document.getElementById(
+        "dealCode"
+    );
 
-    if (codeElement) {
+    if(codeElement){
 
         codeElement.textContent =
-            deal.deal_code || "---";
-
+        deal.deal_code || "---";
     }
 
 
-    /* ==========================
-       مبلغ معامله
-    ========================== */
+    /* مبلغ */
 
     const priceElement =
-        document.getElementById(
-            "dealPrice"
-        );
+    document.getElementById(
+        "dealPrice"
+    );
 
-    if (priceElement) {
+    if(priceElement){
 
-        if (
+        if(
             deal.price !== null &&
             deal.price !== undefined &&
             deal.price !== ""
-        ) {
-
-            const price =
-                Number(deal.price);
+        ){
 
             priceElement.textContent =
-                price.toLocaleString("fa-IR")
+            Number(deal.price)
+                .toLocaleString("fa-IR")
                 + " تومان";
 
-        } else {
+        }else{
 
             priceElement.textContent =
-                "---";
-
+            "---";
         }
-
     }
 
 
-    /* ==========================
-       وضعیت معامله
-    ========================== */
+    /* وضعیت */
 
     const statusElement =
-        document.getElementById(
-            "dealStatus"
-        );
+    document.getElementById(
+        "dealStatus"
+    );
 
-    if (statusElement) {
+    if(statusElement){
 
         statusElement.textContent =
-            deal.status || "در انتظار";
-
+        deal.status || "در انتظار";
     }
 
 
-    /* ==========================
-       ادامه سیستم اتاق
-    ========================== */
+    return true;
+}
+
+
+/* =========================================
+   LOAD PARTICIPANTS
+========================================= */
+
+async function loadParticipants(){
+
+    const result =
+    await supabaseClient
+        .from("deal_participants")
+        .select("*")
+        .eq(
+            "deal_code",
+            dealId
+        );
+
+    if(result.error){
+
+        console.error(
+            "Participants error:",
+            result.error
+        );
+
+        showError(
+            "دریافت اطلاعات طرفین انجام نشد: " +
+            result.error.message
+        );
+
+        return;
+    }
+
+    const participants =
+    result.data || [];
+
+
+    const buyer =
+    participants.find(
+        p => p.role === "buyer"
+    );
+
+    const seller =
+    participants.find(
+        p => p.role === "seller"
+    );
+
+
+    /* =====================================
+       فروشنده
+    ===================================== */
+
+    const sellerName =
+    document.getElementById(
+        "sellerName"
+    );
+
+    const sellerStatus =
+    document.getElementById(
+        "sellerStatus"
+    );
+
+    if(seller){
+
+        sellerName.textContent =
+        seller.name || "فروشنده";
+
+        sellerStatus.textContent =
+        "🟢 وارد شده";
+
+        sellerStatus.className =
+        "online";
+
+    }else{
+
+        sellerName.textContent =
+        "هنوز وارد نشده";
+
+        sellerStatus.textContent =
+        "⏳ منتظر فروشنده";
+
+        sellerStatus.className =
+        "waiting";
+    }
+
+
+    /* =====================================
+       خریدار
+    ===================================== */
+
+    const buyerName =
+    document.getElementById(
+        "buyerName"
+    );
+
+    const buyerStatus =
+    document.getElementById(
+        "buyerStatus"
+    );
+
+    if(buyer){
+
+        buyerName.textContent =
+        buyer.name || "خریدار";
+
+        buyerStatus.textContent =
+        "🟢 وارد شده";
+
+        buyerStatus.className =
+        "online";
+
+    }else{
+
+        buyerName.textContent =
+        "هنوز وارد نشده";
+
+        buyerStatus.textContent =
+        "⏳ منتظر خریدار";
+
+        buyerStatus.className =
+        "waiting";
+    }
+
+
+    /* =====================================
+       تشخیص خودکار نقش
+    ===================================== */
+
+    const own =
+    participants.find(
+        p => p.visitor_id === visitorId
+    );
+
+    if(own){
+
+        myRole =
+        own.role;
+
+        localStorage.setItem(
+            "v2guard_role_" + dealId,
+            myRole
+        );
+
+        document
+            .getElementById("myRole")
+            .textContent =
+            roleText(myRole);
+
+        document
+            .getElementById("roleSelector")
+            .style.display =
+            "none";
+
+        return;
+    }
+
+
+    /* =====================================
+       اگر قبلاً نقش در LocalStorage بود
+    ===================================== */
+
+    if(myRole){
+
+        const roleExists =
+        participants.find(
+            p =>
+            p.visitor_id === visitorId &&
+            p.role === myRole
+        );
+
+        if(roleExists){
+
+            return;
+        }
+    }
+
+
+    /* =====================================
+       انتخاب نقش
+    ===================================== */
+
+    const selector =
+    document.getElementById(
+        "roleSelector"
+    );
+
+    selector.style.display =
+    "block";
+
+
+    const buyerButton =
+    document.getElementById(
+        "buyerButton"
+    );
+
+    const sellerButton =
+    document.getElementById(
+        "sellerButton"
+    );
+
+
+    buyerButton.style.display =
+    buyer ? "none" : "block";
+
+    sellerButton.style.display =
+    seller ? "none" : "block";
+
+
+    const description =
+    document.getElementById(
+        "roleDescription"
+    );
+
+
+    if(buyer && !seller){
+
+        description.textContent =
+        "خریدار قبلاً وارد شده است؛ شما فقط می‌توانید فروشنده باشید.";
+
+    }else if(seller && !buyer){
+
+        description.textContent =
+        "فروشنده قبلاً وارد شده است؛ شما فقط می‌توانید خریدار باشید.";
+
+    }else{
+
+        description.textContent =
+        "نقش خود را برای این معامله انتخاب کنید.";
+    }
+}
+
+
+/* =========================================
+   SELECT ROLE
+========================================= */
+
+async function selectRole(role){
+
+    if(!dealId){
+
+        showError(
+            "کد معامله مشخص نیست."
+        );
+
+        return;
+    }
+
+
+    const check =
+    await supabaseClient
+        .from("deal_participants")
+        .select("*")
+        .eq(
+            "deal_code",
+            dealId
+        );
+
+    if(check.error){
+
+        showError(
+            "بررسی نقش‌ها انجام نشد: " +
+            check.error.message
+        );
+
+        return;
+    }
+
+
+    const participants =
+    check.data || [];
+
+
+    /* اگر خود کاربر قبلاً ثبت شده */
+
+    const own =
+    participants.find(
+        p => p.visitor_id === visitorId
+    );
+
+    if(own){
+
+        myRole =
+        own.role;
+
+        localStorage.setItem(
+            "v2guard_role_" + dealId,
+            myRole
+        );
+
+        await loadParticipants();
+
+        return;
+    }
+
+
+    /* اگر نقش گرفته شده */
+
+    const taken =
+    participants.find(
+        p => p.role === role
+    );
+
+    if(taken){
+
+        alert(
+            "این نقش قبلاً توسط طرف مقابل انتخاب شده است."
+        );
+
+        await loadParticipants();
+
+        return;
+    }
+
+
+    /* ثبت نقش */
+
+    const insert =
+    await supabaseClient
+        .from("deal_participants")
+        .insert({
+            deal_code: dealId,
+            visitor_id: visitorId,
+            name: senderName,
+            role: role
+        })
+        .select()
+        .single();
+
+
+    if(insert.error){
+
+        console.error(
+            "Role insert error:",
+            insert.error
+        );
+
+        showError(
+            "ثبت نقش انجام نشد: " +
+            insert.error.message
+        );
+
+        return;
+    }
+
+
+    myRole =
+    role;
+
+    localStorage.setItem(
+        "v2guard_role_" + dealId,
+        role
+    );
+
+
+    document
+        .getElementById("myRole")
+        .textContent =
+        roleText(role);
+
+
+    document
+        .getElementById("roleSelector")
+        .style.display =
+        "none";
+
+
+    await loadParticipants();
+}
+
+
+/* =========================================
+   LOAD MESSAGES
+========================================= */
+
+async function loadMessages(){
+
+    const result =
+    await supabaseClient
+        .from("messages")
+        .select("*")
+        .eq(
+            "deal_code",
+            dealId
+        )
+        .order(
+            "created_at",
+            {
+                ascending:true
+            }
+        );
+
+
+    if(result.error){
+
+        console.error(
+            "Messages error:",
+            result.error
+        );
+
+        showError(
+            "دریافت پیام‌ها انجام نشد: " +
+            result.error.message
+        );
+
+        return;
+    }
+
+
+    const box =
+    document.getElementById(
+        "messages"
+    );
+
+    box.innerHTML = "";
+
+
+    if(
+        !result.data ||
+        result.data.length === 0
+    ){
+
+        box.innerHTML = `
+            <div class="empty">
+                هنوز پیامی ارسال نشده است.
+            </div>
+        `;
+
+        return;
+    }
+
+
+    result.data.forEach(
+        renderMessage
+    );
+}
+
+
+/* =========================================
+   RENDER MESSAGE
+========================================= */
+
+function renderMessage(message){
+
+    const box =
+    document.getElementById(
+        "messages"
+    );
+
+
+    const empty =
+    box.querySelector(".empty");
+
+    if(empty){
+
+        empty.remove();
+    }
+
+
+    const div =
+    document.createElement("div");
+
+    div.className =
+    "message";
+
+
+    if(
+        message.visitor_id === visitorId
+    ){
+
+        div.classList.add("me");
+    }
+
+
+    div.innerHTML = `
+        <div class="message-name">
+            ${escapeHtml(message.sender_name)}
+        </div>
+
+        <div class="message-text">
+            ${escapeHtml(message.message)}
+        </div>
+
+        <div class="message-time">
+            ${formatTime(message.created_at)}
+        </div>
+    `;
+
+
+    box.appendChild(div);
+
+    box.scrollTop =
+    box.scrollHeight;
+}
+
+
+/* =========================================
+   SEND MESSAGE
+========================================= */
+
+async function sendMessage(){
+
+    if(!myRole){
+
+        alert(
+            "ابتدا نقش خود را انتخاب کنید."
+        );
+
+        return;
+    }
+
+
+    const input =
+    document.getElementById(
+        "messageInput"
+    );
+
+    const button =
+    document.getElementById(
+        "sendButton"
+    );
+
+    const text =
+    input.value.trim();
+
+
+    if(!text){
+
+        return;
+    }
+
+
+    button.disabled =
+    true;
+
+
+    const result =
+    await supabaseClient
+        .from("messages")
+        .insert({
+            deal_code: dealId,
+            sender_name: senderName,
+            sender_role: myRole,
+            message: text,
+            visitor_id: visitorId
+        })
+        .select()
+        .single();
+
+
+    if(result.error){
+
+        console.error(
+            "Send message error:",
+            result.error
+        );
+
+        showError(
+            "ارسال پیام انجام نشد: " +
+            result.error.message
+        );
+
+        button.disabled =
+        false;
+
+        return;
+    }
+
+
+    input.value = "";
+
+
+    /*
+       خود پیام را همینجا نمایش می‌دهیم.
+       Realtime دوباره آن را اضافه نمی‌کند.
+    */
+
+    if(result.data){
+
+        renderMessage(
+            result.data
+        );
+    }
+
+
+    button.disabled =
+    false;
+
+    input.focus();
+}
+
+
+/* =========================================
+   REALTIME CHAT
+========================================= */
+
+function startChatRealtime(){
+
+    supabaseClient
+        .channel(
+            "chat-" + dealId
+        )
+        .on(
+            "postgres_changes",
+            {
+                event:"INSERT",
+                schema:"public",
+                table:"messages",
+                filter:
+                "deal_code=eq." + dealId
+            },
+            payload => {
+
+                if(
+                    payload.new.visitor_id !==
+                    visitorId
+                ){
+
+                    renderMessage(
+                        payload.new
+                    );
+                }
+            }
+        )
+        .subscribe();
+}
+
+
+/* =========================================
+   REALTIME PARTICIPANTS
+========================================= */
+
+function startParticipantRealtime(){
+
+    supabaseClient
+        .channel(
+            "participants-" + dealId
+        )
+        .on(
+            "postgres_changes",
+            {
+                event:"INSERT",
+                schema:"public",
+                table:"deal_participants",
+                filter:
+                "deal_code=eq." + dealId
+            },
+            async () => {
+
+                await loadParticipants();
+            }
+        )
+        .subscribe();
+}
+
+
+/* =========================================
+   EVENTS
+========================================= */
+
+document
+    .getElementById("sendButton")
+    .addEventListener(
+        "click",
+        sendMessage
+    );
+
+
+document
+    .getElementById("messageInput")
+    .addEventListener(
+        "keydown",
+        function(event){
+
+            if(event.key === "Enter"){
+
+                event.preventDefault();
+
+                sendMessage();
+            }
+        }
+    );
+
+
+/* =========================================
+   START
+========================================= */
+
+async function init(){
+
+    if(!dealId){
+
+        showError(
+            "کد معامله در لینک وجود ندارد."
+        );
+
+        return;
+    }
+
+
+    const loaded =
+    await loadDeal();
+
+
+    if(!loaded){
+
+        return;
+    }
+
 
     await loadParticipants();
 
     await loadMessages();
 
+    startChatRealtime();
+
+    startParticipantRealtime();
 }
+
+
+init();
+
+</script>
+
+</body>
+</html>
