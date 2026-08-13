@@ -5,10 +5,7 @@
 
 <meta charset="UTF-8">
 
-<meta
-    name="viewport"
-    content="width=device-width,initial-scale=1.0"
->
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
 
 <title>اتاق معامله | V2GUARD</title>
 
@@ -23,9 +20,7 @@
 }
 
 body{
-
     font-family:Tahoma,Arial,sans-serif;
-
     background:
     radial-gradient(
         circle at top right,
@@ -33,490 +28,275 @@ body{
         transparent 35%
     ),
     #050505;
-
     color:white;
-
     min-height:100vh;
-
 }
 
-
-/* HEADER */
-
 header{
-
     height:70px;
-
     padding:0 7%;
-
     display:flex;
-
     align-items:center;
-
     border-bottom:1px solid #222;
-
 }
 
 .logo{
-
     font-size:23px;
-
     font-weight:900;
-
     letter-spacing:2px;
-
 }
 
 .logo span{
-
     color:#ff3030;
-
 }
-
-
-/* CONTAINER */
 
 .container{
-
     width:92%;
-
     max-width:900px;
-
     margin:35px auto;
-
 }
 
-
-/* TITLE */
-
 .top{
-
     text-align:center;
-
     margin-bottom:25px;
-
 }
 
 .top h1{
-
     font-size:28px;
-
     margin-bottom:10px;
-
 }
 
 .top p{
-
     color:#777;
-
     font-size:13px;
-
 }
 
-
-/* INFO */
+.error{
+    display:none;
+    background:rgba(255,0,0,.08);
+    border:1px solid rgba(255,0,0,.25);
+    color:#ff7777;
+    border-radius:12px;
+    padding:15px;
+    margin-bottom:15px;
+    font-size:12px;
+}
 
 .deal-info{
-
     display:grid;
-
-    grid-template-columns:
-    repeat(3,1fr);
-
+    grid-template-columns:repeat(3,1fr);
     gap:12px;
-
     margin-bottom:20px;
-
 }
 
 .info{
-
     background:#0d0d0d;
-
     border:1px solid #222;
-
     border-radius:13px;
-
     padding:17px;
-
     text-align:center;
-
 }
 
 .info-title{
-
     color:#777;
-
     font-size:11px;
-
     margin-bottom:8px;
-
 }
 
 .info-value{
-
     font-size:14px;
-
     font-weight:bold;
-
 }
 
 .status{
-
     color:#ffcf5a;
-
 }
 
 
-/* ROLE */
+/* ROLE SELECTOR */
 
-.role-box{
-
-    display:none;
-
-    position:fixed;
-
-    inset:0;
-
-    background:rgba(0,0,0,.88);
-
-    backdrop-filter:blur(8px);
-
-    z-index:100;
-
-    align-items:center;
-
-    justify-content:center;
-
-    padding:20px;
-
-}
-
-.role-card{
-
-    width:min(430px,100%);
-
-    background:#101010;
-
-    border:1px solid #292929;
-
-    border-radius:20px;
-
-    padding:28px;
-
+.role-selector{
+    background:#0d0d0d;
+    border:1px solid #222;
+    border-radius:18px;
+    padding:22px;
+    margin-bottom:20px;
     text-align:center;
-
 }
 
-.role-card h2{
-
-    margin-bottom:10px;
-
+.role-selector h2{
+    font-size:18px;
+    margin-bottom:8px;
 }
 
-.role-card p{
-
+.role-selector p{
     color:#777;
-
     font-size:12px;
-
-    line-height:1.9;
-
-    margin-bottom:22px;
-
+    margin-bottom:20px;
 }
 
 .role-buttons{
-
     display:grid;
-
     grid-template-columns:1fr 1fr;
-
     gap:12px;
-
 }
 
 .role-button{
-
     border:1px solid #292929;
-
-    background:#080808;
-
+    background:#151515;
     color:white;
-
-    border-radius:13px;
-
     padding:20px 10px;
-
+    border-radius:13px;
     cursor:pointer;
-
     font-family:inherit;
-
     transition:.2s;
-
 }
 
 .role-button:hover{
-
     border-color:#ff3030;
-
+    background:#1b0b0b;
     transform:translateY(-2px);
-
 }
 
 .role-icon{
-
-    font-size:28px;
-
     display:block;
-
+    font-size:28px;
     margin-bottom:8px;
-
 }
 
 .role-name{
-
+    display:block;
+    font-size:14px;
     font-weight:bold;
-
 }
 
 .role-description{
-
-    color:#666;
-
-    font-size:10px;
-
     display:block;
-
-    margin-top:5px;
-
+    color:#666;
+    font-size:10px;
+    margin-top:6px;
 }
 
 
 /* CHAT */
 
 .chat{
-
     background:#0d0d0d;
-
     border:1px solid #222;
-
     border-radius:18px;
-
     overflow:hidden;
-
 }
 
 .chat-header{
-
     padding:17px 20px;
-
     border-bottom:1px solid #222;
-
-    font-weight:bold;
-
     display:flex;
-
     justify-content:space-between;
-
     align-items:center;
-
+    font-weight:bold;
 }
 
 .my-role{
-
     color:#ff5555;
-
     font-size:11px;
-
 }
 
-
 #messages{
-
     height:430px;
-
     overflow-y:auto;
-
     padding:20px;
-
 }
 
 .empty{
-
     text-align:center;
-
     color:#555;
-
     padding-top:160px;
-
     font-size:13px;
-
 }
 
 .message{
-
     margin-bottom:13px;
-
     padding:12px 14px;
-
     border-radius:12px;
-
     background:#181818;
-
     max-width:80%;
-
 }
 
 .message.me{
-
     margin-right:auto;
-
     background:#321010;
-
 }
 
 .message-name{
-
     font-size:11px;
-
     color:#ff5555;
-
     margin-bottom:5px;
-
 }
 
 .message-text{
-
     font-size:13px;
-
     line-height:1.8;
-
     word-break:break-word;
-
 }
 
 .message-time{
-
     font-size:9px;
-
     color:#555;
-
     margin-top:5px;
-
 }
 
 
 /* SEND */
 
 .send{
-
     display:flex;
-
     gap:10px;
-
     padding:15px;
-
     border-top:1px solid #222;
-
 }
 
 .send input{
-
     flex:1;
-
     background:#070707;
-
     border:1px solid #292929;
-
     color:white;
-
     padding:14px;
-
     border-radius:10px;
-
     outline:none;
-
     font-family:inherit;
-
 }
 
 .send input:focus{
-
     border-color:#ff3030;
-
 }
 
 .send button{
-
     width:110px;
-
     border:none;
-
     border-radius:10px;
-
     background:#ff3030;
-
     color:white;
-
     font-family:inherit;
-
     font-weight:bold;
-
     cursor:pointer;
-
 }
 
 .send button:disabled{
-
     opacity:.5;
-
 }
 
 
 /* NOTICE */
 
 .notice{
-
     margin-top:18px;
-
     background:rgba(255,48,48,.06);
-
     border:1px solid rgba(255,48,48,.18);
-
     border-radius:12px;
-
     padding:15px;
-
     color:#aaa;
-
     font-size:11px;
-
     line-height:1.9;
-
-}
-
-
-/* ERROR */
-
-.error{
-
-    display:none;
-
-    background:rgba(255,0,0,.08);
-
-    border:1px solid rgba(255,0,0,.25);
-
-    color:#ff7777;
-
-    border-radius:12px;
-
-    padding:15px;
-
-    margin-bottom:15px;
-
-    font-size:12px;
-
 }
 
 
@@ -525,27 +305,19 @@ header{
 @media(max-width:650px){
 
     .deal-info{
-
         grid-template-columns:1fr;
-
     }
 
     #messages{
-
         height:400px;
-
     }
 
     .send button{
-
         width:80px;
-
     }
 
     .role-buttons{
-
         grid-template-columns:1fr;
-
     }
 
 }
@@ -575,15 +347,11 @@ V2<span>GUARD</span>
 <div class="top">
 
 <h1>
-
 اتاق معامله
-
 </h1>
 
 <p>
-
 گفت‌وگوی اختصاصی خریدار و فروشنده
-
 </p>
 
 </div>
@@ -595,23 +363,21 @@ class="error">
 </div>
 
 
+<!-- DEAL INFO -->
+
 <div class="deal-info">
 
 
 <div class="info">
 
 <div class="info-title">
-
 کد معامله
-
 </div>
 
 <div
 class="info-value"
 id="dealCode">
-
 در حال بارگذاری...
-
 </div>
 
 </div>
@@ -620,17 +386,13 @@ id="dealCode">
 <div class="info">
 
 <div class="info-title">
-
 مبلغ
-
 </div>
 
 <div
 class="info-value"
 id="dealPrice">
-
 ---
-
 </div>
 
 </div>
@@ -639,17 +401,13 @@ id="dealPrice">
 <div class="info">
 
 <div class="info-title">
-
 وضعیت
-
 </div>
 
 <div
 class="info-value status"
 id="dealStatus">
-
 در انتظار
-
 </div>
 
 </div>
@@ -658,91 +416,20 @@ id="dealStatus">
 </div>
 
 
-<div class="chat">
-
-
-<div class="chat-header">
-
-<span>
-💬 گفت‌وگوی معامله
-</span>
-
-<span
-class="my-role"
-id="myRole">
-</span>
-
-</div>
-
-
-<div id="messages">
-
-<div class="empty">
-
-در حال دریافت پیام‌ها...
-
-</div>
-
-</div>
-
-
-<div class="send">
-
-<input
-id="messageInput"
-type="text"
-placeholder="پیام خود را بنویسید..."
-autocomplete="off"
->
-
-<button
-id="sendButton">
-
-ارسال
-
-</button>
-
-</div>
-
-
-</div>
-
-
-<div class="notice">
-
-🔒 این چت برای هماهنگی معامله است.
-اطلاعات حساس حساب را در چت عمومی ارسال نکنید.
-
-</div>
-
-
-</div>
-
-
-<!-- ROLE MODAL -->
-
+<!-- ROLE -->
 
 <div
-class="role-box"
-id="roleBox"
+id="roleSelector"
+class="role-selector"
+style="display:none;"
 >
 
-
-<div class="role-card">
-
-
 <h2>
-
-انتخاب نقش
-
+انتخاب نقش شما
 </h2>
 
-
 <p>
-
-برای ورود به این معامله مشخص کنید
-خریدار هستید یا فروشنده.
-
+برای ورود به این معامله مشخص کنید خریدار هستید یا فروشنده.
 </p>
 
 
@@ -791,6 +478,61 @@ onclick="selectRole('seller')"
 
 </div>
 
+</div>
+
+
+<!-- CHAT -->
+
+<div class="chat">
+
+
+<div class="chat-header">
+
+<span>
+💬 گفت‌وگوی معامله
+</span>
+
+<span
+class="my-role"
+id="myRole">
+</span>
+
+</div>
+
+
+<div id="messages">
+
+<div class="empty">
+در حال دریافت پیام‌ها...
+</div>
+
+</div>
+
+
+<div class="send">
+
+<input
+id="messageInput"
+type="text"
+placeholder="پیام خود را بنویسید..."
+autocomplete="off"
+>
+
+<button
+id="sendButton">
+ارسال
+</button>
+
+</div>
+
+
+</div>
+
+
+<div class="notice">
+
+🔒 این چت برای هماهنگی معامله است.
+اطلاعات حساس حساب را در چت عمومی ارسال نکنید.
 
 </div>
 
@@ -831,13 +573,12 @@ new URLSearchParams(
 window.location.search
 );
 
-
 const dealId =
 params.get("id");
 
 
 /* ==============================
-VISITOR ID
+VISITOR
 ============================== */
 
 
@@ -861,7 +602,7 @@ visitorId
 
 
 /* ==============================
-USER NAME
+NAME
 ============================== */
 
 
@@ -906,11 +647,17 @@ localStorage.getItem(
 
 function roleText(role){
 
-if(role === "buyer")
+if(role === "buyer"){
+
 return "🛒 خریدار";
 
-if(role === "seller")
+}
+
+if(role === "seller"){
+
 return "💼 فروشنده";
+
+}
 
 return "";
 
@@ -944,6 +691,16 @@ PRICE
 
 
 function formatPrice(price){
+
+if(
+price === null ||
+price === undefined ||
+price === ""
+){
+
+return "---";
+
+}
 
 return Number(price)
 .toLocaleString("fa-IR")
@@ -991,10 +748,7 @@ return;
 }
 
 
-const {
-data,
-error
-} =
+const result =
 await supabaseClient
 
 .from("deals")
@@ -1007,6 +761,13 @@ dealId
 )
 
 .single();
+
+
+const data =
+result.data;
+
+const error =
+result.error;
 
 
 if(error){
@@ -1042,8 +803,7 @@ data.status ||
 
 
 /*
-اگر نقش قبلاً انتخاب شده،
-نمایش بده
+اگر نقش قبلاً انتخاب شده
 */
 
 if(myRole){
@@ -1053,12 +813,17 @@ document
 .textContent =
 roleText(myRole);
 
+document
+.getElementById("roleSelector")
+.style.display =
+"none";
+
 }else{
 
 document
-.getElementById("roleBox")
+.getElementById("roleSelector")
 .style.display =
-"flex";
+"block";
 
 }
 
@@ -1077,8 +842,7 @@ async function selectRole(role){
 
 
 if(
-role !== "buyer" &&
-role !== "seller"
+!dealId
 ){
 
 return;
@@ -1086,10 +850,12 @@ return;
 }
 
 
-const {
-data: existing,
-error: existingError
-} =
+/*
+بررسی می‌کنیم این کاربر
+قبلاً نقش گرفته یا نه
+*/
+
+const own =
 await supabaseClient
 
 .from("deal_participants")
@@ -1102,15 +868,65 @@ dealId
 )
 
 .eq(
+"visitor_id",
+visitorId
+)
+.maybeSingle();
+
+
+if(
+own.data
+){
+
+alert(
+"شما قبلاً نقش خود را انتخاب کرده‌اید."
+);
+
+myRole =
+own.data.role;
+
+document
+.getElementById("myRole")
+.textContent =
+roleText(myRole);
+
+document
+.getElementById("roleSelector")
+.style.display =
+"none";
+
+return;
+
+}
+
+
+/*
+بررسی اینکه نقش انتخابی
+قبلاً توسط شخص دیگری گرفته نشده باشد
+*/
+
+const existing =
+await supabaseClient
+
+.from("deal_participants")
+
+.select("id")
+
+.eq(
+"deal_code",
+dealId
+)
+
+.eq(
 "role",
 role
 );
 
 
-if(existingError){
+if(existing.error){
 
 console.error(
-existingError
+existing.error
 );
 
 showError(
@@ -1122,18 +938,13 @@ return;
 }
 
 
-/*
-هر معامله فقط یک خریدار
-و یک فروشنده دارد.
-*/
-
 if(
-existing &&
-existing.length > 0
+existing.data &&
+existing.data.length > 0
 ){
 
 alert(
-"این نقش قبلاً برای این معامله ثبت شده است. نقش دیگر را انتخاب کنید."
+"این نقش قبلاً توسط شخص دیگری انتخاب شده است."
 );
 
 return;
@@ -1141,9 +952,11 @@ return;
 }
 
 
-const {
-error
-} =
+/*
+ثبت نقش
+*/
+
+const insert =
 await supabaseClient
 
 .from("deal_participants")
@@ -1165,13 +978,15 @@ role
 });
 
 
-if(error){
+if(insert.error){
 
-console.error(error);
+console.error(
+insert.error
+);
 
 showError(
 "ثبت نقش انجام نشد: " +
-error.message
+insert.error.message
 );
 
 return;
@@ -1179,9 +994,12 @@ return;
 }
 
 
+/*
+ذخیره محلی
+*/
+
 myRole =
 role;
-
 
 localStorage.setItem(
 "v2guard_role_" + dealId,
@@ -1189,17 +1007,24 @@ role
 );
 
 
-document
-.getElementById("roleBox")
-.style.display =
-"none";
-
+/*
+نمایش نقش
+*/
 
 document
 .getElementById("myRole")
 .textContent =
 roleText(role);
 
+document
+.getElementById("roleSelector")
+.style.display =
+"none";
+
+
+alert(
+"نقش شما با موفقیت ثبت شد."
+);
 
 }
 
@@ -1212,10 +1037,7 @@ LOAD MESSAGES
 async function loadMessages(){
 
 
-const {
-data,
-error
-} =
+const result =
 await supabaseClient
 
 .from("messages")
@@ -1235,9 +1057,11 @@ ascending:true
 );
 
 
-if(error){
+if(result.error){
 
-console.error(error);
+console.error(
+result.error
+);
 
 showError(
 "دریافت پیام‌ها انجام نشد."
@@ -1254,12 +1078,13 @@ document.getElementById(
 );
 
 
-box.innerHTML = "";
+box.innerHTML =
+"";
 
 
 if(
-!data ||
-data.length === 0
+!result.data ||
+result.data.length === 0
 ){
 
 box.innerHTML = `
@@ -1277,7 +1102,7 @@ return;
 }
 
 
-data.forEach(
+result.data.forEach(
 renderMessage
 );
 
@@ -1285,7 +1110,7 @@ renderMessage
 
 
 /* ==============================
-RENDER MESSAGE
+RENDER
 ============================== */
 
 
@@ -1374,7 +1199,7 @@ box.scrollHeight;
 
 
 /* ==============================
-SEND MESSAGE
+SEND
 ============================== */
 
 
@@ -1386,6 +1211,12 @@ if(!myRole){
 alert(
 "ابتدا نقش خود را انتخاب کنید."
 );
+
+document
+.getElementById("roleSelector")
+.scrollIntoView({
+behavior:"smooth"
+});
 
 return;
 
@@ -1408,21 +1239,18 @@ const text =
 input.value.trim();
 
 
-if(!text)
+if(!text){
+
 return;
+
+}
 
 
 button.disabled =
 true;
 
 
-try{
-
-
-const {
-data,
-error
-} =
+const result =
 await supabaseClient
 
 .from("messages")
@@ -1451,42 +1279,46 @@ visitorId
 .single();
 
 
-if(error){
+if(result.error){
 
-throw error;
-
-}
-
-
-input.value = "";
-
-
-if(data){
-
-renderMessage(
-data
+console.error(
+result.error
 );
-
-}
-
-
-}catch(error){
-
-console.error(error);
 
 showError(
 "ارسال پیام انجام نشد: " +
-error.message
+result.error.message
 );
 
-}finally{
+button.disabled =
+false;
+
+return;
+
+}
+
+
+input.value =
+"";
+
+
+/*
+پیام خودمان را نمایش می‌دهیم
+*/
+
+if(result.data){
+
+renderMessage(
+result.data
+);
+
+}
+
 
 button.disabled =
 false;
 
 input.focus();
-
-}
 
 }
 
@@ -1575,7 +1407,7 @@ return div.innerHTML;
 
 
 /* ==============================
-SEND BUTTON
+EVENTS
 ============================== */
 
 
@@ -1587,11 +1419,6 @@ document
 "click",
 sendMessage
 );
-
-
-/* ==============================
-ENTER
-============================== */
 
 
 document
@@ -1621,6 +1448,7 @@ START
 
 
 loadDeal();
+
 
 if(dealId){
 
