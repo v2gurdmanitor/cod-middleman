@@ -2,343 +2,244 @@
 <html lang="fa" dir="rtl">
 
 <head>
-
-    <meta charset="UTF-8">
-
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    >
-
-    <title>اتاق معامله | V2GUARD</title>
-
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-
-    <style>
-
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-
-        body {
-            font-family: Tahoma, Arial, sans-serif;
-            background:
-                radial-gradient(
-                    circle at top right,
-                    rgba(255,48,48,.12),
-                    transparent 35%
-                ),
-                #050505;
-
-            color: white;
-            min-height: 100vh;
-        }
-
-        header {
-            height: 70px;
-            padding: 0 7%;
-
-            display: flex;
-            align-items: center;
-
-            border-bottom: 1px solid #222;
-        }
-
-        .logo {
-            font-size: 23px;
-            font-weight: 900;
-            letter-spacing: 2px;
-        }
-
-        .logo span {
-            color: #ff3030;
-        }
-
-        .container {
-            width: 92%;
-            max-width: 900px;
-            margin: 35px auto;
-        }
-
-        .top {
-            text-align: center;
-            margin-bottom: 25px;
-        }
-
-        .top h1 {
-            font-size: 28px;
-            margin-bottom: 10px;
-        }
-
-        .top p {
-            color: #777;
-            font-size: 13px;
-        }
-
-        .deal-info {
-
-            display: grid;
-
-            grid-template-columns:
-                repeat(3, 1fr);
-
-            gap: 12px;
-
-            margin-bottom: 20px;
-        }
-
-        .info {
-
-            background: #0d0d0d;
-
-            border: 1px solid #222;
-
-            border-radius: 13px;
-
-            padding: 17px;
-
-            text-align: center;
-        }
-
-        .info-title {
-
-            color: #777;
-
-            font-size: 11px;
-
-            margin-bottom: 8px;
-
-        }
-
-        .info-value {
-
-            font-size: 14px;
-
-            font-weight: bold;
-
-        }
-
-        .status {
-
-            color: #ffcf5a;
-
-        }
-
-        .chat {
-
-            background: #0d0d0d;
-
-            border: 1px solid #222;
-
-            border-radius: 18px;
-
-            overflow: hidden;
-
-        }
-
-        .chat-header {
-
-            padding: 17px 20px;
-
-            border-bottom: 1px solid #222;
-
-            font-weight: bold;
-
-        }
-
-        #messages {
-
-            height: 430px;
-
-            overflow-y: auto;
-
-            padding: 20px;
-
-        }
-
-        .empty {
-
-            text-align: center;
-
-            color: #555;
-
-            padding-top: 160px;
-
-            font-size: 13px;
-
-        }
-
-        .message {
-
-            margin-bottom: 13px;
-
-            padding: 12px 14px;
-
-            border-radius: 12px;
-
-            background: #181818;
-
-            max-width: 80%;
-
-        }
-
-        .message-name {
-
-            font-size: 11px;
-
-            color: #ff5555;
-
-            margin-bottom: 5px;
-
-        }
-
-        .message-text {
-
-            font-size: 13px;
-
-            line-height: 1.8;
-
-        }
-
-        .message-time {
-
-            font-size: 9px;
-
-            color: #555;
-
-            margin-top: 5px;
-
-        }
-
-        .send {
-
-            display: flex;
-
-            gap: 10px;
-
-            padding: 15px;
-
-            border-top: 1px solid #222;
-
-        }
-
-        .send input {
-
-            flex: 1;
-
-            background: #070707;
-
-            border: 1px solid #292929;
-
-            color: white;
-
-            padding: 14px;
-
-            border-radius: 10px;
-
-            outline: none;
-
-            font-family: inherit;
-
-        }
-
-        .send button {
-
-            width: 110px;
-
-            border: none;
-
-            border-radius: 10px;
-
-            background: #ff3030;
-
-            color: white;
-
-            font-family: inherit;
-
-            font-weight: bold;
-
-            cursor: pointer;
-
-        }
-
-        .notice {
-
-            margin-top: 18px;
-
-            background: rgba(255,48,48,.06);
-
-            border: 1px solid rgba(255,48,48,.18);
-
-            border-radius: 12px;
-
-            padding: 15px;
-
-            color: #aaa;
-
-            font-size: 11px;
-
-            line-height: 1.9;
-
-        }
-
-        .error {
-
-            display: none;
-
-            background: rgba(255,0,0,.08);
-
-            border: 1px solid rgba(255,0,0,.25);
-
-            color: #ff7777;
-
-            border-radius: 12px;
-
-            padding: 15px;
-
-            margin-bottom: 15px;
-
-            font-size: 12px;
-
-        }
-
-        @media(max-width:650px) {
-
-            .deal-info {
-
-                grid-template-columns: 1fr;
-
-            }
-
-            #messages {
-
-                height: 400px;
-            }
-
-            .send button {
-
-                width: 80px;
-            }
-
-        }
-
-    </style>
-
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+
+<title>اتاق معامله | V2GUARD</title>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<style>
+
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+}
+
+body{
+    font-family:Tahoma,Arial,sans-serif;
+    background:
+    radial-gradient(
+        circle at top right,
+        rgba(255,48,48,.12),
+        transparent 35%
+    ),
+    #050505;
+    color:white;
+    min-height:100vh;
+}
+
+header{
+    height:70px;
+    padding:0 7%;
+    display:flex;
+    align-items:center;
+    border-bottom:1px solid #222;
+}
+
+.logo{
+    font-size:23px;
+    font-weight:900;
+    letter-spacing:2px;
+}
+
+.logo span{
+    color:#ff3030;
+}
+
+.container{
+    width:92%;
+    max-width:900px;
+    margin:35px auto;
+}
+
+.top{
+    text-align:center;
+    margin-bottom:25px;
+}
+
+.top h1{
+    font-size:28px;
+    margin-bottom:10px;
+}
+
+.top p{
+    color:#777;
+    font-size:13px;
+}
+
+.deal-info{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:12px;
+    margin-bottom:20px;
+}
+
+.info{
+    background:#0d0d0d;
+    border:1px solid #222;
+    border-radius:13px;
+    padding:17px;
+    text-align:center;
+}
+
+.info-title{
+    color:#777;
+    font-size:11px;
+    margin-bottom:8px;
+}
+
+.info-value{
+    font-size:14px;
+    font-weight:bold;
+}
+
+.status{
+    color:#ffcf5a;
+}
+
+.chat{
+    background:#0d0d0d;
+    border:1px solid #222;
+    border-radius:18px;
+    overflow:hidden;
+}
+
+.chat-header{
+    padding:17px 20px;
+    border-bottom:1px solid #222;
+    font-weight:bold;
+}
+
+#messages{
+    height:430px;
+    overflow-y:auto;
+    padding:20px;
+}
+
+.empty{
+    text-align:center;
+    color:#555;
+    padding-top:160px;
+    font-size:13px;
+}
+
+.message{
+    margin-bottom:13px;
+    padding:12px 14px;
+    border-radius:12px;
+    background:#181818;
+    max-width:80%;
+}
+
+.message.me{
+    margin-right:auto;
+    background:#321010;
+}
+
+.message-name{
+    font-size:11px;
+    color:#ff5555;
+    margin-bottom:5px;
+}
+
+.message-text{
+    font-size:13px;
+    line-height:1.8;
+    word-break:break-word;
+}
+
+.message-time{
+    font-size:9px;
+    color:#555;
+    margin-top:5px;
+}
+
+.send{
+    display:flex;
+    gap:10px;
+    padding:15px;
+    border-top:1px solid #222;
+}
+
+.send input{
+    flex:1;
+    background:#070707;
+    border:1px solid #292929;
+    color:white;
+    padding:14px;
+    border-radius:10px;
+    outline:none;
+    font-family:inherit;
+}
+
+.send input:focus{
+    border-color:#ff3030;
+}
+
+.send button{
+    width:110px;
+    border:none;
+    border-radius:10px;
+    background:#ff3030;
+    color:white;
+    font-family:inherit;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+.send button:disabled{
+    opacity:.5;
+}
+
+.notice{
+    margin-top:18px;
+    background:rgba(255,48,48,.06);
+    border:1px solid rgba(255,48,48,.18);
+    border-radius:12px;
+    padding:15px;
+    color:#aaa;
+    font-size:11px;
+    line-height:1.9;
+}
+
+.error{
+    display:none;
+    background:rgba(255,0,0,.08);
+    border:1px solid rgba(255,0,0,.25);
+    color:#ff7777;
+    border-radius:12px;
+    padding:15px;
+    margin-bottom:15px;
+    font-size:12px;
+}
+
+@media(max-width:650px){
+
+    .deal-info{
+        grid-template-columns:1fr;
+    }
+
+    #messages{
+        height:400px;
+    }
+
+    .send button{
+        width:80px;
+    }
+}
+
+</style>
 </head>
-
 
 <body>
 
-
 <header>
 
-    <div class="logo">
-
-        V2<span>GUARD</span>
-
-    </div>
+<div class="logo">
+V2<span>GUARD</span>
+</div>
 
 </header>
 
@@ -346,125 +247,119 @@
 <div class="container">
 
 
-    <div class="top">
+<div class="top">
 
-        <h1>
-            اتاق معامله
-        </h1>
+<h1>
+اتاق معامله
+</h1>
 
-        <p>
-            محیط اختصاصی گفت‌وگوی خریدار و فروشنده
-        </p>
+<p>
+گفت‌وگوی اختصاصی معامله
+</p>
 
-    </div>
-
-
-    <div
-        id="error"
-        class="error"
-    ></div>
+</div>
 
 
-    <div class="deal-info">
+<div
+id="error"
+class="error">
+</div>
 
 
-        <div class="info">
-
-            <div class="info-title">
-                کد معامله
-            </div>
-
-            <div
-                class="info-value"
-                id="dealCode"
-            >
-                در حال بارگذاری...
-            </div>
-
-        </div>
+<div class="deal-info">
 
 
-        <div class="info">
+<div class="info">
 
-            <div class="info-title">
-                مبلغ
-            </div>
+<div class="info-title">
+کد معامله
+</div>
 
-            <div
-                class="info-value"
-                id="dealPrice"
-            >
-                ---
-            </div>
+<div
+class="info-value"
+id="dealCode">
+در حال بارگذاری...
+</div>
 
-        </div>
-
-
-        <div class="info">
-
-            <div class="info-title">
-                وضعیت
-            </div>
-
-            <div
-                class="info-value status"
-                id="dealStatus"
-            >
-                در انتظار
-            </div>
-
-        </div>
+</div>
 
 
-    </div>
+<div class="info">
+
+<div class="info-title">
+مبلغ
+</div>
+
+<div
+class="info-value"
+id="dealPrice">
+---
+</div>
+
+</div>
 
 
-    <div class="chat">
+<div class="info">
+
+<div class="info-title">
+وضعیت
+</div>
+
+<div
+class="info-value status"
+id="dealStatus">
+در انتظار
+</div>
+
+</div>
 
 
-        <div class="chat-header">
-
-            💬 گفت‌وگوی معامله
-
-        </div>
+</div>
 
 
-        <div id="messages">
-
-            <div class="empty">
-                در حال دریافت پیام‌ها...
-            </div>
-
-        </div>
+<div class="chat">
 
 
-        <div class="send">
-
-            <input
-                id="messageInput"
-                type="text"
-                placeholder="پیام خود را بنویسید..."
-            >
-
-            <button
-                id="sendButton"
-            >
-                ارسال
-            </button>
-
-        </div>
+<div class="chat-header">
+💬 گفت‌وگوی معامله
+</div>
 
 
-    </div>
+<div id="messages">
+
+<div class="empty">
+در حال دریافت پیام‌ها...
+</div>
+
+</div>
 
 
-    <div class="notice">
+<div class="send">
 
-        🔒 توجه: اطلاعات حساس اکانت را در چت ارسال نکنید.
-        در مراحل بعدی سیستم تأیید مدیر و انتقال امن اطلاعات
-        به معامله اضافه خواهد شد.
+<input
+id="messageInput"
+type="text"
+placeholder="پیام خود را بنویسید..."
+autocomplete="off"
+>
 
-    </div>
+<button
+id="sendButton">
+ارسال
+</button>
+
+</div>
+
+
+</div>
+
+
+<div class="notice">
+
+🔒 اطلاعات حساس مانند رمز عبور Gmail را در این چت ارسال نکنید.
+برای ارسال اطلاعات حساس، بعداً سیستم اختصاصی مدیر را اضافه می‌کنیم.
+
+</div>
 
 
 </div>
@@ -473,293 +368,622 @@
 <script>
 
 
-/* ==========================================
-   SUPABASE
-========================================== */
+/* ==============================
+SUPABASE
+============================== */
 
 
 const SUPABASE_URL =
-    "https://hctppmmaiqkzcgxncyhi.supabase.co";
+"https://hctppmmaiqkzcgxncyhi.supabase.co";
 
 
 const SUPABASE_KEY =
-    "sb_publishable_wP43H8AKwtVcTUBwcEzTxg_qKdFxzNa";
+"sb_publishable_wP43H8AKwtVcTUBwcEzTxg_qKdFxzNa";
 
 
 const supabaseClient =
-    window.supabase.createClient(
-        SUPABASE_URL,
-        SUPABASE_KEY
-    );
+window.supabase.createClient(
+SUPABASE_URL,
+SUPABASE_KEY
+);
 
 
-/* ==========================================
-   گرفتن ID معامله از URL
-========================================== */
+/* ==============================
+شناسه معامله
+============================== */
 
 
 const params =
-    new URLSearchParams(
-        window.location.search
-    );
+new URLSearchParams(
+window.location.search
+);
 
 
 const dealId =
-    params.get("id");
+params.get("id");
 
 
-/* ==========================================
-   نمایش خطا
-========================================== */
+/* ==============================
+شناسه کاربر محلی
+============================== */
 
 
-function showError(message) {
-
-    const box =
-        document.getElementById("error");
-
-    box.textContent = message;
-
-    box.style.display = "block";
-
-}
+let visitorId =
+localStorage.getItem(
+"v2guard_visitor_id"
+);
 
 
-/* ==========================================
-   فرمت مبلغ
-========================================== */
+if(!visitorId){
 
+visitorId =
+crypto.randomUUID();
 
-function formatPrice(price) {
-
-    return Number(price)
-        .toLocaleString("fa-IR")
-        + " تومان";
+localStorage.setItem(
+"v2guard_visitor_id",
+visitorId
+);
 
 }
 
 
-/* ==========================================
-   دریافت معامله
-========================================== */
+/* ==============================
+نام کاربر
+============================== */
 
 
-async function loadDeal() {
+let senderName =
+localStorage.getItem(
+"v2guard_sender_name"
+);
 
 
-    if (!dealId) {
+if(!senderName){
 
-        showError(
-            "کد معامله در لینک وجود ندارد."
-        );
+senderName =
+prompt(
+"نام شما برای نمایش در چت:"
+);
 
-        return;
+if(!senderName){
+senderName = "کاربر";
+}
 
-    }
-
-
-    const {
-        data,
-        error
-    } =
-        await supabaseClient
-
-            .from("deals")
-
-            .select("*")
-
-            .eq(
-                "deal_code",
-                dealId
-            )
-
-            .single();
-
-
-    if (error) {
-
-        console.error(error);
-
-        showError(
-            "معامله پیدا نشد یا دسترسی به آن وجود ندارد."
-        );
-
-        return;
-
-    }
-
-
-    document
-        .getElementById("dealCode")
-        .textContent =
-        data.deal_code;
-
-
-    document
-        .getElementById("dealPrice")
-        .textContent =
-        formatPrice(data.price);
-
-
-    document
-        .getElementById("dealStatus")
-        .textContent =
-        data.status === "waiting"
-            ? "در انتظار"
-            : data.status;
-
-
-    /*
-       فعلاً پیام نمونه برای تست
-    */
-
-    document
-        .getElementById("messages")
-        .innerHTML = `
-
-            <div class="message">
-
-                <div class="message-name">
-                    سیستم V2GUARD
-                </div>
-
-                <div class="message-text">
-                    معامله با موفقیت ایجاد شده است.
-                    طرفین می‌توانند وارد گفت‌وگو شوند.
-                </div>
-
-            </div>
-
-        `;
+localStorage.setItem(
+"v2guard_sender_name",
+senderName
+);
 
 }
 
 
-/* ==========================================
-   ارسال پیام - فعلاً تستی
-========================================== */
+/* ==============================
+خطا
+============================== */
+
+
+function showError(message){
+
+const box =
+document.getElementById(
+"error"
+);
+
+box.textContent =
+message;
+
+box.style.display =
+"block";
+
+}
+
+
+/* ==============================
+مبلغ
+============================== */
+
+
+function formatPrice(price){
+
+return Number(price)
+.toLocaleString("fa-IR")
++
+" تومان";
+
+}
+
+
+/* ==============================
+زمان
+============================== */
+
+
+function formatTime(date){
+
+return new Date(date)
+.toLocaleTimeString(
+"fa-IR",
+{
+hour:"2-digit",
+minute:"2-digit"
+}
+);
+
+}
+
+
+/* ==============================
+نمایش پیام
+============================== */
+
+
+function renderMessage(message){
+
+const messages =
+document.getElementById(
+"messages"
+);
+
+
+const empty =
+messages.querySelector(
+".empty"
+);
+
+
+if(empty){
+empty.remove();
+}
+
+
+const div =
+document.createElement(
+"div"
+);
+
+
+div.className =
+"message";
+
+
+if(
+message.visitor_id ===
+visitorId
+){
+
+div.classList.add(
+"me"
+);
+
+}
+
+
+div.innerHTML = `
+
+<div class="message-name">
+${escapeHtml(message.sender_name)}
+</div>
+
+<div class="message-text">
+${escapeHtml(message.message)}
+</div>
+
+<div class="message-time">
+${formatTime(message.created_at)}
+</div>
+
+`;
+
+
+messages.appendChild(
+div
+);
+
+
+messages.scrollTop =
+messages.scrollHeight;
+
+}
+
+
+/* ==============================
+امنیت متن
+============================== */
+
+
+function escapeHtml(text){
+
+const div =
+document.createElement(
+"div"
+);
+
+div.textContent =
+text;
+
+return div.innerHTML;
+
+}
+
+
+/* ==============================
+دریافت معامله
+============================== */
+
+
+async function loadDeal(){
+
+
+if(!dealId){
+
+showError(
+"کد معامله در لینک وجود ندارد."
+);
+
+return;
+
+}
+
+
+const {
+data,
+error
+} =
+await supabaseClient
+.from("deals")
+.select("*")
+.eq(
+"deal_code",
+dealId
+)
+.single();
+
+
+if(error){
+
+console.error(error);
+
+showError(
+"معامله پیدا نشد."
+);
+
+return;
+
+}
 
 
 document
-    .getElementById("sendButton")
-    .addEventListener(
-        "click",
-        function () {
+.getElementById("dealCode")
+.textContent =
+data.deal_code;
 
 
-            const input =
-                document.getElementById(
-                    "messageInput"
-                );
+document
+.getElementById("dealPrice")
+.textContent =
+formatPrice(data.price);
 
 
-            const text =
-                input.value.trim();
+document
+.getElementById("dealStatus")
+.textContent =
+data.status || "در انتظار";
 
 
-            if (!text) return;
+/*
+اگر نقش معامله مشخص باشد
+*/
 
+if(
+data.role &&
+!localStorage.getItem(
+"v2guard_role_" + dealId
+)
+){
 
-            const messages =
-                document.getElementById(
-                    "messages"
-                );
-
-
-            const message =
-                document.createElement(
-                    "div"
-                );
-
-
-            message.className =
-                "message";
-
-
-            message.innerHTML = `
-
-                <div class="message-name">
-                    شما
-                </div>
-
-                <div class="message-text">
-                    ${escapeHtml(text)}
-                </div>
-
-            `;
-
-
-            messages.appendChild(
-                message
-            );
-
-
-            messages.scrollTop =
-                messages.scrollHeight;
-
-
-            input.value = "";
-
-        }
-    );
-
-
-/* ==========================================
-   جلوگیری از HTML Injection
-========================================== */
-
-
-function escapeHtml(text) {
-
-    const div =
-        document.createElement(
-            "div"
-        );
-
-    div.textContent = text;
-
-    return div.innerHTML;
+localStorage.setItem(
+"v2guard_role_" + dealId,
+data.role
+);
 
 }
 
 
-/* ==========================================
-   Enter برای ارسال
-========================================== */
+await loadMessages();
+
+}
+
+
+/* ==============================
+دریافت پیام‌های قبلی
+============================== */
+
+
+async function loadMessages(){
+
+
+const {
+data,
+error
+} =
+await supabaseClient
+.from("messages")
+.select("*")
+.eq(
+"deal_code",
+dealId
+)
+.order(
+"created_at",
+{
+ascending:true
+}
+);
+
+
+if(error){
+
+console.error(error);
+
+showError(
+"دریافت پیام‌ها انجام نشد."
+);
+
+return;
+
+}
 
 
 document
-    .getElementById("messageInput")
-    .addEventListener(
-        "keydown",
-        function(event) {
-
-            if (
-                event.key === "Enter"
-            ) {
-
-                document
-                    .getElementById(
-                        "sendButton"
-                    )
-                    .click();
-
-            }
-
-        }
-    );
+.getElementById("messages")
+.innerHTML = "";
 
 
-/* ==========================================
-   شروع
-========================================== */
+if(
+!data ||
+data.length === 0
+){
+
+document
+.getElementById("messages")
+.innerHTML = `
+
+<div class="empty">
+هنوز پیامی ارسال نشده است.
+</div>
+
+`;
+
+return;
+
+}
+
+
+data.forEach(
+renderMessage
+);
+
+}
+
+
+/* ==============================
+ارسال پیام
+============================== */
+
+
+async function sendMessage(){
+
+
+const input =
+document.getElementById(
+"messageInput"
+);
+
+
+const button =
+document.getElementById(
+"sendButton"
+);
+
+
+const text =
+input.value.trim();
+
+
+if(!text)
+return;
+
+
+button.disabled =
+true;
+
+
+try{
+
+
+const role =
+localStorage.getItem(
+"v2guard_role_" + dealId
+)
+||
+"participant";
+
+
+const {
+data,
+error
+} =
+await supabaseClient
+.from("messages")
+.insert({
+
+deal_code:
+dealId,
+
+sender_name:
+senderName,
+
+sender_role:
+role,
+
+message:
+text,
+
+visitor_id:
+visitorId
+
+})
+.select()
+.single();
+
+
+if(error){
+
+throw error;
+
+}
+
+
+input.value = "";
+
+
+if(data){
+
+renderMessage(
+data
+);
+
+}
+
+
+}catch(error){
+
+console.error(error);
+
+showError(
+"ارسال پیام انجام نشد: "
++
+error.message
+);
+
+}finally{
+
+button.disabled =
+false;
+
+input.focus();
+
+}
+
+}
+
+
+/* ==============================
+Realtime
+============================== */
+
+
+function startRealtime(){
+
+
+supabaseClient
+.channel(
+"deal-chat-" + dealId
+)
+.on(
+"postgres_changes",
+{
+event:"INSERT",
+schema:"public",
+table:"messages",
+filter:
+"deal_code=eq." + dealId
+},
+payload => {
+
+if(
+payload.new.visitor_id !==
+visitorId
+){
+
+renderMessage(
+payload.new
+);
+
+}
+
+}
+)
+.subscribe(
+status => {
+
+console.log(
+"Realtime:",
+status
+);
+
+}
+);
+
+}
+
+
+/* ==============================
+دکمه ارسال
+============================== */
+
+
+document
+.getElementById(
+"sendButton"
+)
+.addEventListener(
+"click",
+sendMessage
+);
+
+
+/* ==============================
+Enter
+============================== */
+
+
+document
+.getElementById(
+"messageInput"
+)
+.addEventListener(
+"keydown",
+function(event){
+
+if(
+event.key === "Enter"
+){
+
+event.preventDefault();
+
+sendMessage();
+
+}
+
+});
+
+
+/* ==============================
+شروع
+============================== */
 
 
 loadDeal();
 
+if(dealId){
+
+startRealtime();
+
+}
+
 
 </script>
-
 
 </body>
 
