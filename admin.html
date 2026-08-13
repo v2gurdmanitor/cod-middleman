@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="fa" dir="rtl">
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
 
@@ -25,6 +26,30 @@ body{
     min-height:100vh;
 }
 
+button,
+input{
+    font-family:inherit;
+}
+
+button{
+    border:none;
+    background:#ff3030;
+    color:#fff;
+    padding:12px 17px;
+    border-radius:10px;
+    cursor:pointer;
+    font-weight:bold;
+}
+
+button:hover{
+    background:#ff4545;
+}
+
+button:disabled{
+    opacity:.5;
+    cursor:not-allowed;
+}
+
 header{
     height:70px;
     padding:0 6%;
@@ -32,6 +57,11 @@ header{
     align-items:center;
     justify-content:space-between;
     border-bottom:1px solid #222;
+    background:rgba(5,5,5,.9);
+    position:sticky;
+    top:0;
+    z-index:50;
+    backdrop-filter:blur(15px);
 }
 
 .logo{
@@ -70,21 +100,6 @@ header{
     color:#777;
     font-size:12px;
     margin-top:7px;
-}
-
-button{
-    border:none;
-    background:#ff3030;
-    color:#fff;
-    padding:12px 17px;
-    border-radius:10px;
-    cursor:pointer;
-    font-family:inherit;
-    font-weight:bold;
-}
-
-button:hover{
-    background:#ff4545;
 }
 
 .refresh{
@@ -131,7 +146,6 @@ button:hover{
     padding:14px;
     border-radius:11px;
     outline:none;
-    font-family:inherit;
 }
 
 .table-box{
@@ -227,7 +241,239 @@ tr:hover td{
     padding:40px;
 }
 
-/* MODAL */
+.error{
+    display:none;
+    background:rgba(255,0,0,.08);
+    border:1px solid rgba(255,0,0,.25);
+    color:#ff7777;
+    border-radius:12px;
+    padding:15px;
+    margin-bottom:20px;
+    font-size:12px;
+}
+
+
+/* ==============================
+   SUPPORT SECTION
+============================== */
+
+.support-section{
+    margin-top:45px;
+}
+
+.section-header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:18px;
+}
+
+.section-header h2{
+    font-size:21px;
+}
+
+.section-header p{
+    color:#666;
+    font-size:11px;
+    margin-top:6px;
+}
+
+.support-layout{
+    display:grid;
+    grid-template-columns:320px 1fr;
+    gap:15px;
+}
+
+.support-users{
+    background:#0d0d0d;
+    border:1px solid #222;
+    border-radius:18px;
+    overflow:hidden;
+    min-height:480px;
+}
+
+.support-users-head{
+    padding:17px;
+    border-bottom:1px solid #222;
+    background:#101010;
+}
+
+.support-users-head input{
+    width:100%;
+    background:#070707;
+    border:1px solid #292929;
+    color:#fff;
+    padding:11px;
+    border-radius:9px;
+    outline:none;
+}
+
+.user-list{
+    max-height:520px;
+    overflow-y:auto;
+}
+
+.user-item{
+    padding:15px;
+    border-bottom:1px solid #1b1b1b;
+    cursor:pointer;
+    transition:.2s;
+}
+
+.user-item:hover{
+    background:#151515;
+}
+
+.user-item.selected{
+    background:#241010;
+    border-right:3px solid #ff3030;
+}
+
+.user-name{
+    font-size:12px;
+    font-weight:bold;
+    margin-bottom:6px;
+}
+
+.user-id{
+    color:#555;
+    font-size:9px;
+    direction:ltr;
+    text-align:left;
+}
+
+.user-last{
+    color:#777;
+    font-size:10px;
+    margin-top:8px;
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+}
+
+.unread{
+    float:left;
+    background:#ff3030;
+    color:#fff;
+    min-width:20px;
+    height:20px;
+    border-radius:50%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:9px;
+}
+
+.support-chat{
+    background:#0d0d0d;
+    border:1px solid #222;
+    border-radius:18px;
+    overflow:hidden;
+    min-height:480px;
+    display:flex;
+    flex-direction:column;
+}
+
+.support-chat-head{
+    min-height:65px;
+    padding:12px 18px;
+    border-bottom:1px solid #222;
+    background:#101010;
+}
+
+.support-chat-name{
+    font-size:13px;
+    font-weight:bold;
+}
+
+.support-chat-id{
+    color:#555;
+    font-size:9px;
+    direction:ltr;
+    margin-top:5px;
+}
+
+.support-chat-messages{
+    flex:1;
+    height:390px;
+    overflow-y:auto;
+    padding:18px;
+    background:#070707;
+}
+
+.support-placeholder{
+    height:100%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    color:#555;
+    font-size:12px;
+}
+
+.support-msg{
+    max-width:82%;
+    background:#171717;
+    border:1px solid #242424;
+    border-radius:12px;
+    padding:11px 13px;
+    margin-bottom:10px;
+}
+
+.support-msg.admin{
+    margin-right:auto;
+    background:#2b1010;
+    border-color:#652020;
+}
+
+.support-msg-name{
+    font-size:10px;
+    font-weight:bold;
+    color:#ff5555;
+    margin-bottom:5px;
+}
+
+.support-msg.admin .support-msg-name{
+    color:#ffcf5a;
+}
+
+.support-msg-text{
+    font-size:12px;
+    line-height:1.8;
+    word-break:break-word;
+}
+
+.support-msg-time{
+    color:#555;
+    font-size:8px;
+    margin-top:6px;
+}
+
+.support-send{
+    display:flex;
+    gap:8px;
+    padding:10px;
+    border-top:1px solid #222;
+}
+
+.support-send input{
+    flex:1;
+    background:#070707;
+    border:1px solid #292929;
+    color:#fff;
+    padding:13px;
+    border-radius:10px;
+    outline:none;
+}
+
+.support-send button{
+    width:90px;
+}
+
+
+/* ==============================
+   MODAL
+============================== */
 
 .modal{
     display:none;
@@ -289,8 +535,6 @@ tr:hover td{
     grid-column:1/-1;
 }
 
-/* STATUS */
-
 .status-actions{
     margin-top:20px;
     display:flex;
@@ -318,8 +562,6 @@ tr:hover td{
 .status-cancelled{
     background:#8b2222;
 }
-
-/* CHAT */
 
 .chat-box{
     margin-top:25px;
@@ -387,8 +629,6 @@ tr:hover td{
     margin-top:6px;
 }
 
-/* ADMIN SEND */
-
 .admin-send{
     display:flex;
     gap:8px;
@@ -403,27 +643,16 @@ tr:hover td{
     padding:13px;
     border-radius:10px;
     outline:none;
-    font-family:inherit;
-}
-
-.admin-send input:focus{
-    border-color:#ff3030;
 }
 
 .admin-send button{
     width:100px;
 }
 
-.error{
-    display:none;
-    background:rgba(255,0,0,.08);
-    border:1px solid rgba(255,0,0,.25);
-    color:#ff7777;
-    border-radius:12px;
-    padding:15px;
-    margin-bottom:20px;
-    font-size:12px;
-}
+
+/* ==============================
+   MOBILE
+============================== */
 
 @media(max-width:800px){
 
@@ -441,6 +670,18 @@ tr:hover td{
         grid-template-columns:1fr;
     }
 
+    .support-layout{
+        grid-template-columns:1fr;
+    }
+
+    .support-users{
+        min-height:250px;
+    }
+
+    .user-list{
+        max-height:250px;
+    }
+
 }
 
 @media(max-width:500px){
@@ -453,7 +694,8 @@ tr:hover td{
         flex-direction:column;
     }
 
-    .admin-send button{
+    .admin-send button,
+    .support-send button{
         width:80px;
     }
 
@@ -463,6 +705,7 @@ tr:hover td{
 </head>
 
 <body>
+
 
 <header>
 
@@ -478,6 +721,11 @@ tr:hover td{
 
 
 <div class="container">
+
+
+    <!-- =========================
+         DEAL MANAGEMENT
+    ========================== -->
 
     <div class="top">
 
@@ -632,10 +880,130 @@ tr:hover td{
 
     </div>
 
+
+    <!-- =========================
+         SUPPORT
+    ========================== -->
+
+    <section class="support-section">
+
+        <div class="section-header">
+
+            <div>
+
+                <h2>
+                    💬 پشتیبانی کاربران
+                </h2>
+
+                <p>
+                    پیام‌های خصوصی کاربران را مشاهده و پاسخ دهید
+                </p>
+
+            </div>
+
+            <button
+                class="refresh"
+                onclick="loadSupportMessages()"
+            >
+                🔄 بروزرسانی
+            </button>
+
+        </div>
+
+
+        <div class="support-layout">
+
+
+            <!-- USER LIST -->
+
+            <div class="support-users">
+
+                <div class="support-users-head">
+
+                    <input
+                        id="supportSearch"
+                        placeholder="جستجوی کاربر..."
+                        oninput="filterSupportUsers()"
+                    >
+
+                </div>
+
+
+                <div
+                    id="supportUserList"
+                    class="user-list"
+                >
+
+                    <div class="loading">
+                        در حال دریافت پیام‌ها...
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- SUPPORT CHAT -->
+
+            <div class="support-chat">
+
+                <div
+                    id="supportChatHead"
+                    class="support-chat-head"
+                >
+
+                    <div class="support-placeholder">
+
+                        یک کاربر را انتخاب کنید
+
+                    </div>
+
+                </div>
+
+
+                <div
+                    id="supportChatMessages"
+                    class="support-chat-messages"
+                >
+
+                    <div class="support-placeholder">
+
+                        از سمت راست یک گفت‌وگو را انتخاب کنید.
+
+                    </div>
+
+                </div>
+
+
+                <div class="support-send">
+
+                    <input
+                        id="supportAdminInput"
+                        placeholder="پاسخ خود را بنویسید..."
+                        autocomplete="off"
+                    >
+
+                    <button
+                        id="supportAdminSend"
+                        onclick="sendSupportAdminMessage()"
+                    >
+                        ارسال
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
 </div>
 
 
-<!-- MODAL -->
+<!-- =========================
+     DEAL MODAL
+========================= -->
 
 <div
     class="modal"
@@ -703,8 +1071,6 @@ tr:hover td{
         </div>
 
 
-        <!-- CHAT -->
-
         <div class="chat-box">
 
             <div class="chat-title">
@@ -723,8 +1089,6 @@ tr:hover td{
 
             </div>
 
-
-            <!-- ADMIN SEND -->
 
             <div class="admin-send">
 
@@ -753,9 +1117,10 @@ tr:hover td{
 
 <script>
 
-/* =====================================
+
+/* =========================================
    SUPABASE
-===================================== */
+========================================= */
 
 const SUPABASE_URL =
     "https://hctppmmaiqkzcgxncyhi.supabase.co";
@@ -770,20 +1135,28 @@ const supabaseClient =
     );
 
 
-/* =====================================
+/* =========================================
    VARIABLES
-===================================== */
+========================================= */
 
 let allDeals = [];
 
 let currentDeal = null;
 
-let currentChannel = null;
+let currentDealChannel = null;
+
+let allSupportMessages = [];
+
+let supportUsers = [];
+
+let currentSupportVisitor = null;
+
+let supportChannel = null;
 
 
-/* =====================================
+/* =========================================
    ERROR
-===================================== */
+========================================= */
 
 function showError(message){
 
@@ -798,9 +1171,9 @@ function showError(message){
 }
 
 
-/* =====================================
+/* =========================================
    STATUS
-===================================== */
+========================================= */
 
 function statusText(status){
 
@@ -820,9 +1193,9 @@ function statusText(status){
 }
 
 
-/* =====================================
+/* =========================================
    ROLE
-===================================== */
+========================================= */
 
 function roleText(role){
 
@@ -839,9 +1212,9 @@ function roleText(role){
 }
 
 
-/* =====================================
+/* =========================================
    PRICE
-===================================== */
+========================================= */
 
 function formatPrice(price){
 
@@ -861,17 +1234,14 @@ function formatPrice(price){
 }
 
 
-/* =====================================
+/* =========================================
    LOAD DEALS
-===================================== */
+========================================= */
 
 async function loadDeals(){
 
     const table =
-        document.getElementById(
-            "dealTable"
-        );
-
+        document.getElementById("dealTable");
 
     table.innerHTML = `
         <tr>
@@ -917,9 +1287,9 @@ async function loadDeals(){
 }
 
 
-/* =====================================
+/* =========================================
    STATS
-===================================== */
+========================================= */
 
 function updateStats(){
 
@@ -951,20 +1321,17 @@ function updateStats(){
         allDeals.filter(
             d => d.status === "completed"
         ).length;
-
 }
 
 
-/* =====================================
+/* =========================================
    RENDER DEALS
-===================================== */
+========================================= */
 
 function renderDeals(deals){
 
     const table =
-        document.getElementById(
-            "dealTable"
-        );
+        document.getElementById("dealTable");
 
 
     if(!deals.length){
@@ -1031,7 +1398,7 @@ function renderDeals(deals){
 
                     <button
                         class="view-btn"
-                        onclick="viewDeal('${deal.deal_code}')"
+                        onclick="viewDeal('${escapeAttr(deal.deal_code)}')"
                     >
                         👁 مشاهده
                     </button>
@@ -1046,17 +1413,15 @@ function renderDeals(deals){
 }
 
 
-/* =====================================
-   SEARCH
-===================================== */
+/* =========================================
+   SEARCH DEALS
+========================================= */
 
 function filterDeals(){
 
     const value =
         document
-        .getElementById(
-            "searchInput"
-        )
+        .getElementById("searchInput")
         .value
         .trim()
         .toLowerCase();
@@ -1111,9 +1476,9 @@ function filterDeals(){
 }
 
 
-/* =====================================
+/* =========================================
    VIEW DEAL
-===================================== */
+========================================= */
 
 async function viewDeal(code){
 
@@ -1132,9 +1497,7 @@ async function viewDeal(code){
 
 
     const detail =
-        document.getElementById(
-            "detail"
-        );
+        document.getElementById("detail");
 
 
     detail.innerHTML = `
@@ -1264,15 +1627,15 @@ async function viewDeal(code){
     );
 
 
-    startMessageRealtime(
+    startDealRealtime(
         deal.deal_code
     );
 }
 
 
-/* =====================================
-   LOAD MESSAGES
-===================================== */
+/* =========================================
+   LOAD DEAL MESSAGES
+========================================= */
 
 async function loadMessages(code){
 
@@ -1325,7 +1688,8 @@ async function loadMessages(code){
         result.data || [];
 
 
-    box.innerHTML = "";
+    box.innerHTML =
+        "";
 
 
     if(!messages.length){
@@ -1349,9 +1713,9 @@ async function loadMessages(code){
 }
 
 
-/* =====================================
-   RENDER MESSAGE
-===================================== */
+/* =========================================
+   RENDER DEAL MESSAGE
+========================================= */
 
 function renderMessage(message){
 
@@ -1372,7 +1736,8 @@ function renderMessage(message){
 
 
     if(
-        message.sender_role === "admin"
+        message.sender_role ===
+        "admin"
     ){
 
         div.classList.add(
@@ -1383,12 +1748,15 @@ function renderMessage(message){
 
 
     const name =
-        message.sender_role === "admin"
-            ? "👑 مدیر"
-            : (
-                message.sender_name ||
-                "کاربر"
-            );
+        message.sender_role ===
+        "admin"
+
+        ? "👑 مدیر"
+
+        : (
+            message.sender_name ||
+            "کاربر"
+        );
 
 
     div.innerHTML = `
@@ -1404,6 +1772,7 @@ function renderMessage(message){
         </div>
 
         <div class="message-time">
+
             ${
                 message.created_at
                 ?
@@ -1415,18 +1784,21 @@ function renderMessage(message){
                 :
                 ""
             }
+
         </div>
 
     `;
 
 
-    box.appendChild(div);
+    box.appendChild(
+        div
+    );
 }
 
 
-/* =====================================
-   SEND ADMIN MESSAGE
-===================================== */
+/* =========================================
+   SEND ADMIN DEAL MESSAGE
+========================================= */
 
 async function sendAdminMessage(){
 
@@ -1527,25 +1899,25 @@ async function sendAdminMessage(){
 }
 
 
-/* =====================================
-   REALTIME CHAT
-===================================== */
+/* =========================================
+   DEAL REALTIME
+========================================= */
 
-function startMessageRealtime(code){
+function startDealRealtime(code){
 
-    if(currentChannel){
+    if(currentDealChannel){
 
         supabaseClient.removeChannel(
-            currentChannel
+            currentDealChannel
         );
 
     }
 
 
-    currentChannel =
+    currentDealChannel =
         supabaseClient
         .channel(
-            "admin-chat-" + code
+            "admin-deal-" + code
         )
         .on(
             "postgres_changes",
@@ -1554,7 +1926,8 @@ function startMessageRealtime(code){
                 schema:"public",
                 table:"messages",
                 filter:
-                    "deal_code=eq." + code
+                    "deal_code=eq." +
+                    code
             },
             payload => {
 
@@ -1562,13 +1935,9 @@ function startMessageRealtime(code){
                     payload.new;
 
 
-                /*
-                پیام خود مدیر قبلاً
-                در صفحه اضافه شده است.
-                */
-
                 if(
-                    message.sender_role === "admin"
+                    message.sender_role ===
+                    "admin"
                 ){
 
                     return;
@@ -1586,13 +1955,12 @@ function startMessageRealtime(code){
             }
         )
         .subscribe();
-
 }
 
 
-/* =====================================
-   SCROLL CHAT
-===================================== */
+/* =========================================
+   SCROLL DEAL CHAT
+========================================= */
 
 function scrollMessages(){
 
@@ -1607,9 +1975,9 @@ function scrollMessages(){
 }
 
 
-/* =====================================
+/* =========================================
    CHANGE STATUS
-===================================== */
+========================================= */
 
 async function changeStatus(status){
 
@@ -1668,9 +2036,9 @@ async function changeStatus(status){
 }
 
 
-/* =====================================
-   CLOSE MODAL
-===================================== */
+/* =========================================
+   CLOSE DEAL MODAL
+========================================= */
 
 function hideModal(){
 
@@ -1680,13 +2048,13 @@ function hideModal(){
         "none";
 
 
-    if(currentChannel){
+    if(currentDealChannel){
 
         supabaseClient.removeChannel(
-            currentChannel
+            currentDealChannel
         );
 
-        currentChannel =
+        currentDealChannel =
             null;
     }
 
@@ -1699,7 +2067,8 @@ function hideModal(){
 function closeModal(event){
 
     if(
-        event.target.id === "modal"
+        event.target.id ===
+        "modal"
     ){
 
         hideModal();
@@ -1708,9 +2077,797 @@ function closeModal(event){
 }
 
 
-/* =====================================
-   ESCAPE HTML
-===================================== */
+/* =====================================================
+   SUPPORT SYSTEM
+===================================================== */
+
+
+/* =========================================
+   LOAD SUPPORT
+========================================= */
+
+async function loadSupportMessages(){
+
+    const list =
+        document.getElementById(
+            "supportUserList"
+        );
+
+
+    list.innerHTML = `
+        <div class="loading">
+            در حال دریافت پیام‌ها...
+        </div>
+    `;
+
+
+    const result =
+        await supabaseClient
+        .from("support_messages")
+        .select("*")
+        .order(
+            "created_at",
+            {
+                ascending:true
+            }
+        );
+
+
+    if(result.error){
+
+        list.innerHTML = `
+            <div class="empty">
+                خطا در دریافت پیام‌های پشتیبانی
+            </div>
+        `;
+
+        console.error(
+            result.error
+        );
+
+        return;
+    }
+
+
+    allSupportMessages =
+        result.data || [];
+
+
+    buildSupportUsers();
+
+
+    renderSupportUsers();
+
+
+    if(
+        currentSupportVisitor
+    ){
+
+        renderSupportChat(
+            currentSupportVisitor
+        );
+
+    }
+}
+
+
+/* =========================================
+   BUILD USERS
+========================================= */
+
+function buildSupportUsers(){
+
+    const map =
+        new Map();
+
+
+    allSupportMessages.forEach(
+        message => {
+
+            if(!message.visitor_id)
+                return;
+
+
+            if(
+                !map.has(
+                    message.visitor_id
+                )
+            ){
+
+                map.set(
+                    message.visitor_id,
+                    {
+                        visitor_id:
+                            message.visitor_id,
+
+                        messages:[],
+
+                        lastMessage:
+                            message.created_at
+                    }
+                );
+
+            }
+
+
+            const user =
+                map.get(
+                    message.visitor_id
+                );
+
+
+            user.messages.push(
+                message
+            );
+
+
+            if(
+                new Date(
+                    message.created_at
+                )
+                >
+                new Date(
+                    user.lastMessage
+                )
+            ){
+
+                user.lastMessage =
+                    message.created_at;
+
+            }
+
+        }
+    );
+
+
+    supportUsers =
+        Array.from(
+            map.values()
+        )
+        .sort(
+            (a,b) =>
+                new Date(
+                    b.lastMessage
+                )
+                -
+                new Date(
+                    a.lastMessage
+                )
+        );
+}
+
+
+/* =========================================
+   RENDER USERS
+========================================= */
+
+function renderSupportUsers(){
+
+    const list =
+        document.getElementById(
+            "supportUserList"
+        );
+
+
+    if(!supportUsers.length){
+
+        list.innerHTML = `
+            <div class="empty">
+                هنوز پیام پشتیبانی وجود ندارد.
+            </div>
+        `;
+
+        return;
+    }
+
+
+    const search =
+        document
+        .getElementById(
+            "supportSearch"
+        )
+        .value
+        .trim()
+        .toLowerCase();
+
+
+    const filtered =
+        supportUsers.filter(
+            user => {
+
+                const messages =
+                    user.messages;
+
+
+                const last =
+                    messages[
+                        messages.length - 1
+                    ];
+
+
+                return (
+
+                    user.visitor_id
+                    .toLowerCase()
+                    .includes(search)
+
+                    ||
+
+                    String(
+                        last?.sender_name ||
+                        ""
+                    )
+                    .toLowerCase()
+                    .includes(search)
+
+                );
+
+            }
+        );
+
+
+    list.innerHTML =
+        filtered
+        .map(
+            user => {
+
+                const messages =
+                    user.messages;
+
+
+                const last =
+                    messages[
+                        messages.length - 1
+                    ];
+
+
+                const unread =
+                    messages.filter(
+                        m =>
+                            m.sender_role ===
+                            "user"
+                    ).length;
+
+
+                const selected =
+                    currentSupportVisitor ===
+                    user.visitor_id;
+
+
+                return `
+
+                    <div
+                        class="user-item ${
+                            selected
+                            ? "selected"
+                            : ""
+                        }"
+                        onclick="selectSupportUser('${escapeAttr(user.visitor_id)}')"
+                    >
+
+                        ${
+                            unread
+                            ?
+                            `
+                            <span class="unread">
+                                ${unread}
+                            </span>
+                            `
+                            :
+                            ""
+                        }
+
+                        <div class="user-name">
+
+                            👤 ${
+                                escapeHtml(
+                                    last?.sender_name ||
+                                    "کاربر"
+                                )
+                            }
+
+                        </div>
+
+
+                        <div class="user-id">
+
+                            ${escapeHtml(
+                                user.visitor_id
+                            )}
+
+                        </div>
+
+
+                        <div class="user-last">
+
+                            ${
+                                escapeHtml(
+                                    last?.message ||
+                                    "بدون پیام"
+                                )
+                            }
+
+                        </div>
+
+                    </div>
+
+                `;
+
+            }
+        )
+        .join("");
+}
+
+
+/* =========================================
+   FILTER SUPPORT USERS
+========================================= */
+
+function filterSupportUsers(){
+
+    renderSupportUsers();
+}
+
+
+/* =========================================
+   SELECT USER
+========================================= */
+
+function selectSupportUser(
+    visitorId
+){
+
+    currentSupportVisitor =
+        visitorId;
+
+
+    renderSupportUsers();
+
+
+    renderSupportChat(
+        visitorId
+    );
+}
+
+
+/* =========================================
+   RENDER SUPPORT CHAT
+========================================= */
+
+function renderSupportChat(
+    visitorId
+){
+
+    const head =
+        document.getElementById(
+            "supportChatHead"
+        );
+
+
+    const box =
+        document.getElementById(
+            "supportChatMessages"
+        );
+
+
+    const user =
+        supportUsers.find(
+            u =>
+                u.visitor_id ===
+                visitorId
+        );
+
+
+    if(!user){
+
+        head.innerHTML = `
+            <div class="support-placeholder">
+                کاربر پیدا نشد
+            </div>
+        `;
+
+        return;
+    }
+
+
+    head.innerHTML = `
+
+        <div class="support-chat-name">
+            👤 ${
+                escapeHtml(
+                    user.messages.find(
+                        m =>
+                            m.sender_role ===
+                            "user"
+                    )?.sender_name ||
+                    "کاربر"
+                )
+            }
+        </div>
+
+        <div class="support-chat-id">
+            ${escapeHtml(visitorId)}
+        </div>
+
+    `;
+
+
+    box.innerHTML =
+        "";
+
+
+    if(
+        !user.messages.length
+    ){
+
+        box.innerHTML = `
+            <div class="support-placeholder">
+                هنوز پیامی وجود ندارد.
+            </div>
+        `;
+
+        return;
+    }
+
+
+    user.messages
+        .forEach(
+            renderSupportMessage
+        );
+
+
+    scrollSupportChat();
+}
+
+
+/* =========================================
+   RENDER SUPPORT MESSAGE
+========================================= */
+
+function renderSupportMessage(
+    message
+){
+
+    const box =
+        document.getElementById(
+            "supportChatMessages"
+        );
+
+
+    const div =
+        document.createElement(
+            "div"
+        );
+
+
+    const isAdmin =
+        message.sender_role ===
+        "admin";
+
+
+    div.className =
+        "support-msg " +
+        (
+            isAdmin
+            ? "admin"
+            : ""
+        );
+
+
+    div.innerHTML = `
+
+        <div class="support-msg-name">
+
+            ${
+                isAdmin
+                ? "👑 مدیر"
+                : "👤 " +
+                  escapeHtml(
+                      message.sender_name ||
+                      "کاربر"
+                  )
+            }
+
+        </div>
+
+
+        <div class="support-msg-text">
+
+            ${escapeHtml(
+                message.message ||
+                ""
+            )}
+
+        </div>
+
+
+        <div class="support-msg-time">
+
+            ${
+                message.created_at
+                ?
+                new Date(
+                    message.created_at
+                ).toLocaleString(
+                    "fa-IR"
+                )
+                :
+                ""
+            }
+
+        </div>
+
+    `;
+
+
+    box.appendChild(
+        div
+    );
+}
+
+
+/* =========================================
+   SEND SUPPORT ADMIN MESSAGE
+========================================= */
+
+async function sendSupportAdminMessage(){
+
+    if(
+        !currentSupportVisitor
+    ){
+
+        alert(
+            "ابتدا یک کاربر را انتخاب کنید."
+        );
+
+        return;
+    }
+
+
+    const input =
+        document.getElementById(
+            "supportAdminInput"
+        );
+
+
+    const button =
+        document.getElementById(
+            "supportAdminSend"
+        );
+
+
+    const text =
+        input.value.trim();
+
+
+    if(!text)
+        return;
+
+
+    button.disabled =
+        true;
+
+
+    const result =
+        await supabaseClient
+        .from("support_messages")
+        .insert({
+
+            visitor_id:
+                currentSupportVisitor,
+
+            sender_role:
+                "admin",
+
+            sender_name:
+                "مدیر",
+
+            message:
+                text
+
+        })
+        .select()
+        .single();
+
+
+    if(result.error){
+
+        console.error(
+            result.error
+        );
+
+        alert(
+            "ارسال پاسخ انجام نشد:\n" +
+            result.error.message
+        );
+
+        button.disabled =
+            false;
+
+        return;
+    }
+
+
+    input.value =
+        "";
+
+
+    /*
+       چون ممکن است Realtime
+       پیام خودمان را هم برگرداند،
+       ابتدا لیست محلی را آپدیت می‌کنیم.
+    */
+
+    allSupportMessages.push(
+        result.data
+    );
+
+
+    buildSupportUsers();
+
+
+    renderSupportUsers();
+
+
+    renderSupportChat(
+        currentSupportVisitor
+    );
+
+
+    scrollSupportChat();
+
+
+    button.disabled =
+        false;
+
+
+    input.focus();
+}
+
+
+/* =========================================
+   SUPPORT REALTIME
+========================================= */
+
+function startSupportRealtime(){
+
+    if(supportChannel){
+
+        supabaseClient.removeChannel(
+            supportChannel
+        );
+
+    }
+
+
+    supportChannel =
+        supabaseClient
+        .channel(
+            "admin-support-global"
+        )
+        .on(
+            "postgres_changes",
+            {
+                event:"INSERT",
+                schema:"public",
+                table:"support_messages"
+            },
+            payload => {
+
+                const message =
+                    payload.new;
+
+
+                /*
+                   اگر پیام توسط خود مدیر
+                   همین صفحه ارسال شده،
+                   قبلاً به صورت محلی اضافه شده.
+                */
+
+                if(
+                    message.sender_role ===
+                    "admin"
+                ){
+
+                    /*
+                       فقط اگر مربوط به
+                       گفت‌وگوی دیگری بود،
+                       لیست را بروزرسانی کن.
+                    */
+
+                    const exists =
+                        allSupportMessages.some(
+                            m =>
+                                m.id &&
+                                message.id &&
+                                m.id ===
+                                message.id
+                        );
+
+
+                    if(exists)
+                        return;
+
+                }
+
+
+                allSupportMessages.push(
+                    message
+                );
+
+
+                buildSupportUsers();
+
+
+                renderSupportUsers();
+
+
+                if(
+                    currentSupportVisitor ===
+                    message.visitor_id
+                ){
+
+                    renderSupportChat(
+                        currentSupportVisitor
+                    );
+
+                    scrollSupportChat();
+
+                }
+
+            }
+        )
+        .subscribe();
+}
+
+
+/* =========================================
+   SCROLL SUPPORT
+========================================= */
+
+function scrollSupportChat(){
+
+    const box =
+        document.getElementById(
+            "supportChatMessages"
+        );
+
+
+    box.scrollTop =
+        box.scrollHeight;
+}
+
+
+/* =========================================
+   SUPPORT ENTER
+========================================= */
+
+document
+    .getElementById(
+        "supportAdminInput"
+    )
+    .addEventListener(
+        "keydown",
+        function(event){
+
+            if(
+                event.key ===
+                "Enter"
+            ){
+
+                event.preventDefault();
+
+                sendSupportAdminMessage();
+
+            }
+
+        }
+    );
+
+
+/* =========================================
+   ESCAPE
+========================================= */
 
 function escapeHtml(text){
 
@@ -1726,9 +2883,29 @@ function escapeHtml(text){
 }
 
 
-/* =====================================
-   ENTER SEND
-===================================== */
+function escapeAttr(text){
+
+    return String(
+        text ?? ""
+    )
+    .replace(
+        /\\/g,
+        "\\\\"
+    )
+    .replace(
+        /'/g,
+        "\\'"
+    )
+    .replace(
+        /"/g,
+        "&quot;"
+    );
+}
+
+
+/* =========================================
+   DEAL ADMIN ENTER
+========================================= */
 
 document
     .getElementById(
@@ -1739,7 +2916,8 @@ document
         function(event){
 
             if(
-                event.key === "Enter"
+                event.key ===
+                "Enter"
             ){
 
                 event.preventDefault();
@@ -1752,11 +2930,15 @@ document
     );
 
 
-/* =====================================
+/* =========================================
    START
-===================================== */
+========================================= */
 
 loadDeals();
+
+loadSupportMessages();
+
+startSupportRealtime();
 
 </script>
 
