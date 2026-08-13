@@ -2,21 +2,14 @@
 <html lang="fa" dir="rtl">
 
 <head>
-
     <meta charset="UTF-8">
-
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    >
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>ایجاد معامله | V2GUARD</title>
 
-    <!-- Supabase -->
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
     <style>
-
         * {
             box-sizing: border-box;
             margin: 0;
@@ -25,8 +18,10 @@
 
         body {
             font-family: Tahoma, Arial, sans-serif;
-            background: #050505;
-            color: white;
+            background:
+                radial-gradient(circle at top right, rgba(255,48,48,.12), transparent 35%),
+                #050505;
+            color: #fff;
             min-height: 100vh;
         }
 
@@ -56,6 +51,7 @@
 
         h1 {
             text-align: center;
+            font-size: 32px;
             margin-bottom: 10px;
         }
 
@@ -67,10 +63,22 @@
         }
 
         .box {
-            background: #0d0d0d;
+            background: rgba(15,15,15,.95);
             border: 1px solid #222;
-            border-radius: 18px;
+            border-radius: 20px;
             padding: 25px;
+            box-shadow: 0 20px 70px rgba(0,0,0,.4);
+        }
+
+        .notice {
+            background: rgba(255,48,48,.07);
+            border: 1px solid rgba(255,48,48,.2);
+            color: #aaa;
+            padding: 15px;
+            border-radius: 11px;
+            font-size: 12px;
+            line-height: 1.9;
+            margin-bottom: 25px;
         }
 
         .field {
@@ -87,19 +95,15 @@
         input,
         select,
         textarea {
-
             width: 100%;
             padding: 14px;
-
-            background: #050505;
-            color: white;
-
+            background: #070707;
+            color: #fff;
             border: 1px solid #292929;
             border-radius: 10px;
-
             outline: none;
             font-family: inherit;
-
+            font-size: 14px;
         }
 
         input:focus,
@@ -109,67 +113,42 @@
         }
 
         textarea {
-            min-height: 100px;
+            min-height: 110px;
             resize: vertical;
         }
 
-        .notice {
-            background: rgba(255,48,48,.07);
-            border: 1px solid rgba(255,48,48,.2);
-
-            color: #aaa;
-
-            padding: 14px;
-            border-radius: 10px;
-
-            font-size: 12px;
-            line-height: 1.8;
-
-            margin-bottom: 25px;
-        }
-
         .create-button {
-
             width: 100%;
             padding: 16px;
-
-            border: none;
+            border: 0;
             border-radius: 11px;
-
             background: #ff3030;
             color: white;
-
             font-family: inherit;
             font-size: 15px;
             font-weight: bold;
-
             cursor: pointer;
-
+            transition: .2s;
         }
 
         .create-button:hover {
-            background: #ff4545;
+            background: #ff4444;
+            transform: translateY(-1px);
         }
 
         .create-button:disabled {
-            opacity: .5;
-            cursor: not-allowed;
+            opacity: .55;
+            cursor: wait;
+            transform: none;
         }
 
         #result {
-
             display: none;
-
             margin-top: 25px;
-
             padding: 20px;
-
             background: rgba(60,255,100,.05);
-
             border: 1px solid rgba(60,255,100,.25);
-
-            border-radius: 13px;
-
+            border-radius: 14px;
         }
 
         #result h3 {
@@ -178,226 +157,151 @@
         }
 
         .deal-code {
-
             direction: ltr;
             text-align: center;
-
-            font-size: 24px;
+            font-size: 25px;
             font-weight: bold;
-
             letter-spacing: 3px;
-
-            padding: 15px;
-
+            padding: 16px;
             background: #080808;
-
             border-radius: 10px;
-
             margin: 15px 0;
-
         }
 
         .link {
-
             direction: ltr;
-
             width: 100%;
-
             padding: 12px;
-
             background: #050505;
-
             border: 1px solid #222;
-
             border-radius: 9px;
-
             color: #aaa;
-
             font-size: 11px;
-
         }
 
         .copy {
-
             width: 100%;
-
             margin-top: 10px;
-
-            padding: 12px;
-
+            padding: 13px;
             background: #191919;
-
             color: white;
-
             border: 1px solid #333;
-
             border-radius: 9px;
-
             cursor: pointer;
+            font-family: inherit;
+        }
 
+        .copy:hover {
+            background: #252525;
         }
 
         .open {
-
             display: block;
-
             width: 100%;
-
             margin-top: 10px;
-
             padding: 13px;
-
             text-align: center;
-
             background: #ff3030;
-
             color: white;
-
             border-radius: 9px;
-
             text-decoration: none;
-
             font-size: 13px;
-
         }
 
         .back {
-
             display: block;
-
             text-align: center;
-
             margin-top: 20px;
-
             color: #666;
-
             text-decoration: none;
-
             font-size: 12px;
-
         }
 
+        .error {
+            display: none;
+            margin-top: 15px;
+            padding: 13px;
+            background: rgba(255,0,0,.08);
+            border: 1px solid rgba(255,0,0,.25);
+            border-radius: 10px;
+            color: #ff7777;
+            font-size: 12px;
+            line-height: 1.8;
+        }
     </style>
-
 </head>
-
 
 <body>
 
-
 <header>
-
     <div class="logo">
         V2<span>GUARD</span>
     </div>
-
 </header>
-
 
 <div class="container">
 
-
-    <h1>
-        ایجاد معامله
-    </h1>
-
+    <h1>ایجاد معامله</h1>
 
     <p class="subtitle">
-        اطلاعات معامله را وارد کنید
+        اطلاعات اولیه معامله را وارد کنید
     </p>
-
 
     <div class="box">
 
-
         <div class="notice">
-
-            ⚠️ اطلاعات حساس ورود به اکانت را در این مرحله
-            وارد نکنید. این اطلاعات بعداً فقط از مسیر امن
-            مخصوص مدیر دریافت خواهد شد.
-
+            ⚠️ اطلاعات حساس اکانت، رمز Gmail یا رمز ورود را در این مرحله وارد نکنید.
+            این صفحه فقط برای ایجاد معامله است.
         </div>
 
-
         <div class="field">
-
-            <label>
-                نقش شما
-            </label>
+            <label>نقش شما</label>
 
             <select id="role">
-
-                <option value="seller">
-                    فروشنده
-                </option>
-
-                <option value="buyer">
-                    خریدار
-                </option>
-
+                <option value="seller">فروشنده</option>
+                <option value="buyer">خریدار</option>
             </select>
-
         </div>
 
-
         <div class="field">
-
-            <label>
-                نام یا شناسه
-            </label>
+            <label>نام یا شناسه</label>
 
             <input
                 id="name"
                 type="text"
-                placeholder="نام شما"
+                placeholder="مثلاً V2GUARD"
             >
-
         </div>
 
-
         <div class="field">
-
-            <label>
-                شماره تماس
-            </label>
+            <label>شماره تماس</label>
 
             <input
                 id="phone"
                 type="tel"
                 placeholder="09xxxxxxxxx"
             >
-
         </div>
 
-
         <div class="field">
-
-            <label>
-                مبلغ معامله (تومان)
-            </label>
+            <label>مبلغ معامله (تومان)</label>
 
             <input
                 id="price"
                 type="number"
+                min="1"
                 placeholder="مثلاً 500000"
             >
-
         </div>
 
-
         <div class="field">
-
-            <label>
-                توضیحات معامله
-            </label>
+            <label>توضیحات معامله</label>
 
             <textarea
                 id="description"
-                placeholder="توضیحات مربوط به اکانت..."
+                placeholder="مثلاً اکانت کالاف، لول، تعداد CP و شرایط معامله..."
             ></textarea>
-
         </div>
-
 
         <button
             type="button"
@@ -407,6 +311,10 @@
             ایجاد اتاق معامله
         </button>
 
+        <div
+            class="error"
+            id="errorBox"
+        ></div>
 
         <div id="result">
 
@@ -426,7 +334,7 @@
             </div>
 
             <div>
-                لینک معامله:
+                لینک اختصاصی معامله:
             </div>
 
             <input
@@ -440,7 +348,7 @@
                 class="copy"
                 id="copyButton"
             >
-                📋 کپی لینک
+                📋 کپی لینک معامله
             </button>
 
             <a
@@ -453,31 +361,29 @@
 
         </div>
 
-
         <a
             href="index.html"
             class="back"
         >
-            ← بازگشت
+            ← بازگشت به صفحه اصلی
         </a>
 
-
     </div>
-
-
 </div>
-
 
 <script>
 
-    /*
-     ==========================================
-     SUPABASE CONFIG
-     ==========================================
-    */
+    /* ==============================
+       SUPABASE
+    ============================== */
 
     const SUPABASE_URL =
         "https://hctppmmaiqkzcgxncyhi.supabase.co";
+
+    /*
+       اینجا Publishable Key خودت را قرار بده.
+       Secret Key را قرار نده.
+    */
 
     const SUPABASE_KEY =
         "YOUR_PUBLISHABLE_KEY";
@@ -490,11 +396,9 @@
         );
 
 
-    /*
-     ==========================================
-     ساخت کد معامله
-     ==========================================
-    */
+    /* ==============================
+       تولید کد معامله
+    ============================== */
 
     function generateDealCode() {
 
@@ -505,13 +409,11 @@
 
         for (let i = 0; i < 6; i++) {
 
-            code +=
-                characters[
-                    Math.floor(
-                        Math.random() *
-                        characters.length
-                    )
-                ];
+            code += characters.charAt(
+                Math.floor(
+                    Math.random() * characters.length
+                )
+            );
 
         }
 
@@ -519,114 +421,159 @@
     }
 
 
-    /*
-     ==========================================
-     ایجاد معامله
-     ==========================================
-    */
+    /* ==============================
+       نمایش خطا
+    ============================== */
+
+    function showError(message) {
+
+        const errorBox =
+            document.getElementById("errorBox");
+
+        errorBox.textContent = message;
+
+        errorBox.style.display = "block";
+    }
+
+
+    function hideError() {
+
+        document
+            .getElementById("errorBox")
+            .style.display = "none";
+    }
+
+
+    /* ==============================
+       ایجاد معامله
+    ============================== */
 
     document
         .getElementById("createButton")
         .addEventListener("click", async function () {
 
+            hideError();
 
             const button = this;
 
-
             const role =
                 document
-                .getElementById("role")
-                .value;
-
+                    .getElementById("role")
+                    .value;
 
             const name =
                 document
-                .getElementById("name")
-                .value
-                .trim();
-
+                    .getElementById("name")
+                    .value
+                    .trim();
 
             const phone =
                 document
-                .getElementById("phone")
-                .value
-                .trim();
-
+                    .getElementById("phone")
+                    .value
+                    .trim();
 
             const price =
                 document
-                .getElementById("price")
-                .value
-                .trim();
-
+                    .getElementById("price")
+                    .value
+                    .trim();
 
             const description =
                 document
-                .getElementById("description")
-                .value
-                .trim();
+                    .getElementById("description")
+                    .value
+                    .trim();
 
 
-            if (
-                name === "" ||
-                phone === "" ||
-                price === ""
-            ) {
+            if (!name || !phone || !price) {
 
-                alert(
-                    "لطفاً نام، شماره تماس و مبلغ را وارد کنید."
+                showError(
+                    "لطفاً نام، شماره تماس و مبلغ معامله را وارد کنید."
                 );
 
                 return;
-
             }
 
 
             button.disabled = true;
 
             button.textContent =
-                "در حال ایجاد معامله...";
+                "در حال ثبت معامله...";
 
 
             try {
 
+                let dealCode;
 
-                const dealCode =
-                    generateDealCode();
-
-
-                const {
-                    data,
-                    error
-                } = await supabaseClient
-                    .from("deals")
-                    .insert({
-
-                        deal_code: dealCode,
-
-                        role: role,
-
-                        name: name,
-
-                        phone: phone,
-
-                        price: Number(price),
-
-                        description: description
-
-                    })
-                    .select()
-                    .single();
+                let inserted = false;
 
 
-                if (error) {
+                /*
+                   در صورت برخورد اتفاقی کد تکراری،
+                   دوباره کد تولید می‌کنیم.
+                */
+
+                for (let attempt = 0; attempt < 5; attempt++) {
+
+                    dealCode =
+                        generateDealCode();
+
+
+                    const { error } =
+                        await supabaseClient
+                            .from("deals")
+                            .insert({
+
+                                deal_code: dealCode,
+
+                                role: role,
+
+                                name: name,
+
+                                phone: phone,
+
+                                price: Number(price),
+
+                                description:
+                                    description || null
+
+                            });
+
+
+                    if (!error) {
+
+                        inserted = true;
+
+                        break;
+                    }
+
 
                     console.error(error);
 
-                    throw error;
 
+                    if (
+                        !error.message
+                            .toLowerCase()
+                            .includes("duplicate")
+                    ) {
+
+                        throw error;
+                    }
                 }
 
+
+                if (!inserted) {
+
+                    throw new Error(
+                        "ساخت کد یکتای معامله انجام نشد. دوباره تلاش کنید."
+                    );
+                }
+
+
+                /*
+                   ساخت لینک معامله
+                */
 
                 const dealLink =
                     window.location.origin +
@@ -636,8 +583,12 @@
                             "deal.html"
                         ) +
                     "?id=" +
-                    dealCode;
+                    encodeURIComponent(dealCode);
 
+
+                /*
+                   نمایش نتیجه
+                */
 
                 document
                     .getElementById("dealCode")
@@ -672,15 +623,14 @@
 
             } catch (error) {
 
-
                 console.error(
-                    "Supabase error:",
+                    "SUPABASE ERROR:",
                     error
                 );
 
 
-                alert(
-                    "خطا در ثبت معامله:\n" +
+                showError(
+                    "ثبت معامله انجام نشد: " +
                     error.message
                 );
 
@@ -697,11 +647,9 @@
         });
 
 
-    /*
-     ==========================================
-     کپی لینک
-     ==========================================
-    */
+    /* ==============================
+       کپی لینک
+    ============================== */
 
     document
         .getElementById("copyButton")
@@ -711,9 +659,8 @@
 
                 const link =
                     document
-                    .getElementById("dealLink")
-                    .value;
-
+                        .getElementById("dealLink")
+                        .value;
 
                 try {
 
@@ -721,16 +668,27 @@
                         .clipboard
                         .writeText(link);
 
+                    this.textContent =
+                        "✅ لینک کپی شد";
+
+                    setTimeout(() => {
+
+                        this.textContent =
+                            "📋 کپی لینک معامله";
+
+                    }, 2000);
+
+                } catch (error) {
+
+                    const input =
+                        document
+                            .getElementById("dealLink");
+
+                    input.select();
+
                     alert(
-                        "لینک معامله کپی شد."
+                        "لینک انتخاب شد؛ آن را کپی کنید."
                     );
-
-                } catch {
-
-                    alert(
-                        "کپی لینک انجام نشد."
-                    );
-
                 }
 
             }
@@ -738,7 +696,5 @@
 
 </script>
 
-
 </body>
-
 </html>
