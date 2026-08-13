@@ -1,0 +1,1394 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>پنل مدیریت | COD MOBILE</title>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<style>
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+}
+
+body{
+    font-family:Tahoma,Arial,sans-serif;
+    background:
+        radial-gradient(circle at top right,#220808,transparent 35%),
+        #050505;
+    color:#fff;
+    min-height:100vh;
+}
+
+header{
+    height:70px;
+    padding:0 6%;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    border-bottom:1px solid #222;
+}
+
+.logo{
+    font-size:22px;
+    font-weight:900;
+    letter-spacing:2px;
+}
+
+.logo span{
+    color:#ff3030;
+}
+
+.admin-label{
+    color:#888;
+    font-size:12px;
+}
+
+.container{
+    width:94%;
+    max-width:1200px;
+    margin:30px auto;
+}
+
+.top{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:15px;
+    margin-bottom:25px;
+}
+
+.top h1{
+    font-size:27px;
+}
+
+.top p{
+    color:#777;
+    font-size:12px;
+    margin-top:7px;
+}
+
+.refresh{
+    width:auto;
+    padding:11px 18px;
+    background:#171717;
+    border:1px solid #292929;
+}
+
+.refresh:hover{
+    background:#222;
+}
+
+.stats{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:12px;
+    margin-bottom:25px;
+}
+
+.stat{
+    background:#0d0d0d;
+    border:1px solid #222;
+    border-radius:15px;
+    padding:20px;
+}
+
+.stat-title{
+    color:#777;
+    font-size:11px;
+    margin-bottom:10px;
+}
+
+.stat-value{
+    font-size:24px;
+    font-weight:bold;
+}
+
+.search{
+    display:flex;
+    gap:10px;
+    margin-bottom:20px;
+}
+
+.search input{
+    flex:1;
+    background:#0d0d0d;
+    border:1px solid #292929;
+    color:#fff;
+    padding:14px;
+    border-radius:11px;
+    outline:none;
+    font-family:inherit;
+}
+
+.search button{
+    width:120px;
+}
+
+button{
+    border:none;
+    background:#ff3030;
+    color:#fff;
+    padding:13px 18px;
+    border-radius:10px;
+    cursor:pointer;
+    font-family:inherit;
+    font-weight:bold;
+}
+
+button:hover{
+    background:#ff4545;
+}
+
+.error{
+    display:none;
+    background:rgba(255,0,0,.08);
+    border:1px solid rgba(255,0,0,.25);
+    color:#ff7777;
+    border-radius:12px;
+    padding:15px;
+    margin-bottom:20px;
+    font-size:12px;
+}
+
+.table-box{
+    background:#0d0d0d;
+    border:1px solid #222;
+    border-radius:18px;
+    overflow:hidden;
+}
+
+.table-scroll{
+    overflow-x:auto;
+}
+
+table{
+    width:100%;
+    border-collapse:collapse;
+    min-width:850px;
+}
+
+th{
+    text-align:right;
+    color:#777;
+    font-size:11px;
+    font-weight:normal;
+    padding:17px;
+    border-bottom:1px solid #222;
+    background:#101010;
+}
+
+td{
+    padding:17px;
+    border-bottom:1px solid #1b1b1b;
+    font-size:12px;
+}
+
+tr:hover td{
+    background:#111;
+}
+
+.code{
+    direction:ltr;
+    font-weight:bold;
+    color:#ff5555;
+}
+
+.price{
+    font-weight:bold;
+}
+
+.status{
+    display:inline-block;
+    padding:6px 10px;
+    border-radius:20px;
+    font-size:10px;
+}
+
+.pending{
+    color:#ffd15c;
+    background:rgba(255,209,92,.08);
+}
+
+.active{
+    color:#62ff82;
+    background:rgba(98,255,130,.08);
+}
+
+.completed{
+    color:#5cb8ff;
+    background:rgba(92,184,255,.08);
+}
+
+.cancelled{
+    color:#ff6666;
+    background:rgba(255,102,102,.08);
+}
+
+.view-btn{
+    background:#191919;
+    border:1px solid #292929;
+    padding:8px 12px;
+    font-size:11px;
+}
+
+.empty{
+    text-align:center;
+    color:#555;
+    padding:60px 20px;
+}
+
+.modal{
+    display:none;
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,.75);
+    z-index:100;
+    padding:20px;
+    overflow-y:auto;
+}
+
+.modal-box{
+    width:min(700px,100%);
+    margin:40px auto;
+    background:#0d0d0d;
+    border:1px solid #292929;
+    border-radius:20px;
+    padding:25px;
+}
+
+.modal-head{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:20px;
+}
+
+.close{
+    width:auto;
+    padding:7px 12px;
+    background:#222;
+}
+
+.detail{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:12px;
+}
+
+.detail-item{
+    background:#080808;
+    border:1px solid #1e1e1e;
+    border-radius:12px;
+    padding:15px;
+}
+
+.detail-title{
+    color:#666;
+    font-size:10px;
+    margin-bottom:7px;
+}
+
+.detail-value{
+    font-size:13px;
+    word-break:break-word;
+}
+
+.description{
+    grid-column:1/-1;
+}
+
+.status-actions{
+    margin-top:20px;
+    display:flex;
+    gap:8px;
+    flex-wrap:wrap;
+}
+
+.status-actions button{
+    width:auto;
+    font-size:11px;
+}
+
+.chat-box{
+    margin-top:20px;
+    border-top:1px solid #222;
+    padding-top:20px;
+}
+
+.chat-title{
+    margin-bottom:12px;
+    font-size:13px;
+}
+
+.messages{
+    max-height:300px;
+    overflow-y:auto;
+}
+
+.message{
+    background:#171717;
+    border-radius:10px;
+    padding:12px;
+    margin-bottom:8px;
+}
+
+.message-name{
+    color:#ff5555;
+    font-size:10px;
+    margin-bottom:5px;
+}
+
+.message-text{
+    font-size:12px;
+    line-height:1.8;
+}
+
+.message-time{
+    color:#555;
+    font-size:9px;
+    margin-top:5px;
+}
+
+.loading{
+    text-align:center;
+    color:#777;
+    padding:40px;
+}
+
+@media(max-width:800px){
+
+    .stats{
+        grid-template-columns:1fr 1fr;
+    }
+
+    .top{
+        align-items:flex-start;
+        flex-direction:column;
+    }
+
+    .detail{
+        grid-template-columns:1fr;
+    }
+
+}
+
+@media(max-width:500px){
+
+    .stats{
+        grid-template-columns:1fr;
+    }
+
+    .search{
+        flex-direction:column;
+    }
+
+    .search button{
+        width:100%;
+    }
+
+}
+</style>
+</head>
+
+<body>
+
+<header>
+
+    <div class="logo">
+        COD <span>MOBILE</span>
+    </div>
+
+    <div class="admin-label">
+        پنل مدیریت
+    </div>
+
+</header>
+
+<div class="container">
+
+    <div class="top">
+
+        <div>
+            <h1>
+                مدیریت معاملات
+            </h1>
+
+            <p>
+                مشاهده و مدیریت معاملات ثبت‌شده
+            </p>
+        </div>
+
+        <button
+            class="refresh"
+            onclick="loadDeals()"
+        >
+            🔄 بروزرسانی
+        </button>
+
+    </div>
+
+
+    <div class="stats">
+
+        <div class="stat">
+            <div class="stat-title">
+                کل معاملات
+            </div>
+
+            <div
+                class="stat-value"
+                id="totalCount"
+            >
+                0
+            </div>
+        </div>
+
+
+        <div class="stat">
+            <div class="stat-title">
+                در انتظار
+            </div>
+
+            <div
+                class="stat-value"
+                id="pendingCount"
+            >
+                0
+            </div>
+        </div>
+
+
+        <div class="stat">
+            <div class="stat-title">
+                فعال
+            </div>
+
+            <div
+                class="stat-value"
+                id="activeCount"
+            >
+                0
+            </div>
+        </div>
+
+
+        <div class="stat">
+            <div class="stat-title">
+                تکمیل شده
+            </div>
+
+            <div
+                class="stat-value"
+                id="completedCount"
+            >
+                0
+            </div>
+        </div>
+
+    </div>
+
+
+    <div
+        id="error"
+        class="error"
+    ></div>
+
+
+    <div class="search">
+
+        <input
+            id="searchInput"
+            type="text"
+            placeholder="جستجو با کد معامله، نام یا شماره..."
+            oninput="filterDeals()"
+        >
+
+        <button
+            onclick="loadDeals()"
+        >
+            جستجو
+        </button>
+
+    </div>
+
+
+    <div class="table-box">
+
+        <div class="table-scroll">
+
+            <table>
+
+                <thead>
+
+                    <tr>
+
+                        <th>
+                            کد معامله
+                        </th>
+
+                        <th>
+                            نقش
+                        </th>
+
+                        <th>
+                            نام
+                        </th>
+
+                        <th>
+                            شماره
+                        </th>
+
+                        <th>
+                            مبلغ
+                        </th>
+
+                        <th>
+                            وضعیت
+                        </th>
+
+                        <th>
+                            عملیات
+                        </th>
+
+                    </tr>
+
+                </thead>
+
+                <tbody id="dealTable">
+
+                    <tr>
+
+                        <td
+                            colspan="7"
+                            class="loading"
+                        >
+                            در حال دریافت معاملات...
+                        </td>
+
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- MODAL -->
+
+<div
+    class="modal"
+    id="modal"
+    onclick="closeModal(event)"
+>
+
+    <div
+        class="modal-box"
+        onclick="event.stopPropagation()"
+    >
+
+        <div class="modal-head">
+
+            <h2>
+                جزئیات معامله
+            </h2>
+
+            <button
+                class="close"
+                onclick="hideModal()"
+            >
+                ✕
+            </button>
+
+        </div>
+
+
+        <div
+            class="detail"
+            id="detail"
+        ></div>
+
+
+        <div class="status-actions">
+
+            <button
+                onclick="changeStatus('pending')"
+            >
+                ⏳ در انتظار
+            </button>
+
+            <button
+                onclick="changeStatus('active')"
+            >
+                🟢 فعال
+            </button>
+
+            <button
+                onclick="changeStatus('completed')"
+            >
+                ✅ تکمیل شده
+            </button>
+
+            <button
+                onclick="changeStatus('cancelled')"
+            >
+                ❌ لغو شده
+            </button>
+
+        </div>
+
+
+        <div class="chat-box">
+
+            <div class="chat-title">
+                💬 پیام‌های معامله
+            </div>
+
+            <div
+                class="messages"
+                id="modalMessages"
+            >
+                در حال دریافت...
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<script>
+
+/* =====================================
+   SUPABASE
+===================================== */
+
+const SUPABASE_URL =
+    "https://hctppmmaiqkzcgxncyhi.supabase.co";
+
+const SUPABASE_KEY =
+    "sb_publishable_wP43H8AKwtVcTUBwcEzTxg_qKdFxzNa";
+
+const supabaseClient =
+    window.supabase.createClient(
+        SUPABASE_URL,
+        SUPABASE_KEY
+    );
+
+
+/* =====================================
+   DATA
+===================================== */
+
+let allDeals = [];
+
+let currentDeal = null;
+
+
+/* =====================================
+   ERROR
+===================================== */
+
+function showError(message){
+
+    const box =
+        document.getElementById("error");
+
+    box.textContent =
+        message;
+
+    box.style.display =
+        "block";
+}
+
+
+/* =====================================
+   STATUS TEXT
+===================================== */
+
+function statusText(status){
+
+    if(status === "pending")
+        return "در انتظار";
+
+    if(status === "active")
+        return "فعال";
+
+    if(status === "completed")
+        return "تکمیل شده";
+
+    if(status === "cancelled")
+        return "لغو شده";
+
+    return status || "---";
+}
+
+
+/* =====================================
+   ROLE TEXT
+===================================== */
+
+function roleText(role){
+
+    if(role === "seller")
+        return "💼 فروشنده";
+
+    if(role === "buyer")
+        return "🛒 خریدار";
+
+    return role || "---";
+}
+
+
+/* =====================================
+   PRICE
+===================================== */
+
+function formatPrice(price){
+
+    if(
+        price === null ||
+        price === undefined
+    ){
+
+        return "---";
+
+    }
+
+    return Number(price)
+        .toLocaleString("fa-IR")
+        + " تومان";
+}
+
+
+/* =====================================
+   LOAD DEALS
+===================================== */
+
+async function loadDeals(){
+
+    const table =
+        document.getElementById(
+            "dealTable"
+        );
+
+    table.innerHTML = `
+        <tr>
+            <td colspan="7" class="loading">
+                در حال دریافت معاملات...
+            </td>
+        </tr>
+    `;
+
+
+    const result =
+        await supabaseClient
+        .from("deals")
+        .select("*")
+        .order(
+            "created_at",
+            {
+                ascending:false
+            }
+        );
+
+
+    if(result.error){
+
+        console.error(
+            result.error
+        );
+
+        showError(
+            "دریافت معاملات انجام نشد: " +
+            result.error.message
+        );
+
+        table.innerHTML = `
+            <tr>
+                <td colspan="7" class="empty">
+                    دریافت اطلاعات ناموفق بود.
+                </td>
+            </tr>
+        `;
+
+        return;
+    }
+
+
+    allDeals =
+        result.data || [];
+
+
+    updateStats();
+
+    renderDeals(
+        allDeals
+    );
+}
+
+
+/* =====================================
+   STATS
+===================================== */
+
+function updateStats(){
+
+    document
+    .getElementById("totalCount")
+    .textContent =
+        allDeals.length;
+
+
+    document
+    .getElementById("pendingCount")
+    .textContent =
+        allDeals.filter(
+            d => d.status === "pending"
+        ).length;
+
+
+    document
+    .getElementById("activeCount")
+    .textContent =
+        allDeals.filter(
+            d => d.status === "active"
+        ).length;
+
+
+    document
+    .getElementById("completedCount")
+    .textContent =
+        allDeals.filter(
+            d => d.status === "completed"
+        ).length;
+
+}
+
+
+/* =====================================
+   RENDER
+===================================== */
+
+function renderDeals(deals){
+
+    const table =
+        document.getElementById(
+            "dealTable"
+        );
+
+
+    if(!deals.length){
+
+        table.innerHTML = `
+            <tr>
+                <td colspan="7" class="empty">
+                    هیچ معامله‌ای پیدا نشد.
+                </td>
+            </tr>
+        `;
+
+        return;
+    }
+
+
+    table.innerHTML =
+        deals.map(
+            deal => `
+
+            <tr>
+
+                <td class="code">
+                    ${escapeHtml(
+                        deal.deal_code || "---"
+                    )}
+                </td>
+
+                <td>
+                    ${roleText(
+                        deal.role
+                    )}
+                </td>
+
+                <td>
+                    ${escapeHtml(
+                        deal.name || "---"
+                    )}
+                </td>
+
+                <td dir="ltr">
+                    ${escapeHtml(
+                        deal.phone || "---"
+                    )}
+                </td>
+
+                <td class="price">
+                    ${formatPrice(
+                        deal.price
+                    )}
+                </td>
+
+                <td>
+                    <span class="status ${deal.status}">
+                        ${statusText(
+                            deal.status
+                        )}
+                    </span>
+                </td>
+
+                <td>
+
+                    <button
+                        class="view-btn"
+                        onclick="viewDeal('${deal.deal_code}')"
+                    >
+                        مشاهده
+                    </button>
+
+                </td>
+
+            </tr>
+
+            `
+        )
+        .join("");
+}
+
+
+/* =====================================
+   SEARCH
+===================================== */
+
+function filterDeals(){
+
+    const value =
+        document
+        .getElementById(
+            "searchInput"
+        )
+        .value
+        .trim()
+        .toLowerCase();
+
+
+    if(!value){
+
+        renderDeals(
+            allDeals
+        );
+
+        return;
+    }
+
+
+    const filtered =
+        allDeals.filter(
+            deal => {
+
+                return (
+
+                    String(
+                        deal.deal_code || ""
+                    )
+                    .toLowerCase()
+                    .includes(value)
+
+                    ||
+
+                    String(
+                        deal.name || ""
+                    )
+                    .toLowerCase()
+                    .includes(value)
+
+                    ||
+
+                    String(
+                        deal.phone || ""
+                    )
+                    .includes(value)
+
+                );
+
+            }
+        );
+
+
+    renderDeals(
+        filtered
+    );
+}
+
+
+/* =====================================
+   VIEW DEAL
+===================================== */
+
+async function viewDeal(code){
+
+    const deal =
+        allDeals.find(
+            d => d.deal_code === code
+        );
+
+
+    if(!deal)
+        return;
+
+
+    currentDeal =
+        deal;
+
+
+    const detail =
+        document.getElementById(
+            "detail"
+        );
+
+
+    detail.innerHTML = `
+
+        <div class="detail-item">
+
+            <div class="detail-title">
+                کد معامله
+            </div>
+
+            <div
+                class="detail-value"
+                dir="ltr"
+            >
+                ${escapeHtml(
+                    deal.deal_code
+                )}
+            </div>
+
+        </div>
+
+
+        <div class="detail-item">
+
+            <div class="detail-title">
+                وضعیت
+            </div>
+
+            <div class="detail-value">
+                ${statusText(
+                    deal.status
+                )}
+            </div>
+
+        </div>
+
+
+        <div class="detail-item">
+
+            <div class="detail-title">
+                نقش
+            </div>
+
+            <div class="detail-value">
+                ${roleText(
+                    deal.role
+                )}
+            </div>
+
+        </div>
+
+
+        <div class="detail-item">
+
+            <div class="detail-title">
+                نام
+            </div>
+
+            <div class="detail-value">
+                ${escapeHtml(
+                    deal.name || "---"
+                )}
+            </div>
+
+        </div>
+
+
+        <div class="detail-item">
+
+            <div class="detail-title">
+                شماره تماس
+            </div>
+
+            <div
+                class="detail-value"
+                dir="ltr"
+            >
+                ${escapeHtml(
+                    deal.phone || "---"
+                )}
+            </div>
+
+        </div>
+
+
+        <div class="detail-item">
+
+            <div class="detail-title">
+                مبلغ
+            </div>
+
+            <div class="detail-value">
+                ${formatPrice(
+                    deal.price
+                )}
+            </div>
+
+        </div>
+
+
+        <div class="detail-item description">
+
+            <div class="detail-title">
+                توضیحات
+            </div>
+
+            <div class="detail-value">
+                ${escapeHtml(
+                    deal.description || "توضیحاتی ثبت نشده است."
+                )}
+            </div>
+
+        </div>
+
+    `;
+
+
+    document
+    .getElementById("modal")
+    .style.display =
+        "block";
+
+
+    await loadModalMessages(
+        deal.deal_code
+    );
+}
+
+
+/* =====================================
+   LOAD MESSAGES
+===================================== */
+
+async function loadModalMessages(code){
+
+    const box =
+        document.getElementById(
+            "modalMessages"
+        );
+
+
+    box.innerHTML =
+        "در حال دریافت پیام‌ها...";
+
+
+    const result =
+        await supabaseClient
+        .from("messages")
+        .select("*")
+        .eq(
+            "deal_code",
+            code
+        )
+        .order(
+            "created_at",
+            {
+                ascending:true
+            }
+        );
+
+
+    if(result.error){
+
+        box.innerHTML =
+            "دریافت پیام‌ها انجام نشد.";
+
+        console.error(
+            result.error
+        );
+
+        return;
+    }
+
+
+    const messages =
+        result.data || [];
+
+
+    if(!messages.length){
+
+        box.innerHTML =
+            `<div style="color:#555;">
+                هنوز پیامی ارسال نشده است.
+            </div>`;
+
+        return;
+    }
+
+
+    box.innerHTML =
+        messages.map(
+            message => `
+
+            <div class="message">
+
+                <div class="message-name">
+                    ${escapeHtml(
+                        message.sender_name || "کاربر"
+                    )}
+                    -
+                    ${roleText(
+                        message.sender_role
+                    )}
+                </div>
+
+                <div class="message-text">
+                    ${escapeHtml(
+                        message.message || ""
+                    )}
+                </div>
+
+                <div class="message-time">
+                    ${message.created_at
+                        ? new Date(
+                            message.created_at
+                          ).toLocaleString(
+                            "fa-IR"
+                          )
+                        : ""
+                    }
+                </div>
+
+            </div>
+
+            `
+        )
+        .join("");
+}
+
+
+/* =====================================
+   CHANGE STATUS
+===================================== */
+
+async function changeStatus(status){
+
+    if(!currentDeal)
+        return;
+
+
+    const result =
+        await supabaseClient
+        .from("deals")
+        .update({
+            status: status
+        })
+        .eq(
+            "deal_code",
+            currentDeal.deal_code
+        );
+
+
+    if(result.error){
+
+        alert(
+            "تغییر وضعیت انجام نشد:\n" +
+            result.error.message
+        );
+
+        console.error(
+            result.error
+        );
+
+        return;
+    }
+
+
+    currentDeal.status =
+        status;
+
+
+    alert(
+        "✅ وضعیت معامله تغییر کرد."
+    );
+
+
+    hideModal();
+
+    await loadDeals();
+}
+
+
+/* =====================================
+   CLOSE MODAL
+===================================== */
+
+function hideModal(){
+
+    document
+    .getElementById("modal")
+    .style.display =
+        "none";
+
+    currentDeal =
+        null;
+}
+
+
+function closeModal(event){
+
+    if(
+        event.target.id === "modal"
+    ){
+
+        hideModal();
+
+    }
+}
+
+
+/* =====================================
+   ESCAPE HTML
+===================================== */
+
+function escapeHtml(text){
+
+    const div =
+        document.createElement(
+            "div"
+        );
+
+    div.textContent =
+        text ?? "";
+
+    return div.innerHTML;
+}
+
+
+/* =====================================
+   START
+===================================== */
+
+loadDeals();
+
+</script>
+
+</body>
+</html>
