@@ -1,14 +1,21 @@
 <!DOCTYPE html>
 <html lang="fa" dir="rtl">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>اتاق معامله | V2GUARD</title>
+<head>
+
+<meta charset="UTF-8">
+
+<meta
+    name="viewport"
+    content="width=device-width,initial-scale=1.0"
+>
+
+<title>اتاق معامله | COD MOBILE</title>
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
 <style>
+
 *{
     box-sizing:border-box;
     margin:0;
@@ -17,9 +24,15 @@
 
 body{
     font-family:Tahoma,Arial,sans-serif;
+
     background:
-        radial-gradient(circle at top right,rgba(255,48,48,.13),transparent 35%),
+        radial-gradient(
+            circle at top right,
+            rgba(255,48,48,.13),
+            transparent 35%
+        ),
         #050505;
+
     color:#fff;
     min-height:100vh;
 }
@@ -74,8 +87,6 @@ header{
     font-size:12px;
 }
 
-/* اطلاعات معامله */
-
 .deal-info{
     display:grid;
     grid-template-columns:repeat(3,1fr);
@@ -106,8 +117,6 @@ header{
 .status{
     color:#ffcf5a;
 }
-
-/* طرفین */
 
 .participants{
     display:grid;
@@ -145,8 +154,6 @@ header{
     font-size:10px;
     margin-top:7px;
 }
-
-/* نقش */
 
 .role-selector{
     background:#0d0d0d;
@@ -209,8 +216,6 @@ header{
     font-size:10px;
     margin-top:6px;
 }
-
-/* چت عمومی */
 
 .chat{
     background:#0d0d0d;
@@ -277,8 +282,6 @@ header{
     margin-top:5px;
 }
 
-/* ارسال عمومی */
-
 .send{
     display:flex;
     gap:10px;
@@ -316,8 +319,6 @@ header{
     opacity:.5;
 }
 
-/* پیام خصوصی */
-
 .private-support-button{
     width:100%;
     margin-top:15px;
@@ -336,8 +337,6 @@ header{
     background:#1b0b0b;
     border-color:#ff3030;
 }
-
-/* مودال خصوصی */
 
 .private-modal{
     display:none;
@@ -527,8 +526,11 @@ header{
         height:calc(100vh - 20px);
         max-height:none;
     }
+
 }
+
 </style>
+
 </head>
 
 <body>
@@ -536,7 +538,7 @@ header{
 <header>
 
     <div class="logo">
-        V2<span>GUARD</span>
+        COD <span>MOBILE</span>
     </div>
 
 </header>
@@ -557,13 +559,8 @@ header{
     </div>
 
 
-    <div
-        id="error"
-        class="error"
-    ></div>
+    <div id="error" class="error"></div>
 
-
-    <!-- اطلاعات معامله -->
 
     <div class="deal-info">
 
@@ -617,8 +614,6 @@ header{
     </div>
 
 
-    <!-- طرفین -->
-
     <div class="participants">
 
         <div class="participant">
@@ -668,8 +663,6 @@ header{
 
     </div>
 
-
-    <!-- انتخاب نقش -->
 
     <div
         id="roleSelector"
@@ -733,8 +726,6 @@ header{
     </div>
 
 
-    <!-- چت عمومی -->
-
     <div class="chat">
 
         <div class="chat-header">
@@ -781,8 +772,6 @@ header{
     </div>
 
 
-    <!-- پیام خصوصی به مدیریت -->
-
     <button
         type="button"
         class="private-support-button"
@@ -810,10 +799,6 @@ header{
 </div>
 
 
-<!-- =========================================
-     PRIVATE SUPPORT MODAL
-========================================= -->
-
 <div
     id="privateSupport"
     class="private-modal"
@@ -838,7 +823,6 @@ header{
                 </div>
 
             </div>
-
 
             <button
                 class="private-close"
@@ -887,9 +871,7 @@ header{
 
 <script>
 
-/* =========================================
-   SUPABASE
-========================================= */
+/* SUPABASE */
 
 const SUPABASE_URL =
 "https://hctppmmaiqkzcgxncyhi.supabase.co";
@@ -904,9 +886,7 @@ window.supabase.createClient(
 );
 
 
-/* =========================================
-   DEAL ID
-========================================= */
+/* DEAL ID */
 
 const params =
 new URLSearchParams(
@@ -914,16 +894,16 @@ new URLSearchParams(
 );
 
 const dealId =
-params.get("id");
+params.get("id")
+?.trim()
+.toUpperCase();
 
 
-/* =========================================
-   VISITOR ID
-========================================= */
+/* VISITOR */
 
 let visitorId =
 localStorage.getItem(
-    "v2guard_visitor_id"
+    "cod_mobile_visitor_id"
 );
 
 if(!visitorId){
@@ -932,20 +912,18 @@ if(!visitorId){
     crypto.randomUUID();
 
     localStorage.setItem(
-        "v2guard_visitor_id",
+        "cod_mobile_visitor_id",
         visitorId
     );
 
 }
 
 
-/* =========================================
-   NAME
-========================================= */
+/* NAME */
 
 let senderName =
 localStorage.getItem(
-    "v2guard_sender_name"
+    "cod_mobile_sender_name"
 );
 
 if(!senderName){
@@ -963,34 +941,29 @@ if(!senderName){
     }
 
     localStorage.setItem(
-        "v2guard_sender_name",
+        "cod_mobile_sender_name",
         senderName
     );
 
 }
 
 
-/* =========================================
-   ROLE
-========================================= */
+/* ROLE */
 
 let myRole =
 localStorage.getItem(
-    "v2guard_role_" + dealId
+    "cod_mobile_role_" +
+    dealId
 );
 
 
-/* =========================================
-   PRIVATE CHANNEL
-========================================= */
+/* PRIVATE */
 
 let privateSupportChannel =
 null;
 
 
-/* =========================================
-   HELPERS
-========================================= */
+/* HELPERS */
 
 function showError(message){
 
@@ -1004,22 +977,17 @@ function showError(message){
 
     box.style.display =
     "block";
+
 }
 
 
 function roleText(role){
 
-    if(role === "buyer"){
-
+    if(role === "buyer")
         return "🛒 خریدار";
 
-    }
-
-    if(role === "seller"){
-
+    if(role === "seller")
         return "💼 فروشنده";
-
-    }
 
     return "";
 
@@ -1065,9 +1033,7 @@ function formatTime(date){
 function escapeHtml(text){
 
     const div =
-    document.createElement(
-        "div"
-    );
+    document.createElement("div");
 
     div.textContent =
     text ?? "";
@@ -1077,9 +1043,7 @@ function escapeHtml(text){
 }
 
 
-/* =========================================
-   LOAD DEAL
-========================================= */
+/* LOAD DEAL */
 
 async function loadDeal(){
 
@@ -1090,27 +1054,28 @@ async function loadDeal(){
         );
 
         return false;
+
     }
 
 
     const result =
     await supabaseClient
-        .from("deals")
-        .select(`
-            id,
-            deal_code,
-            role,
-            name,
-            phone,
-            price,
-            description,
-            status
-        `)
-        .eq(
-            "deal_code",
-            dealId
-        )
-        .limit(1);
+    .from("deals")
+    .select(`
+        id,
+        deal_code,
+        role,
+        name,
+        phone,
+        price,
+        description,
+        status
+    `)
+    .eq(
+        "deal_code",
+        dealId
+    )
+    .limit(1);
 
 
     if(result.error){
@@ -1125,6 +1090,7 @@ async function loadDeal(){
         );
 
         return false;
+
     }
 
 
@@ -1134,10 +1100,11 @@ async function loadDeal(){
     ){
 
         showError(
-            "این معامله در Supabase پیدا نشد."
+            "این معامله پیدا نشد."
         );
 
         return false;
+
     }
 
 
@@ -1146,23 +1113,21 @@ async function loadDeal(){
 
 
     document
-        .getElementById("dealCode")
-        .textContent =
-        deal.deal_code || "---";
+    .getElementById("dealCode")
+    .textContent =
+    deal.deal_code || "---";
 
 
     document
-        .getElementById("dealPrice")
-        .textContent =
-        formatPrice(
-            deal.price
-        );
+    .getElementById("dealPrice")
+    .textContent =
+    formatPrice(deal.price);
 
 
     document
-        .getElementById("dealStatus")
-        .textContent =
-        deal.status || "در انتظار";
+    .getElementById("dealStatus")
+    .textContent =
+    deal.status || "در انتظار";
 
 
     return true;
@@ -1170,28 +1135,23 @@ async function loadDeal(){
 }
 
 
-/* =========================================
-   LOAD PARTICIPANTS
-========================================= */
+/* PARTICIPANTS */
 
 async function loadParticipants(){
 
     const result =
     await supabaseClient
-        .from("deal_participants")
-        .select("*")
-        .eq(
-            "deal_code",
-            dealId
-        );
+    .from("deal_participants")
+    .select("*")
+    .eq(
+        "deal_code",
+        dealId
+    );
 
 
     if(result.error){
 
-        console.error(
-            "Participants error:",
-            result.error
-        );
+        console.error(result.error);
 
         showError(
             "دریافت اطلاعات طرفین انجام نشد: " +
@@ -1199,6 +1159,7 @@ async function loadParticipants(){
         );
 
         return;
+
     }
 
 
@@ -1217,8 +1178,6 @@ async function loadParticipants(){
         p => p.role === "seller"
     );
 
-
-    /* فروشنده */
 
     const sellerName =
     document.getElementById(
@@ -1257,8 +1216,6 @@ async function loadParticipants(){
     }
 
 
-    /* خریدار */
-
     const buyerName =
     document.getElementById(
         "buyerName"
@@ -1296,12 +1253,11 @@ async function loadParticipants(){
     }
 
 
-    /* تشخیص نقش */
-
     const own =
     participants.find(
         p =>
-        p.visitor_id === visitorId
+        p.visitor_id ===
+        visitorId
     );
 
 
@@ -1311,32 +1267,28 @@ async function loadParticipants(){
         own.role;
 
         localStorage.setItem(
-            "v2guard_role_" + dealId,
+            "cod_mobile_role_" +
+            dealId,
             myRole
         );
 
 
         document
-            .getElementById(
-                "myRole"
-            )
-            .textContent =
-            roleText(myRole);
+        .getElementById("myRole")
+        .textContent =
+        roleText(myRole);
 
 
         document
-            .getElementById(
-                "roleSelector"
-            )
-            .style.display =
-            "none";
+        .getElementById("roleSelector")
+        .style.display =
+        "none";
 
 
         return;
+
     }
 
-
-    /* انتخاب نقش */
 
     const selector =
     document.getElementById(
@@ -1398,30 +1350,18 @@ async function loadParticipants(){
 }
 
 
-/* =========================================
-   SELECT ROLE
-========================================= */
+/* SELECT ROLE */
 
 async function selectRole(role){
 
-    if(!dealId){
-
-        showError(
-            "کد معامله مشخص نیست."
-        );
-
-        return;
-    }
-
-
     const check =
     await supabaseClient
-        .from("deal_participants")
-        .select("*")
-        .eq(
-            "deal_code",
-            dealId
-        );
+    .from("deal_participants")
+    .select("*")
+    .eq(
+        "deal_code",
+        dealId
+    );
 
 
     if(check.error){
@@ -1432,6 +1372,7 @@ async function selectRole(role){
         );
 
         return;
+
     }
 
 
@@ -1442,7 +1383,8 @@ async function selectRole(role){
     const own =
     participants.find(
         p =>
-        p.visitor_id === visitorId
+        p.visitor_id ===
+        visitorId
     );
 
 
@@ -1452,13 +1394,15 @@ async function selectRole(role){
         own.role;
 
         localStorage.setItem(
-            "v2guard_role_" + dealId,
+            "cod_mobile_role_" +
+            dealId,
             myRole
         );
 
         await loadParticipants();
 
         return;
+
     }
 
 
@@ -1478,35 +1422,28 @@ async function selectRole(role){
         await loadParticipants();
 
         return;
+
     }
 
 
     const insert =
     await supabaseClient
-        .from("deal_participants")
-        .insert({
+    .from("deal_participants")
+    .insert({
 
-            deal_code:
-            dealId,
+        deal_code:dealId,
+        visitor_id:visitorId,
+        name:senderName,
+        role:role
 
-            visitor_id:
-            visitorId,
-
-            name:
-            senderName,
-
-            role:
-            role
-
-        })
-        .select()
-        .single();
+    })
+    .select()
+    .single();
 
 
     if(insert.error){
 
         console.error(
-            "Role insert error:",
             insert.error
         );
 
@@ -1516,6 +1453,7 @@ async function selectRole(role){
         );
 
         return;
+
     }
 
 
@@ -1524,25 +1462,22 @@ async function selectRole(role){
 
 
     localStorage.setItem(
-        "v2guard_role_" + dealId,
+        "cod_mobile_role_" +
+        dealId,
         role
     );
 
 
     document
-        .getElementById(
-            "myRole"
-        )
-        .textContent =
-        roleText(role);
+    .getElementById("myRole")
+    .textContent =
+    roleText(role);
 
 
     document
-        .getElementById(
-            "roleSelector"
-        )
-        .style.display =
-        "none";
+    .getElementById("roleSelector")
+    .style.display =
+    "none";
 
 
     await loadParticipants();
@@ -1550,34 +1485,27 @@ async function selectRole(role){
 }
 
 
-/* =========================================
-   LOAD PUBLIC MESSAGES
-========================================= */
+/* PUBLIC MESSAGES */
 
 async function loadMessages(){
 
     const result =
     await supabaseClient
-        .from("messages")
-        .select("*")
-        .eq(
-            "deal_code",
-            dealId
-        )
-        .order(
-            "created_at",
-            {
-                ascending:true
-            }
-        );
+    .from("messages")
+    .select("*")
+    .eq(
+        "deal_code",
+        dealId
+    )
+    .order(
+        "created_at",
+        {
+            ascending:true
+        }
+    );
 
 
     if(result.error){
-
-        console.error(
-            "Messages error:",
-            result.error
-        );
 
         showError(
             "دریافت پیام‌ها انجام نشد: " +
@@ -1585,6 +1513,7 @@ async function loadMessages(){
         );
 
         return;
+
     }
 
 
@@ -1610,6 +1539,7 @@ async function loadMessages(){
         `;
 
         return;
+
     }
 
 
@@ -1619,10 +1549,6 @@ async function loadMessages(){
 
 }
 
-
-/* =========================================
-   RENDER PUBLIC MESSAGE
-========================================= */
 
 function renderMessage(message){
 
@@ -1638,17 +1564,12 @@ function renderMessage(message){
     );
 
 
-    if(empty){
-
+    if(empty)
         empty.remove();
-
-    }
 
 
     const div =
-    document.createElement(
-        "div"
-    );
+    document.createElement("div");
 
 
     div.className =
@@ -1660,9 +1581,7 @@ function renderMessage(message){
         visitorId
     ){
 
-        div.classList.add(
-            "me"
-        );
+        div.classList.add("me");
 
     }
 
@@ -1692,20 +1611,13 @@ function renderMessage(message){
     `;
 
 
-    box.appendChild(
-        div
-    );
-
+    box.appendChild(div);
 
     box.scrollTop =
     box.scrollHeight;
 
 }
 
-
-/* =========================================
-   SEND PUBLIC MESSAGE
-========================================= */
 
 async function sendMessage(){
 
@@ -1716,6 +1628,7 @@ async function sendMessage(){
         );
 
         return;
+
     }
 
 
@@ -1735,11 +1648,8 @@ async function sendMessage(){
     input.value.trim();
 
 
-    if(!text){
-
+    if(!text)
         return;
-
-    }
 
 
     button.disabled =
@@ -1748,35 +1658,21 @@ async function sendMessage(){
 
     const result =
     await supabaseClient
-        .from("messages")
-        .insert({
+    .from("messages")
+    .insert({
 
-            deal_code:
-            dealId,
+        deal_code:dealId,
+        sender_name:senderName,
+        sender_role:myRole,
+        message:text,
+        visitor_id:visitorId
 
-            sender_name:
-            senderName,
-
-            sender_role:
-            myRole,
-
-            message:
-            text,
-
-            visitor_id:
-            visitorId
-
-        })
-        .select()
-        .single();
+    })
+    .select()
+    .single();
 
 
     if(result.error){
-
-        console.error(
-            "Send message error:",
-            result.error
-        );
 
         showError(
             "ارسال پیام انجام نشد: " +
@@ -1795,13 +1691,8 @@ async function sendMessage(){
     "";
 
 
-    if(result.data){
-
-        renderMessage(
-            result.data
-        );
-
-    }
+    if(result.data)
+        renderMessage(result.data);
 
 
     button.disabled =
@@ -1813,113 +1704,101 @@ async function sendMessage(){
 }
 
 
-/* =========================================
-   PUBLIC CHAT REALTIME
-========================================= */
+/* PUBLIC REALTIME */
 
 function startChatRealtime(){
 
     supabaseClient
-        .channel(
-            "chat-" +
+    .channel(
+        "chat-" + dealId
+    )
+    .on(
+        "postgres_changes",
+        {
+            event:"INSERT",
+            schema:"public",
+            table:"messages",
+            filter:
+            "deal_code=eq." +
             dealId
-        )
-        .on(
-            "postgres_changes",
-            {
-                event:"INSERT",
-                schema:"public",
-                table:"messages",
-                filter:
-                "deal_code=eq." +
-                dealId
-            },
-            payload => {
+        },
+        payload => {
 
-                if(
-                    payload.new.visitor_id !==
-                    visitorId
-                ){
+            if(
+                payload.new.visitor_id !==
+                visitorId
+            ){
 
-                    renderMessage(
-                        payload.new
-                    );
-
-                }
+                renderMessage(
+                    payload.new
+                );
 
             }
-        )
-        .subscribe();
+
+        }
+    )
+    .subscribe();
 
 }
 
 
-/* =========================================
-   PARTICIPANT REALTIME
-========================================= */
+/* PARTICIPANT REALTIME */
 
 function startParticipantRealtime(){
 
     supabaseClient
-        .channel(
-            "participants-" +
+    .channel(
+        "participants-" +
+        dealId
+    )
+    .on(
+        "postgres_changes",
+        {
+            event:"INSERT",
+            schema:"public",
+            table:"deal_participants",
+            filter:
+            "deal_code=eq." +
             dealId
-        )
-        .on(
-            "postgres_changes",
-            {
-                event:"INSERT",
-                schema:"public",
-                table:"deal_participants",
-                filter:
-                "deal_code=eq." +
-                dealId
-            },
-            async () => {
+        },
+        async () => {
 
-                await loadParticipants();
+            await loadParticipants();
 
-            }
-        )
-        .subscribe();
+        }
+    )
+    .subscribe();
 
 }
 
 
-/* =========================================
-   PRIVATE SUPPORT OPEN
-========================================= */
+/* PRIVATE SUPPORT */
 
 function openPrivateSupport(){
 
     document
-        .getElementById(
-            "privateSupport"
-        )
-        .style.display =
-        "block";
+    .getElementById(
+        "privateSupport"
+    )
+    .style.display =
+    "block";
 
 
     loadPrivateSupport();
-
 
     startPrivateSupportRealtime();
 
 }
 
 
-/* =========================================
-   PRIVATE SUPPORT CLOSE
-========================================= */
-
 function closePrivateSupport(){
 
     document
-        .getElementById(
-            "privateSupport"
-        )
-        .style.display =
-        "none";
+    .getElementById(
+        "privateSupport"
+    )
+    .style.display =
+    "none";
 
 
     if(privateSupportChannel){
@@ -1950,10 +1829,6 @@ function closePrivateOutside(event){
 }
 
 
-/* =========================================
-   LOAD PRIVATE SUPPORT
-========================================= */
-
 async function loadPrivateSupport(){
 
     const box =
@@ -1971,27 +1846,21 @@ async function loadPrivateSupport(){
 
     const result =
     await supabaseClient
-        .from("support_messages")
-        .select("*")
-        .eq(
-            "visitor_id",
-            visitorId
-        )
-        .order(
-            "created_at",
-            {
-                ascending:true
-            }
-        );
+    .from("support_messages")
+    .select("*")
+    .eq(
+        "visitor_id",
+        visitorId
+    )
+    .order(
+        "created_at",
+        {
+            ascending:true
+        }
+    );
 
 
     if(result.error){
-
-        console.error(
-            "Private support error:",
-            result.error
-        );
-
 
         box.innerHTML = `
             <div class="private-empty"
@@ -2036,10 +1905,6 @@ async function loadPrivateSupport(){
 }
 
 
-/* =========================================
-   RENDER PRIVATE SUPPORT
-========================================= */
-
 function renderPrivateSupport(message){
 
     const box =
@@ -2054,17 +1919,12 @@ function renderPrivateSupport(message){
     );
 
 
-    if(empty){
-
+    if(empty)
         empty.remove();
-
-    }
 
 
     const div =
-    document.createElement(
-        "div"
-    );
+    document.createElement("div");
 
 
     const isAdmin =
@@ -2113,20 +1973,13 @@ function renderPrivateSupport(message){
     `;
 
 
-    box.appendChild(
-        div
-    );
-
+    box.appendChild(div);
 
     box.scrollTop =
     box.scrollHeight;
 
 }
 
-
-/* =========================================
-   SEND PRIVATE SUPPORT
-========================================= */
 
 async function sendPrivateSupport(){
 
@@ -2157,11 +2010,8 @@ async function sendPrivateSupport(){
     input.value.trim();
 
 
-    if(!text){
-
+    if(!text)
         return;
-
-    }
 
 
     button.disabled =
@@ -2170,46 +2020,29 @@ async function sendPrivateSupport(){
 
     const result =
     await supabaseClient
-        .from("support_messages")
-        .insert({
+    .from("support_messages")
+    .insert({
 
-            visitor_id:
-            visitorId,
+        visitor_id:visitorId,
+        deal_code:dealId,
+        sender_role:"user",
+        sender_name:senderName,
+        message:text
 
-            deal_code:
-            dealId,
-
-            sender_role:
-            "user",
-
-            sender_name:
-            senderName,
-
-            message:
-            text
-
-        })
-        .select()
-        .single();
+    })
+    .select()
+    .single();
 
 
     if(result.error){
-
-        console.error(
-            "Private send error:",
-            result.error
-        );
-
 
         alert(
             "ارسال پیام انجام نشد:\n" +
             result.error.message
         );
 
-
         button.disabled =
         false;
-
 
         return;
 
@@ -2220,13 +2053,10 @@ async function sendPrivateSupport(){
     "";
 
 
-    if(result.data){
-
+    if(result.data)
         renderPrivateSupport(
             result.data
         );
-
-    }
 
 
     button.disabled =
@@ -2237,10 +2067,6 @@ async function sendPrivateSupport(){
 
 }
 
-
-/* =========================================
-   PRIVATE SUPPORT REALTIME
-========================================= */
 
 function startPrivateSupportRealtime(){
 
@@ -2255,108 +2081,89 @@ function startPrivateSupportRealtime(){
 
     privateSupportChannel =
     supabaseClient
-        .channel(
-            "private-support-" +
-            visitorId +
-            "-" +
-            dealId
-        )
-        .on(
-            "postgres_changes",
-            {
-                event:"INSERT",
-                schema:"public",
-                table:"support_messages",
-                filter:
-                "visitor_id=eq." +
-                visitorId
-            },
-            payload => {
+    .channel(
+        "private-support-" +
+        visitorId +
+        "-" +
+        dealId
+    )
+    .on(
+        "postgres_changes",
+        {
+            event:"INSERT",
+            schema:"public",
+            table:"support_messages",
+            filter:
+            "visitor_id=eq." +
+            visitorId
+        },
+        payload => {
 
-                /*
-                 پیام خود کاربر قبلاً
-                 در صفحه نمایش داده شده.
-                */
+            if(
+                payload.new.sender_role ===
+                "admin"
+            ){
 
-                if(
-                    payload.new.sender_role ===
-                    "admin"
-                ){
-
-                    renderPrivateSupport(
-                        payload.new
-                    );
-
-                }
+                renderPrivateSupport(
+                    payload.new
+                );
 
             }
-        )
-        .subscribe();
+
+        }
+    )
+    .subscribe();
 
 }
 
 
-/* =========================================
-   EVENTS
-========================================= */
+/* EVENTS */
 
 document
-    .getElementById(
-        "sendButton"
-    )
-    .addEventListener(
-        "click",
-        sendMessage
-    );
+.getElementById("sendButton")
+.addEventListener(
+    "click",
+    sendMessage
+);
 
 
 document
-    .getElementById(
-        "messageInput"
-    )
-    .addEventListener(
-        "keydown",
-        function(event){
+.getElementById("messageInput")
+.addEventListener(
+    "keydown",
+    function(event){
 
-            if(
-                event.key === "Enter"
-            ){
+        if(event.key === "Enter"){
 
-                event.preventDefault();
+            event.preventDefault();
 
-                sendMessage();
-
-            }
+            sendMessage();
 
         }
-    );
+
+    }
+);
 
 
 document
-    .getElementById(
-        "privateInput"
-    )
-    .addEventListener(
-        "keydown",
-        function(event){
+.getElementById("privateInput")
+.addEventListener(
+    "keydown",
+    function(event){
 
-            if(
-                event.key === "Enter"
-            ){
+        if(event.key === "Enter"){
 
-                event.preventDefault();
+            event.preventDefault();
 
-                sendPrivateSupport();
-
-            }
+            sendPrivateSupport();
 
         }
-    );
+
+    }
+);
 
 
-/* =========================================
-   START
-========================================= */
+/* START */
 
 async function init(){
 
@@ -2375,11 +2182,8 @@ async function init(){
     await loadDeal();
 
 
-    if(!loaded){
-
+    if(!loaded)
         return;
-
-    }
 
 
     await loadParticipants();
