@@ -210,7 +210,7 @@ header{
     margin-top:6px;
 }
 
-/* چت */
+/* چت عمومی */
 
 .chat{
     background:#0d0d0d;
@@ -277,7 +277,7 @@ header{
     margin-top:5px;
 }
 
-/* ارسال */
+/* ارسال عمومی */
 
 .send{
     display:flex;
@@ -316,6 +316,175 @@ header{
     opacity:.5;
 }
 
+/* پیام خصوصی */
+
+.private-support-button{
+    width:100%;
+    margin-top:15px;
+    padding:15px;
+    border:1px solid #3a2222;
+    border-radius:12px;
+    background:#120909;
+    color:#fff;
+    cursor:pointer;
+    font-family:inherit;
+    font-weight:bold;
+    transition:.2s;
+}
+
+.private-support-button:hover{
+    background:#1b0b0b;
+    border-color:#ff3030;
+}
+
+/* مودال خصوصی */
+
+.private-modal{
+    display:none;
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,.82);
+    z-index:99999;
+    padding:20px;
+}
+
+.private-modal-box{
+    max-width:520px;
+    height:620px;
+    max-height:90vh;
+    margin:30px auto;
+    background:#0d0d0d;
+    border:1px solid #292929;
+    border-radius:20px;
+    overflow:hidden;
+    display:flex;
+    flex-direction:column;
+    box-shadow:0 20px 80px rgba(0,0,0,.6);
+}
+
+.private-header{
+    padding:18px;
+    border-bottom:1px solid #222;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+.private-header-title{
+    font-size:14px;
+    font-weight:bold;
+}
+
+.private-online{
+    color:#62ff82;
+    font-size:9px;
+    margin-top:5px;
+}
+
+.private-close{
+    background:#222;
+    color:#fff;
+    border:0;
+    border-radius:8px;
+    padding:8px 12px;
+    cursor:pointer;
+}
+
+.private-messages{
+    flex:1;
+    overflow-y:auto;
+    padding:15px;
+}
+
+.private-empty{
+    text-align:center;
+    color:#555;
+    padding-top:150px;
+    font-size:12px;
+}
+
+.private-message{
+    max-width:85%;
+    margin-bottom:10px;
+    padding:11px 13px;
+    border-radius:12px;
+    background:#171717;
+    border:1px solid #242424;
+}
+
+.private-message.user{
+    margin-left:auto;
+}
+
+.private-message.admin{
+    margin-right:auto;
+    background:#2b1010;
+    border-color:#652020;
+}
+
+.private-message-name{
+    font-size:10px;
+    font-weight:bold;
+    margin-bottom:5px;
+}
+
+.private-message.user .private-message-name{
+    color:#ff5555;
+}
+
+.private-message.admin .private-message-name{
+    color:#ffcf5a;
+}
+
+.private-message-text{
+    font-size:12px;
+    line-height:1.8;
+    word-break:break-word;
+}
+
+.private-message-time{
+    color:#555;
+    font-size:8px;
+    margin-top:5px;
+}
+
+.private-send{
+    display:flex;
+    gap:8px;
+    padding:10px;
+    border-top:1px solid #222;
+}
+
+.private-send input{
+    flex:1;
+    background:#070707;
+    border:1px solid #292929;
+    color:#fff;
+    border-radius:10px;
+    padding:12px;
+    outline:none;
+    font-family:inherit;
+}
+
+.private-send input:focus{
+    border-color:#ff3030;
+}
+
+.private-send button{
+    width:80px;
+    background:#ff3030;
+    color:#fff;
+    border:0;
+    border-radius:10px;
+    cursor:pointer;
+    font-family:inherit;
+    font-weight:bold;
+}
+
+.private-send button:disabled{
+    opacity:.5;
+}
+
 .notice{
     margin-top:18px;
     background:rgba(255,48,48,.06);
@@ -348,6 +517,16 @@ header{
     .send button{
         width:80px;
     }
+
+    .private-modal{
+        padding:10px;
+    }
+
+    .private-modal-box{
+        margin:10px auto;
+        height:calc(100vh - 20px);
+        max-height:none;
+    }
 }
 </style>
 </head>
@@ -355,46 +534,88 @@ header{
 <body>
 
 <header>
+
     <div class="logo">
         V2<span>GUARD</span>
     </div>
+
 </header>
+
 
 <div class="container">
 
     <div class="top">
-        <h1>اتاق معامله</h1>
-        <p>گفت‌وگوی اختصاصی خریدار و فروشنده</p>
+
+        <h1>
+            اتاق معامله
+        </h1>
+
+        <p>
+            گفت‌وگوی اختصاصی خریدار و فروشنده
+        </p>
+
     </div>
 
-    <div id="error" class="error"></div>
+
+    <div
+        id="error"
+        class="error"
+    ></div>
+
 
     <!-- اطلاعات معامله -->
 
     <div class="deal-info">
 
         <div class="info">
-            <div class="info-title">کد معامله</div>
-            <div class="info-value" id="dealCode">
+
+            <div class="info-title">
+                کد معامله
+            </div>
+
+            <div
+                class="info-value"
+                id="dealCode"
+            >
                 در حال بارگذاری...
             </div>
+
         </div>
 
-        <div class="info">
-            <div class="info-title">مبلغ معامله</div>
-            <div class="info-value" id="dealPrice">
-                در حال بارگذاری...
-            </div>
-        </div>
 
         <div class="info">
-            <div class="info-title">وضعیت</div>
-            <div class="info-value status" id="dealStatus">
+
+            <div class="info-title">
+                مبلغ معامله
+            </div>
+
+            <div
+                class="info-value"
+                id="dealPrice"
+            >
                 در حال بارگذاری...
             </div>
+
+        </div>
+
+
+        <div class="info">
+
+            <div class="info-title">
+                وضعیت
+            </div>
+
+            <div
+                class="info-value status"
+                id="dealStatus"
+            >
+                در حال بارگذاری...
+            </div>
+
         </div>
 
     </div>
+
 
     <!-- طرفین -->
 
@@ -422,6 +643,7 @@ header{
 
         </div>
 
+
         <div class="participant">
 
             <div class="participant-title">
@@ -446,6 +668,7 @@ header{
 
     </div>
 
+
     <!-- انتخاب نقش -->
 
     <div
@@ -454,7 +677,9 @@ header{
         style="display:none;"
     >
 
-        <h2>انتخاب نقش شما</h2>
+        <h2>
+            انتخاب نقش شما
+        </h2>
 
         <p id="roleDescription">
             نقش خود را برای این معامله انتخاب کنید.
@@ -467,7 +692,10 @@ header{
                 class="role-button"
                 onclick="selectRole('buyer')"
             >
-                <span class="role-icon">🛒</span>
+
+                <span class="role-icon">
+                    🛒
+                </span>
 
                 <span class="role-name">
                     خریدار
@@ -476,14 +704,19 @@ header{
                 <span class="role-description">
                     من قصد خرید دارم
                 </span>
+
             </button>
+
 
             <button
                 id="sellerButton"
                 class="role-button"
                 onclick="selectRole('seller')"
             >
-                <span class="role-icon">💼</span>
+
+                <span class="role-icon">
+                    💼
+                </span>
 
                 <span class="role-name">
                     فروشنده
@@ -492,13 +725,15 @@ header{
                 <span class="role-description">
                     من صاحب اکانت هستم
                 </span>
+
             </button>
 
         </div>
 
     </div>
 
-    <!-- چت -->
+
+    <!-- چت عمومی -->
 
     <div class="chat">
 
@@ -515,6 +750,7 @@ header{
 
         </div>
 
+
         <div id="messages">
 
             <div class="empty">
@@ -522,6 +758,7 @@ header{
             </div>
 
         </div>
+
 
         <div class="send">
 
@@ -543,12 +780,110 @@ header{
 
     </div>
 
+
+    <!-- پیام خصوصی به مدیریت -->
+
+    <button
+        type="button"
+        class="private-support-button"
+        onclick="openPrivateSupport()"
+    >
+        👑 پیام خصوصی به مدیریت
+    </button>
+
+
     <div class="notice">
-        🔒 این چت فقط برای هماهنگی معامله است.
-        اطلاعات حساس حساب را داخل چت عمومی ارسال نکنید.
+
+        🔒 چت عمومی فقط برای هماهنگی خریدار و فروشنده است.
+
+        <br>
+
+        👑 برای صحبت خصوصی با مدیریت از دکمه
+        «پیام خصوصی به مدیریت» استفاده کنید.
+
+        <br>
+
+        ⚠️ اطلاعات حساس حساب را داخل چت عمومی ارسال نکنید.
+
     </div>
 
 </div>
+
+
+<!-- =========================================
+     PRIVATE SUPPORT MODAL
+========================================= -->
+
+<div
+    id="privateSupport"
+    class="private-modal"
+    onclick="closePrivateOutside(event)"
+>
+
+    <div
+        class="private-modal-box"
+        onclick="event.stopPropagation()"
+    >
+
+        <div class="private-header">
+
+            <div>
+
+                <div class="private-header-title">
+                    👑 ارتباط خصوصی با مدیریت
+                </div>
+
+                <div class="private-online">
+                    ● ارتباط خصوصی
+                </div>
+
+            </div>
+
+
+            <button
+                class="private-close"
+                onclick="closePrivateSupport()"
+            >
+                ✕
+            </button>
+
+        </div>
+
+
+        <div
+            id="privateMessages"
+            class="private-messages"
+        >
+
+            <div class="private-empty">
+                در حال دریافت پیام‌ها...
+            </div>
+
+        </div>
+
+
+        <div class="private-send">
+
+            <input
+                id="privateInput"
+                type="text"
+                placeholder="پیام خصوصی به مدیریت..."
+                autocomplete="off"
+            >
+
+            <button
+                id="privateSend"
+                onclick="sendPrivateSupport()"
+            >
+                ارسال
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
 
 <script>
 
@@ -622,7 +957,8 @@ if(!senderName){
 
     if(!senderName){
 
-        senderName = "کاربر";
+        senderName =
+        "کاربر";
 
     }
 
@@ -630,6 +966,7 @@ if(!senderName){
         "v2guard_sender_name",
         senderName
     );
+
 }
 
 
@@ -644,13 +981,23 @@ localStorage.getItem(
 
 
 /* =========================================
+   PRIVATE CHANNEL
+========================================= */
+
+let privateSupportChannel =
+null;
+
+
+/* =========================================
    HELPERS
 ========================================= */
 
 function showError(message){
 
     const box =
-    document.getElementById("error");
+    document.getElementById(
+        "error"
+    );
 
     box.textContent =
     message;
@@ -663,14 +1010,19 @@ function showError(message){
 function roleText(role){
 
     if(role === "buyer"){
+
         return "🛒 خریدار";
+
     }
 
     if(role === "seller"){
+
         return "💼 فروشنده";
+
     }
 
     return "";
+
 }
 
 
@@ -681,16 +1033,22 @@ function formatPrice(price){
         price === undefined ||
         price === ""
     ){
+
         return "---";
+
     }
 
     return Number(price)
         .toLocaleString("fa-IR")
         + " تومان";
+
 }
 
 
 function formatTime(date){
+
+    if(!date)
+        return "";
 
     return new Date(date)
         .toLocaleTimeString(
@@ -700,18 +1058,22 @@ function formatTime(date){
                 minute:"2-digit"
             }
         );
+
 }
 
 
 function escapeHtml(text){
 
     const div =
-    document.createElement("div");
+    document.createElement(
+        "div"
+    );
 
     div.textContent =
     text ?? "";
 
     return div.innerHTML;
+
 }
 
 
@@ -730,10 +1092,6 @@ async function loadDeal(){
         return false;
     }
 
-    console.log(
-        "Loading deal:",
-        dealId
-    );
 
     const result =
     await supabaseClient
@@ -754,10 +1112,6 @@ async function loadDeal(){
         )
         .limit(1);
 
-    console.log(
-        "Deal result:",
-        result
-    );
 
     if(result.error){
 
@@ -773,6 +1127,7 @@ async function loadDeal(){
         return false;
     }
 
+
     if(
         !result.data ||
         result.data.length === 0
@@ -785,67 +1140,33 @@ async function loadDeal(){
         return false;
     }
 
+
     const deal =
     result.data[0];
 
 
-    /* کد معامله */
-
-    const codeElement =
-    document.getElementById(
-        "dealCode"
-    );
-
-    if(codeElement){
-
-        codeElement.textContent =
+    document
+        .getElementById("dealCode")
+        .textContent =
         deal.deal_code || "---";
-    }
 
 
-    /* مبلغ */
-
-    const priceElement =
-    document.getElementById(
-        "dealPrice"
-    );
-
-    if(priceElement){
-
-        if(
-            deal.price !== null &&
-            deal.price !== undefined &&
-            deal.price !== ""
-        ){
-
-            priceElement.textContent =
-            Number(deal.price)
-                .toLocaleString("fa-IR")
-                + " تومان";
-
-        }else{
-
-            priceElement.textContent =
-            "---";
-        }
-    }
+    document
+        .getElementById("dealPrice")
+        .textContent =
+        formatPrice(
+            deal.price
+        );
 
 
-    /* وضعیت */
-
-    const statusElement =
-    document.getElementById(
-        "dealStatus"
-    );
-
-    if(statusElement){
-
-        statusElement.textContent =
+    document
+        .getElementById("dealStatus")
+        .textContent =
         deal.status || "در انتظار";
-    }
 
 
     return true;
+
 }
 
 
@@ -864,6 +1185,7 @@ async function loadParticipants(){
             dealId
         );
 
+
     if(result.error){
 
         console.error(
@@ -879,6 +1201,7 @@ async function loadParticipants(){
         return;
     }
 
+
     const participants =
     result.data || [];
 
@@ -888,25 +1211,26 @@ async function loadParticipants(){
         p => p.role === "buyer"
     );
 
+
     const seller =
     participants.find(
         p => p.role === "seller"
     );
 
 
-    /* =====================================
-       فروشنده
-    ===================================== */
+    /* فروشنده */
 
     const sellerName =
     document.getElementById(
         "sellerName"
     );
 
+
     const sellerStatus =
     document.getElementById(
         "sellerStatus"
     );
+
 
     if(seller){
 
@@ -929,22 +1253,23 @@ async function loadParticipants(){
 
         sellerStatus.className =
         "waiting";
+
     }
 
 
-    /* =====================================
-       خریدار
-    ===================================== */
+    /* خریدار */
 
     const buyerName =
     document.getElementById(
         "buyerName"
     );
 
+
     const buyerStatus =
     document.getElementById(
         "buyerStatus"
     );
+
 
     if(buyer){
 
@@ -967,17 +1292,18 @@ async function loadParticipants(){
 
         buyerStatus.className =
         "waiting";
+
     }
 
 
-    /* =====================================
-       تشخیص خودکار نقش
-    ===================================== */
+    /* تشخیص نقش */
 
     const own =
     participants.find(
-        p => p.visitor_id === visitorId
+        p =>
+        p.visitor_id === visitorId
     );
+
 
     if(own){
 
@@ -989,48 +1315,34 @@ async function loadParticipants(){
             myRole
         );
 
+
         document
-            .getElementById("myRole")
+            .getElementById(
+                "myRole"
+            )
             .textContent =
             roleText(myRole);
 
+
         document
-            .getElementById("roleSelector")
+            .getElementById(
+                "roleSelector"
+            )
             .style.display =
             "none";
+
 
         return;
     }
 
 
-    /* =====================================
-       اگر قبلاً نقش در LocalStorage بود
-    ===================================== */
-
-    if(myRole){
-
-        const roleExists =
-        participants.find(
-            p =>
-            p.visitor_id === visitorId &&
-            p.role === myRole
-        );
-
-        if(roleExists){
-
-            return;
-        }
-    }
-
-
-    /* =====================================
-       انتخاب نقش
-    ===================================== */
+    /* انتخاب نقش */
 
     const selector =
     document.getElementById(
         "roleSelector"
     );
+
 
     selector.style.display =
     "block";
@@ -1041,6 +1353,7 @@ async function loadParticipants(){
         "buyerButton"
     );
 
+
     const sellerButton =
     document.getElementById(
         "sellerButton"
@@ -1048,10 +1361,15 @@ async function loadParticipants(){
 
 
     buyerButton.style.display =
-    buyer ? "none" : "block";
+    buyer
+    ? "none"
+    : "block";
+
 
     sellerButton.style.display =
-    seller ? "none" : "block";
+    seller
+    ? "none"
+    : "block";
 
 
     const description =
@@ -1074,7 +1392,9 @@ async function loadParticipants(){
 
         description.textContent =
         "نقش خود را برای این معامله انتخاب کنید.";
+
     }
+
 }
 
 
@@ -1103,6 +1423,7 @@ async function selectRole(role){
             dealId
         );
 
+
     if(check.error){
 
         showError(
@@ -1118,12 +1439,12 @@ async function selectRole(role){
     check.data || [];
 
 
-    /* اگر خود کاربر قبلاً ثبت شده */
-
     const own =
     participants.find(
-        p => p.visitor_id === visitorId
+        p =>
+        p.visitor_id === visitorId
     );
+
 
     if(own){
 
@@ -1141,12 +1462,12 @@ async function selectRole(role){
     }
 
 
-    /* اگر نقش گرفته شده */
-
     const taken =
     participants.find(
-        p => p.role === role
+        p =>
+        p.role === role
     );
+
 
     if(taken){
 
@@ -1160,16 +1481,23 @@ async function selectRole(role){
     }
 
 
-    /* ثبت نقش */
-
     const insert =
     await supabaseClient
         .from("deal_participants")
         .insert({
-            deal_code: dealId,
-            visitor_id: visitorId,
-            name: senderName,
-            role: role
+
+            deal_code:
+            dealId,
+
+            visitor_id:
+            visitorId,
+
+            name:
+            senderName,
+
+            role:
+            role
+
         })
         .select()
         .single();
@@ -1194,6 +1522,7 @@ async function selectRole(role){
     myRole =
     role;
 
+
     localStorage.setItem(
         "v2guard_role_" + dealId,
         role
@@ -1201,23 +1530,28 @@ async function selectRole(role){
 
 
     document
-        .getElementById("myRole")
+        .getElementById(
+            "myRole"
+        )
         .textContent =
         roleText(role);
 
 
     document
-        .getElementById("roleSelector")
+        .getElementById(
+            "roleSelector"
+        )
         .style.display =
         "none";
 
 
     await loadParticipants();
+
 }
 
 
 /* =========================================
-   LOAD MESSAGES
+   LOAD PUBLIC MESSAGES
 ========================================= */
 
 async function loadMessages(){
@@ -1259,7 +1593,9 @@ async function loadMessages(){
         "messages"
     );
 
-    box.innerHTML = "";
+
+    box.innerHTML =
+    "";
 
 
     if(
@@ -1280,11 +1616,12 @@ async function loadMessages(){
     result.data.forEach(
         renderMessage
     );
+
 }
 
 
 /* =========================================
-   RENDER MESSAGE
+   RENDER PUBLIC MESSAGE
 ========================================= */
 
 function renderMessage(message){
@@ -1296,53 +1633,78 @@ function renderMessage(message){
 
 
     const empty =
-    box.querySelector(".empty");
+    box.querySelector(
+        ".empty"
+    );
+
 
     if(empty){
 
         empty.remove();
+
     }
 
 
     const div =
-    document.createElement("div");
+    document.createElement(
+        "div"
+    );
+
 
     div.className =
     "message";
 
 
     if(
-        message.visitor_id === visitorId
+        message.visitor_id ===
+        visitorId
     ){
 
-        div.classList.add("me");
+        div.classList.add(
+            "me"
+        );
+
     }
 
 
     div.innerHTML = `
+
         <div class="message-name">
-            ${escapeHtml(message.sender_name)}
+            ${escapeHtml(
+                message.sender_name ||
+                "کاربر"
+            )}
         </div>
 
         <div class="message-text">
-            ${escapeHtml(message.message)}
+            ${escapeHtml(
+                message.message ||
+                ""
+            )}
         </div>
 
         <div class="message-time">
-            ${formatTime(message.created_at)}
+            ${formatTime(
+                message.created_at
+            )}
         </div>
+
     `;
 
 
-    box.appendChild(div);
+    box.appendChild(
+        div
+    );
+
 
     box.scrollTop =
     box.scrollHeight;
+
 }
 
 
 /* =========================================
-   SEND MESSAGE
+   SEND PUBLIC MESSAGE
 ========================================= */
 
 async function sendMessage(){
@@ -1362,10 +1724,12 @@ async function sendMessage(){
         "messageInput"
     );
 
+
     const button =
     document.getElementById(
         "sendButton"
     );
+
 
     const text =
     input.value.trim();
@@ -1374,6 +1738,7 @@ async function sendMessage(){
     if(!text){
 
         return;
+
     }
 
 
@@ -1385,11 +1750,22 @@ async function sendMessage(){
     await supabaseClient
         .from("messages")
         .insert({
-            deal_code: dealId,
-            sender_name: senderName,
-            sender_role: myRole,
-            message: text,
-            visitor_id: visitorId
+
+            deal_code:
+            dealId,
+
+            sender_name:
+            senderName,
+
+            sender_role:
+            myRole,
+
+            message:
+            text,
+
+            visitor_id:
+            visitorId
+
         })
         .select()
         .single();
@@ -1411,41 +1787,42 @@ async function sendMessage(){
         false;
 
         return;
+
     }
 
 
-    input.value = "";
+    input.value =
+    "";
 
-
-    /*
-       خود پیام را همینجا نمایش می‌دهیم.
-       Realtime دوباره آن را اضافه نمی‌کند.
-    */
 
     if(result.data){
 
         renderMessage(
             result.data
         );
+
     }
 
 
     button.disabled =
     false;
 
+
     input.focus();
+
 }
 
 
 /* =========================================
-   REALTIME CHAT
+   PUBLIC CHAT REALTIME
 ========================================= */
 
 function startChatRealtime(){
 
     supabaseClient
         .channel(
-            "chat-" + dealId
+            "chat-" +
+            dealId
         )
         .on(
             "postgres_changes",
@@ -1454,7 +1831,8 @@ function startChatRealtime(){
                 schema:"public",
                 table:"messages",
                 filter:
-                "deal_code=eq." + dealId
+                "deal_code=eq." +
+                dealId
             },
             payload => {
 
@@ -1466,22 +1844,26 @@ function startChatRealtime(){
                     renderMessage(
                         payload.new
                     );
+
                 }
+
             }
         )
         .subscribe();
+
 }
 
 
 /* =========================================
-   REALTIME PARTICIPANTS
+   PARTICIPANT REALTIME
 ========================================= */
 
 function startParticipantRealtime(){
 
     supabaseClient
         .channel(
-            "participants-" + dealId
+            "participants-" +
+            dealId
         )
         .on(
             "postgres_changes",
@@ -1490,14 +1872,427 @@ function startParticipantRealtime(){
                 schema:"public",
                 table:"deal_participants",
                 filter:
-                "deal_code=eq." + dealId
+                "deal_code=eq." +
+                dealId
             },
             async () => {
 
                 await loadParticipants();
+
             }
         )
         .subscribe();
+
+}
+
+
+/* =========================================
+   PRIVATE SUPPORT OPEN
+========================================= */
+
+function openPrivateSupport(){
+
+    document
+        .getElementById(
+            "privateSupport"
+        )
+        .style.display =
+        "block";
+
+
+    loadPrivateSupport();
+
+
+    startPrivateSupportRealtime();
+
+}
+
+
+/* =========================================
+   PRIVATE SUPPORT CLOSE
+========================================= */
+
+function closePrivateSupport(){
+
+    document
+        .getElementById(
+            "privateSupport"
+        )
+        .style.display =
+        "none";
+
+
+    if(privateSupportChannel){
+
+        supabaseClient.removeChannel(
+            privateSupportChannel
+        );
+
+        privateSupportChannel =
+        null;
+
+    }
+
+}
+
+
+function closePrivateOutside(event){
+
+    if(
+        event.target.id ===
+        "privateSupport"
+    ){
+
+        closePrivateSupport();
+
+    }
+
+}
+
+
+/* =========================================
+   LOAD PRIVATE SUPPORT
+========================================= */
+
+async function loadPrivateSupport(){
+
+    const box =
+    document.getElementById(
+        "privateMessages"
+    );
+
+
+    box.innerHTML = `
+        <div class="private-empty">
+            در حال دریافت پیام‌ها...
+        </div>
+    `;
+
+
+    const result =
+    await supabaseClient
+        .from("support_messages")
+        .select("*")
+        .eq(
+            "visitor_id",
+            visitorId
+        )
+        .order(
+            "created_at",
+            {
+                ascending:true
+            }
+        );
+
+
+    if(result.error){
+
+        console.error(
+            "Private support error:",
+            result.error
+        );
+
+
+        box.innerHTML = `
+            <div class="private-empty"
+                 style="color:#ff6666;">
+                خطا در دریافت پیام‌ها
+            </div>
+        `;
+
+        return;
+
+    }
+
+
+    box.innerHTML =
+    "";
+
+
+    if(
+        !result.data ||
+        result.data.length === 0
+    ){
+
+        box.innerHTML = `
+            <div class="private-empty">
+                هنوز پیامی برای مدیریت ارسال نکرده‌اید.
+            </div>
+        `;
+
+        return;
+
+    }
+
+
+    result.data.forEach(
+        renderPrivateSupport
+    );
+
+
+    box.scrollTop =
+    box.scrollHeight;
+
+}
+
+
+/* =========================================
+   RENDER PRIVATE SUPPORT
+========================================= */
+
+function renderPrivateSupport(message){
+
+    const box =
+    document.getElementById(
+        "privateMessages"
+    );
+
+
+    const empty =
+    box.querySelector(
+        ".private-empty"
+    );
+
+
+    if(empty){
+
+        empty.remove();
+
+    }
+
+
+    const div =
+    document.createElement(
+        "div"
+    );
+
+
+    const isAdmin =
+    message.sender_role ===
+    "admin";
+
+
+    div.className =
+    "private-message " +
+    (
+        isAdmin
+        ? "admin"
+        : "user"
+    );
+
+
+    div.innerHTML = `
+
+        <div class="private-message-name">
+
+            ${
+                isAdmin
+                ? "👑 مدیریت"
+                : "👤 شما"
+            }
+
+        </div>
+
+        <div class="private-message-text">
+
+            ${escapeHtml(
+                message.message ||
+                ""
+            )}
+
+        </div>
+
+        <div class="private-message-time">
+
+            ${formatTime(
+                message.created_at
+            )}
+
+        </div>
+
+    `;
+
+
+    box.appendChild(
+        div
+    );
+
+
+    box.scrollTop =
+    box.scrollHeight;
+
+}
+
+
+/* =========================================
+   SEND PRIVATE SUPPORT
+========================================= */
+
+async function sendPrivateSupport(){
+
+    if(!dealId){
+
+        alert(
+            "کد معامله مشخص نیست."
+        );
+
+        return;
+
+    }
+
+
+    const input =
+    document.getElementById(
+        "privateInput"
+    );
+
+
+    const button =
+    document.getElementById(
+        "privateSend"
+    );
+
+
+    const text =
+    input.value.trim();
+
+
+    if(!text){
+
+        return;
+
+    }
+
+
+    button.disabled =
+    true;
+
+
+    const result =
+    await supabaseClient
+        .from("support_messages")
+        .insert({
+
+            visitor_id:
+            visitorId,
+
+            deal_code:
+            dealId,
+
+            sender_role:
+            "user",
+
+            sender_name:
+            senderName,
+
+            message:
+            text
+
+        })
+        .select()
+        .single();
+
+
+    if(result.error){
+
+        console.error(
+            "Private send error:",
+            result.error
+        );
+
+
+        alert(
+            "ارسال پیام انجام نشد:\n" +
+            result.error.message
+        );
+
+
+        button.disabled =
+        false;
+
+
+        return;
+
+    }
+
+
+    input.value =
+    "";
+
+
+    if(result.data){
+
+        renderPrivateSupport(
+            result.data
+        );
+
+    }
+
+
+    button.disabled =
+    false;
+
+
+    input.focus();
+
+}
+
+
+/* =========================================
+   PRIVATE SUPPORT REALTIME
+========================================= */
+
+function startPrivateSupportRealtime(){
+
+    if(privateSupportChannel){
+
+        supabaseClient.removeChannel(
+            privateSupportChannel
+        );
+
+    }
+
+
+    privateSupportChannel =
+    supabaseClient
+        .channel(
+            "private-support-" +
+            visitorId +
+            "-" +
+            dealId
+        )
+        .on(
+            "postgres_changes",
+            {
+                event:"INSERT",
+                schema:"public",
+                table:"support_messages",
+                filter:
+                "visitor_id=eq." +
+                visitorId
+            },
+            payload => {
+
+                /*
+                 پیام خود کاربر قبلاً
+                 در صفحه نمایش داده شده.
+                */
+
+                if(
+                    payload.new.sender_role ===
+                    "admin"
+                ){
+
+                    renderPrivateSupport(
+                        payload.new
+                    );
+
+                }
+
+            }
+        )
+        .subscribe();
+
 }
 
 
@@ -1506,7 +2301,9 @@ function startParticipantRealtime(){
 ========================================= */
 
 document
-    .getElementById("sendButton")
+    .getElementById(
+        "sendButton"
+    )
     .addEventListener(
         "click",
         sendMessage
@@ -1514,17 +2311,45 @@ document
 
 
 document
-    .getElementById("messageInput")
+    .getElementById(
+        "messageInput"
+    )
     .addEventListener(
         "keydown",
         function(event){
 
-            if(event.key === "Enter"){
+            if(
+                event.key === "Enter"
+            ){
 
                 event.preventDefault();
 
                 sendMessage();
+
             }
+
+        }
+    );
+
+
+document
+    .getElementById(
+        "privateInput"
+    )
+    .addEventListener(
+        "keydown",
+        function(event){
+
+            if(
+                event.key === "Enter"
+            ){
+
+                event.preventDefault();
+
+                sendPrivateSupport();
+
+            }
+
         }
     );
 
@@ -1542,6 +2367,7 @@ async function init(){
         );
 
         return;
+
     }
 
 
@@ -1552,6 +2378,7 @@ async function init(){
     if(!loaded){
 
         return;
+
     }
 
 
@@ -1562,6 +2389,7 @@ async function init(){
     startChatRealtime();
 
     startParticipantRealtime();
+
 }
 
 
