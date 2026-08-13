@@ -1,14 +1,10 @@
+```html
 <!DOCTYPE html>
 <html lang="fa" dir="rtl">
-
 <head>
 
 <meta charset="UTF-8">
-
-<meta
-    name="viewport"
-    content="width=device-width,initial-scale=1.0"
->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>اتاق معامله | COD MOBILE</title>
 
@@ -24,7 +20,6 @@
 
 body{
     font-family:Tahoma,Arial,sans-serif;
-
     background:
         radial-gradient(
             circle at top right,
@@ -32,9 +27,13 @@ body{
             transparent 35%
         ),
         #050505;
-
     color:#fff;
     min-height:100vh;
+}
+
+button,
+input{
+    font-family:inherit;
 }
 
 header{
@@ -43,6 +42,8 @@ header{
     display:flex;
     align-items:center;
     border-bottom:1px solid #222;
+    background:rgba(5,5,5,.9);
+    backdrop-filter:blur(12px);
 }
 
 .logo{
@@ -188,7 +189,6 @@ header{
     padding:20px 10px;
     border-radius:13px;
     cursor:pointer;
-    font-family:inherit;
     transition:.2s;
 }
 
@@ -297,7 +297,6 @@ header{
     padding:14px;
     border-radius:10px;
     outline:none;
-    font-family:inherit;
 }
 
 .send input:focus{
@@ -310,7 +309,6 @@ header{
     border-radius:10px;
     background:#ff3030;
     color:#fff;
-    font-family:inherit;
     font-weight:bold;
     cursor:pointer;
 }
@@ -328,7 +326,6 @@ header{
     background:#120909;
     color:#fff;
     cursor:pointer;
-    font-family:inherit;
     font-weight:bold;
     transition:.2s;
 }
@@ -358,7 +355,6 @@ header{
     overflow:hidden;
     display:flex;
     flex-direction:column;
-    box-shadow:0 20px 80px rgba(0,0,0,.6);
 }
 
 .private-header{
@@ -462,11 +458,6 @@ header{
     border-radius:10px;
     padding:12px;
     outline:none;
-    font-family:inherit;
-}
-
-.private-send input:focus{
-    border-color:#ff3030;
 }
 
 .private-send button{
@@ -476,12 +467,7 @@ header{
     border:0;
     border-radius:10px;
     cursor:pointer;
-    font-family:inherit;
     font-weight:bold;
-}
-
-.private-send button:disabled{
-    opacity:.5;
 }
 
 .notice{
@@ -530,7 +516,6 @@ header{
 }
 
 </style>
-
 </head>
 
 <body>
@@ -570,10 +555,7 @@ header{
                 کد معامله
             </div>
 
-            <div
-                class="info-value"
-                id="dealCode"
-            >
+            <div class="info-value" id="dealCode">
                 در حال بارگذاری...
             </div>
 
@@ -586,10 +568,7 @@ header{
                 مبلغ معامله
             </div>
 
-            <div
-                class="info-value"
-                id="dealPrice"
-            >
+            <div class="info-value" id="dealPrice">
                 در حال بارگذاری...
             </div>
 
@@ -602,10 +581,7 @@ header{
                 وضعیت
             </div>
 
-            <div
-                class="info-value status"
-                id="dealStatus"
-            >
+            <div class="info-value status" id="dealStatus">
                 در حال بارگذاری...
             </div>
 
@@ -622,17 +598,11 @@ header{
                 💼 فروشنده
             </div>
 
-            <div
-                class="participant-name"
-                id="sellerName"
-            >
+            <div class="participant-name" id="sellerName">
                 هنوز وارد نشده
             </div>
 
-            <div
-                class="waiting"
-                id="sellerStatus"
-            >
+            <div class="waiting" id="sellerStatus">
                 ⏳ منتظر فروشنده
             </div>
 
@@ -645,17 +615,11 @@ header{
                 🛒 خریدار
             </div>
 
-            <div
-                class="participant-name"
-                id="buyerName"
-            >
+            <div class="participant-name" id="buyerName">
                 هنوز وارد نشده
             </div>
 
-            <div
-                class="waiting"
-                id="buyerStatus"
-            >
+            <div class="waiting" id="buyerStatus">
                 ⏳ منتظر خریدار
             </div>
 
@@ -664,11 +628,7 @@ header{
     </div>
 
 
-    <div
-        id="roleSelector"
-        class="role-selector"
-        style="display:none;"
-    >
+    <div id="roleSelector" class="role-selector">
 
         <h2>
             انتخاب نقش شما
@@ -686,9 +646,7 @@ header{
                 onclick="selectRole('buyer')"
             >
 
-                <span class="role-icon">
-                    🛒
-                </span>
+                <span class="role-icon">🛒</span>
 
                 <span class="role-name">
                     خریدار
@@ -707,9 +665,7 @@ header{
                 onclick="selectRole('seller')"
             >
 
-                <span class="role-icon">
-                    💼
-                </span>
+                <span class="role-icon">💼</span>
 
                 <span class="role-name">
                     فروشنده
@@ -734,10 +690,7 @@ header{
                 💬 گفت‌وگوی معامله
             </span>
 
-            <span
-                class="my-role"
-                id="myRole"
-            ></span>
+            <span class="my-role" id="myRole"></span>
 
         </div>
 
@@ -824,6 +777,7 @@ header{
 
             </div>
 
+
             <button
                 class="private-close"
                 onclick="closePrivateSupport()"
@@ -871,7 +825,9 @@ header{
 
 <script>
 
-/* SUPABASE */
+/* =========================================
+   SUPABASE
+========================================= */
 
 const SUPABASE_URL =
 "https://hctppmmaiqkzcgxncyhi.supabase.co";
@@ -886,7 +842,9 @@ window.supabase.createClient(
 );
 
 
-/* DEAL ID */
+/* =========================================
+   DEAL ID
+========================================= */
 
 const params =
 new URLSearchParams(
@@ -894,12 +852,12 @@ new URLSearchParams(
 );
 
 const dealId =
-params.get("id")
-?.trim()
-.toUpperCase();
+params.get("id");
 
 
-/* VISITOR */
+/* =========================================
+   VISITOR ID
+========================================= */
 
 let visitorId =
 localStorage.getItem(
@@ -919,7 +877,9 @@ if(!visitorId){
 }
 
 
-/* NAME */
+/* =========================================
+   NAME
+========================================= */
 
 let senderName =
 localStorage.getItem(
@@ -948,7 +908,9 @@ if(!senderName){
 }
 
 
-/* ROLE */
+/* =========================================
+   ROLE
+========================================= */
 
 let myRole =
 localStorage.getItem(
@@ -957,13 +919,17 @@ localStorage.getItem(
 );
 
 
-/* PRIVATE */
+/* =========================================
+   PRIVATE CHANNEL
+========================================= */
 
 let privateSupportChannel =
 null;
 
 
-/* HELPERS */
+/* =========================================
+   HELPERS
+========================================= */
 
 function showError(message){
 
@@ -1033,7 +999,9 @@ function formatTime(date){
 function escapeHtml(text){
 
     const div =
-    document.createElement("div");
+    document.createElement(
+        "div"
+    );
 
     div.textContent =
     text ?? "";
@@ -1043,7 +1011,9 @@ function escapeHtml(text){
 }
 
 
-/* LOAD DEAL */
+/* =========================================
+   LOAD DEAL
+========================================= */
 
 async function loadDeal(){
 
@@ -1060,29 +1030,27 @@ async function loadDeal(){
 
     const result =
     await supabaseClient
-    .from("deals")
-    .select(`
-        id,
-        deal_code,
-        role,
-        name,
-        phone,
-        price,
-        description,
-        status
-    `)
-    .eq(
-        "deal_code",
-        dealId
-    )
-    .limit(1);
+        .from("deals")
+        .select(`
+            id,
+            deal_code,
+            role,
+            name,
+            phone,
+            price,
+            description,
+            status
+        `)
+        .eq(
+            "deal_code",
+            dealId
+        )
+        .limit(1);
 
 
     if(result.error){
 
-        console.error(
-            result.error
-        );
+        console.error(result.error);
 
         showError(
             "خطا در دریافت معامله: " +
@@ -1113,21 +1081,23 @@ async function loadDeal(){
 
 
     document
-    .getElementById("dealCode")
-    .textContent =
-    deal.deal_code || "---";
+        .getElementById("dealCode")
+        .textContent =
+        deal.deal_code || "---";
 
 
     document
-    .getElementById("dealPrice")
-    .textContent =
-    formatPrice(deal.price);
+        .getElementById("dealPrice")
+        .textContent =
+        formatPrice(
+            deal.price
+        );
 
 
     document
-    .getElementById("dealStatus")
-    .textContent =
-    deal.status || "در انتظار";
+        .getElementById("dealStatus")
+        .textContent =
+        deal.status || "در انتظار";
 
 
     return true;
@@ -1135,23 +1105,23 @@ async function loadDeal(){
 }
 
 
-/* PARTICIPANTS */
+/* =========================================
+   LOAD PARTICIPANTS
+========================================= */
 
 async function loadParticipants(){
 
     const result =
     await supabaseClient
-    .from("deal_participants")
-    .select("*")
-    .eq(
-        "deal_code",
-        dealId
-    );
+        .from("deal_participants")
+        .select("*")
+        .eq(
+            "deal_code",
+            dealId
+        );
 
 
     if(result.error){
-
-        console.error(result.error);
 
         showError(
             "دریافت اطلاعات طرفین انجام نشد: " +
@@ -1274,15 +1244,19 @@ async function loadParticipants(){
 
 
         document
-        .getElementById("myRole")
-        .textContent =
-        roleText(myRole);
+            .getElementById(
+                "myRole"
+            )
+            .textContent =
+            roleText(myRole);
 
 
         document
-        .getElementById("roleSelector")
-        .style.display =
-        "none";
+            .getElementById(
+                "roleSelector"
+            )
+            .style.display =
+            "none";
 
 
         return;
@@ -1300,28 +1274,24 @@ async function loadParticipants(){
     "block";
 
 
-    const buyerButton =
-    document.getElementById(
-        "buyerButton"
-    );
+    document
+        .getElementById(
+            "buyerButton"
+        )
+        .style.display =
+        buyer
+        ? "none"
+        : "block";
 
 
-    const sellerButton =
-    document.getElementById(
-        "sellerButton"
-    );
-
-
-    buyerButton.style.display =
-    buyer
-    ? "none"
-    : "block";
-
-
-    sellerButton.style.display =
-    seller
-    ? "none"
-    : "block";
+    document
+        .getElementById(
+            "sellerButton"
+        )
+        .style.display =
+        seller
+        ? "none"
+        : "block";
 
 
     const description =
@@ -1350,18 +1320,20 @@ async function loadParticipants(){
 }
 
 
-/* SELECT ROLE */
+/* =========================================
+   SELECT ROLE
+========================================= */
 
 async function selectRole(role){
 
     const check =
     await supabaseClient
-    .from("deal_participants")
-    .select("*")
-    .eq(
-        "deal_code",
-        dealId
-    );
+        .from("deal_participants")
+        .select("*")
+        .eq(
+            "deal_code",
+            dealId
+        );
 
 
     if(check.error){
@@ -1393,12 +1365,6 @@ async function selectRole(role){
         myRole =
         own.role;
 
-        localStorage.setItem(
-            "cod_mobile_role_" +
-            dealId,
-            myRole
-        );
-
         await loadParticipants();
 
         return;
@@ -1428,24 +1394,27 @@ async function selectRole(role){
 
     const insert =
     await supabaseClient
-    .from("deal_participants")
-    .insert({
+        .from("deal_participants")
+        .insert({
 
-        deal_code:dealId,
-        visitor_id:visitorId,
-        name:senderName,
-        role:role
+            deal_code:
+            dealId,
 
-    })
-    .select()
-    .single();
+            visitor_id:
+            visitorId,
+
+            name:
+            senderName,
+
+            role:
+            role
+
+        })
+        .select()
+        .single();
 
 
     if(insert.error){
-
-        console.error(
-            insert.error
-        );
 
         showError(
             "ثبت نقش انجام نشد: " +
@@ -1469,15 +1438,19 @@ async function selectRole(role){
 
 
     document
-    .getElementById("myRole")
-    .textContent =
-    roleText(role);
+        .getElementById(
+            "myRole"
+        )
+        .textContent =
+        roleText(role);
 
 
     document
-    .getElementById("roleSelector")
-    .style.display =
-    "none";
+        .getElementById(
+            "roleSelector"
+        )
+        .style.display =
+        "none";
 
 
     await loadParticipants();
@@ -1485,24 +1458,26 @@ async function selectRole(role){
 }
 
 
-/* PUBLIC MESSAGES */
+/* =========================================
+   LOAD MESSAGES
+========================================= */
 
 async function loadMessages(){
 
     const result =
     await supabaseClient
-    .from("messages")
-    .select("*")
-    .eq(
-        "deal_code",
-        dealId
-    )
-    .order(
-        "created_at",
-        {
-            ascending:true
-        }
-    );
+        .from("messages")
+        .select("*")
+        .eq(
+            "deal_code",
+            dealId
+        )
+        .order(
+            "created_at",
+            {
+                ascending:true
+            }
+        );
 
 
     if(result.error){
@@ -1550,6 +1525,10 @@ async function loadMessages(){
 }
 
 
+/* =========================================
+   RENDER MESSAGE
+========================================= */
+
 function renderMessage(message){
 
     const box =
@@ -1569,7 +1548,9 @@ function renderMessage(message){
 
 
     const div =
-    document.createElement("div");
+    document.createElement(
+        "div"
+    );
 
 
     div.className =
@@ -1581,7 +1562,9 @@ function renderMessage(message){
         visitorId
     ){
 
-        div.classList.add("me");
+        div.classList.add(
+            "me"
+        );
 
     }
 
@@ -1618,6 +1601,10 @@ function renderMessage(message){
 
 }
 
+
+/* =========================================
+   SEND MESSAGE
+========================================= */
 
 async function sendMessage(){
 
@@ -1658,18 +1645,27 @@ async function sendMessage(){
 
     const result =
     await supabaseClient
-    .from("messages")
-    .insert({
+        .from("messages")
+        .insert({
 
-        deal_code:dealId,
-        sender_name:senderName,
-        sender_role:myRole,
-        message:text,
-        visitor_id:visitorId
+            deal_code:
+            dealId,
 
-    })
-    .select()
-    .single();
+            sender_name:
+            senderName,
+
+            sender_role:
+            myRole,
+
+            message:
+            text,
+
+            visitor_id:
+            visitorId
+
+        })
+        .select()
+        .single();
 
 
     if(result.error){
@@ -1691,97 +1687,108 @@ async function sendMessage(){
     "";
 
 
-    if(result.data)
-        renderMessage(result.data);
+    if(result.data){
+
+        renderMessage(
+            result.data
+        );
+
+    }
 
 
     button.disabled =
     false;
-
 
     input.focus();
 
 }
 
 
-/* PUBLIC REALTIME */
+/* =========================================
+   CHAT REALTIME
+========================================= */
 
 function startChatRealtime(){
 
     supabaseClient
-    .channel(
-        "chat-" + dealId
-    )
-    .on(
-        "postgres_changes",
-        {
-            event:"INSERT",
-            schema:"public",
-            table:"messages",
-            filter:
-            "deal_code=eq." +
+        .channel(
+            "chat-" +
             dealId
-        },
-        payload => {
+        )
+        .on(
+            "postgres_changes",
+            {
+                event:"INSERT",
+                schema:"public",
+                table:"messages",
+                filter:
+                "deal_code=eq." +
+                dealId
+            },
+            payload => {
 
-            if(
-                payload.new.visitor_id !==
-                visitorId
-            ){
+                if(
+                    payload.new.visitor_id !==
+                    visitorId
+                ){
 
-                renderMessage(
-                    payload.new
-                );
+                    renderMessage(
+                        payload.new
+                    );
+
+                }
 
             }
-
-        }
-    )
-    .subscribe();
+        )
+        .subscribe();
 
 }
 
 
-/* PARTICIPANT REALTIME */
+/* =========================================
+   PARTICIPANT REALTIME
+========================================= */
 
 function startParticipantRealtime(){
 
     supabaseClient
-    .channel(
-        "participants-" +
-        dealId
-    )
-    .on(
-        "postgres_changes",
-        {
-            event:"INSERT",
-            schema:"public",
-            table:"deal_participants",
-            filter:
-            "deal_code=eq." +
+        .channel(
+            "participants-" +
             dealId
-        },
-        async () => {
+        )
+        .on(
+            "postgres_changes",
+            {
+                event:"INSERT",
+                schema:"public",
+                table:"deal_participants",
+                filter:
+                "deal_code=eq." +
+                dealId
+            },
+            async () => {
 
-            await loadParticipants();
+                await loadParticipants();
 
-        }
-    )
-    .subscribe();
+            }
+        )
+        .subscribe();
 
 }
 
 
-/* PRIVATE SUPPORT */
+/* =========================================
+   PRIVATE SUPPORT
+========================================= */
 
 function openPrivateSupport(){
 
     document
-    .getElementById(
-        "privateSupport"
-    )
-    .style.display =
-    "block";
+        .getElementById(
+            "privateSupport"
+        )
+        .style.display =
+        "block";
 
 
     loadPrivateSupport();
@@ -1794,11 +1801,11 @@ function openPrivateSupport(){
 function closePrivateSupport(){
 
     document
-    .getElementById(
-        "privateSupport"
-    )
-    .style.display =
-    "none";
+        .getElementById(
+            "privateSupport"
+        )
+        .style.display =
+        "none";
 
 
     if(privateSupportChannel){
@@ -1829,6 +1836,10 @@ function closePrivateOutside(event){
 }
 
 
+/* =========================================
+   LOAD PRIVATE SUPPORT
+========================================= */
+
 async function loadPrivateSupport(){
 
     const box =
@@ -1846,18 +1857,18 @@ async function loadPrivateSupport(){
 
     const result =
     await supabaseClient
-    .from("support_messages")
-    .select("*")
-    .eq(
-        "visitor_id",
-        visitorId
-    )
-    .order(
-        "created_at",
-        {
-            ascending:true
-        }
-    );
+        .from("support_messages")
+        .select("*")
+        .eq(
+            "visitor_id",
+            visitorId
+        )
+        .order(
+            "created_at",
+            {
+                ascending:true
+            }
+        );
 
 
     if(result.error){
@@ -1905,6 +1916,10 @@ async function loadPrivateSupport(){
 }
 
 
+/* =========================================
+   RENDER PRIVATE
+========================================= */
+
 function renderPrivateSupport(message){
 
     const box =
@@ -1924,7 +1939,9 @@ function renderPrivateSupport(message){
 
 
     const div =
-    document.createElement("div");
+    document.createElement(
+        "div"
+    );
 
 
     const isAdmin =
@@ -1944,30 +1961,24 @@ function renderPrivateSupport(message){
     div.innerHTML = `
 
         <div class="private-message-name">
-
             ${
                 isAdmin
                 ? "👑 مدیریت"
                 : "👤 شما"
             }
-
         </div>
 
         <div class="private-message-text">
-
             ${escapeHtml(
                 message.message ||
                 ""
             )}
-
         </div>
 
         <div class="private-message-time">
-
             ${formatTime(
                 message.created_at
             )}
-
         </div>
 
     `;
@@ -1980,6 +1991,10 @@ function renderPrivateSupport(message){
 
 }
 
+
+/* =========================================
+   SEND PRIVATE
+========================================= */
 
 async function sendPrivateSupport(){
 
@@ -2020,18 +2035,27 @@ async function sendPrivateSupport(){
 
     const result =
     await supabaseClient
-    .from("support_messages")
-    .insert({
+        .from("support_messages")
+        .insert({
 
-        visitor_id:visitorId,
-        deal_code:dealId,
-        sender_role:"user",
-        sender_name:senderName,
-        message:text
+            visitor_id:
+            visitorId,
 
-    })
-    .select()
-    .single();
+            deal_code:
+            dealId,
+
+            sender_role:
+            "user",
+
+            sender_name:
+            senderName,
+
+            message:
+            text
+
+        })
+        .select()
+        .single();
 
 
     if(result.error){
@@ -2053,20 +2077,26 @@ async function sendPrivateSupport(){
     "";
 
 
-    if(result.data)
+    if(result.data){
+
         renderPrivateSupport(
             result.data
         );
+
+    }
 
 
     button.disabled =
     false;
 
-
     input.focus();
 
 }
 
+
+/* =========================================
+   PRIVATE REALTIME
+========================================= */
 
 function startPrivateSupportRealtime(){
 
@@ -2081,89 +2111,103 @@ function startPrivateSupportRealtime(){
 
     privateSupportChannel =
     supabaseClient
-    .channel(
-        "private-support-" +
-        visitorId +
-        "-" +
-        dealId
-    )
-    .on(
-        "postgres_changes",
-        {
-            event:"INSERT",
-            schema:"public",
-            table:"support_messages",
-            filter:
-            "visitor_id=eq." +
-            visitorId
-        },
-        payload => {
+        .channel(
+            "private-support-" +
+            visitorId +
+            "-" +
+            dealId
+        )
+        .on(
+            "postgres_changes",
+            {
+                event:"INSERT",
+                schema:"public",
+                table:"support_messages",
+                filter:
+                "visitor_id=eq." +
+                visitorId
+            },
+            payload => {
 
-            if(
-                payload.new.sender_role ===
-                "admin"
-            ){
+                if(
+                    payload.new.sender_role ===
+                    "admin"
+                ){
 
-                renderPrivateSupport(
-                    payload.new
-                );
+                    renderPrivateSupport(
+                        payload.new
+                    );
+
+                }
 
             }
-
-        }
-    )
-    .subscribe();
+        )
+        .subscribe();
 
 }
 
 
-/* EVENTS */
+/* =========================================
+   EVENTS
+========================================= */
 
 document
-.getElementById("sendButton")
-.addEventListener(
-    "click",
-    sendMessage
-);
+    .getElementById(
+        "sendButton"
+    )
+    .addEventListener(
+        "click",
+        sendMessage
+    );
 
 
 document
-.getElementById("messageInput")
-.addEventListener(
-    "keydown",
-    function(event){
+    .getElementById(
+        "messageInput"
+    )
+    .addEventListener(
+        "keydown",
+        function(event){
 
-        if(event.key === "Enter"){
+            if(
+                event.key === "Enter"
+            ){
 
-            event.preventDefault();
+                event.preventDefault();
 
-            sendMessage();
+                sendMessage();
+
+            }
 
         }
-
-    }
-);
+    );
 
 
 document
-.getElementById("privateInput")
-.addEventListener(
-    "keydown",
-    function(event){
+    .getElementById(
+        "privateInput"
+    )
+    .addEventListener(
+        "keydown",
+        function(event){
 
-        if(event.key === "Enter"){
+            if(
+                event.key === "Enter"
+            ){
 
-            event.preventDefault();
+                event.preventDefault();
 
-            sendPrivateSupport();
+                sendPrivateSupport();
+
+            }
 
         }
-
-    }
-);
+    );
 
 
-/* START */
+/* =========================================
+   START
+========================================= */
 
 async function init(){
 
@@ -2203,3 +2247,4 @@ init();
 
 </body>
 </html>
+```
