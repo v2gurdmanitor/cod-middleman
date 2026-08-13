@@ -1,1 +1,430 @@
 
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>اتاق معامله | V2GUARD</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Tahoma, Arial, sans-serif;
+            background:
+                radial-gradient(circle at top right, #220808, transparent 35%),
+                #050505;
+            color: #fff;
+            min-height: 100vh;
+        }
+
+        header {
+            height: 70px;
+            padding: 0 6%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 1px solid #1d1d1d;
+            background: rgba(5,5,5,.85);
+        }
+
+        .logo {
+            font-size: 23px;
+            font-weight: 900;
+            letter-spacing: 2px;
+        }
+
+        .logo span {
+            color: #ff3030;
+        }
+
+        .deal-code {
+            color: #aaa;
+            font-size: 12px;
+        }
+
+        .deal-code strong {
+            color: #fff;
+        }
+
+        .container {
+            width: min(1100px, 94%);
+            margin: 30px auto;
+        }
+
+        .top {
+            display: grid;
+            grid-template-columns: 280px 1fr;
+            gap: 20px;
+        }
+
+        .panel {
+            background: rgba(255,255,255,.035);
+            border: 1px solid rgba(255,255,255,.08);
+            border-radius: 18px;
+            overflow: hidden;
+        }
+
+        .panel-title {
+            padding: 18px;
+            border-bottom: 1px solid #202020;
+            font-weight: bold;
+        }
+
+        .info {
+            padding: 18px;
+        }
+
+        .info-row {
+            margin-bottom: 18px;
+        }
+
+        .info-row small {
+            display: block;
+            color: #777;
+            margin-bottom: 6px;
+            font-size: 11px;
+        }
+
+        .info-row strong {
+            font-size: 14px;
+        }
+
+        .status {
+            display: inline-block;
+            padding: 7px 12px;
+            background: rgba(255,170,0,.1);
+            border: 1px solid rgba(255,170,0,.25);
+            color: #ffbf3f;
+            border-radius: 8px;
+            font-size: 11px;
+        }
+
+        .chat {
+            height: 620px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .messages {
+            flex: 1;
+            padding: 20px;
+            overflow-y: auto;
+        }
+
+        .message {
+            max-width: 75%;
+            margin-bottom: 15px;
+            padding: 12px 15px;
+            border-radius: 13px;
+            background: #151515;
+            border: 1px solid #252525;
+        }
+
+        .message.me {
+            margin-right: auto;
+            background: #291010;
+            border-color: rgba(255,48,48,.25);
+        }
+
+        .message .name {
+            color: #ff5959;
+            font-size: 11px;
+            margin-bottom: 7px;
+        }
+
+        .message p {
+            color: #ddd;
+            font-size: 13px;
+            line-height: 1.8;
+        }
+
+        .system {
+            text-align: center;
+            color: #777;
+            font-size: 11px;
+            margin: 20px 0;
+        }
+
+        .input-area {
+            padding: 15px;
+            border-top: 1px solid #202020;
+            display: flex;
+            gap: 10px;
+        }
+
+        .input-area input {
+            flex: 1;
+            background: #0c0c0c;
+            color: white;
+            border: 1px solid #292929;
+            border-radius: 11px;
+            padding: 13px;
+            outline: none;
+            font-family: inherit;
+        }
+
+        .input-area input:focus {
+            border-color: #ff3030;
+        }
+
+        .send {
+            width: 90px;
+            border: none;
+            border-radius: 11px;
+            background: #ff3030;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .actions {
+            margin-top: 20px;
+            display: flex;
+            gap: 10px;
+        }
+
+        .action {
+            flex: 1;
+            padding: 13px;
+            border-radius: 10px;
+            border: 1px solid #292929;
+            background: #111;
+            color: #ddd;
+            cursor: pointer;
+        }
+
+        .action:hover {
+            background: #191919;
+        }
+
+        .danger {
+            border-color: rgba(255,50,50,.3);
+            color: #ff6666;
+        }
+
+        @media(max-width: 800px) {
+            .top {
+                grid-template-columns: 1fr;
+            }
+
+            .chat {
+                height: 560px;
+            }
+
+            header {
+                padding: 0 4%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+
+    <div class="logo">
+        V2<span>GUARD</span>
+    </div>
+
+    <div class="deal-code">
+        کد معامله:
+        <strong id="dealCode">---</strong>
+    </div>
+
+</header>
+
+<div class="container">
+
+    <div class="top">
+
+        <!-- اطلاعات معامله -->
+
+        <div class="panel">
+
+            <div class="panel-title">
+                اطلاعات معامله
+            </div>
+
+            <div class="info">
+
+                <div class="info-row">
+                    <small>وضعیت</small>
+                    <span class="status">
+                        در انتظار توافق
+                    </span>
+                </div>
+
+                <div class="info-row">
+                    <small>نوع معامله</small>
+                    <strong>اکانت Call of Duty</strong>
+                </div>
+
+                <div class="info-row">
+                    <small>مبلغ</small>
+                    <strong id="dealPrice">در انتظار اطلاعات</strong>
+                </div>
+
+                <div class="info-row">
+                    <small>فروشنده</small>
+                    <strong id="seller">در انتظار ورود</strong>
+                </div>
+
+                <div class="info-row">
+                    <small>خریدار</small>
+                    <strong id="buyer">در انتظار ورود</strong>
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- چت -->
+
+        <div class="panel chat">
+
+            <div class="panel-title">
+                💬 اتاق گفت‌وگوی معامله
+            </div>
+
+            <div class="messages" id="messages">
+
+                <div class="system">
+                    این اتاق مخصوص همین معامله است.
+                </div>
+
+                <div class="message">
+
+                    <div class="name">
+                        V2GUARD
+                    </div>
+
+                    <p>
+                        به اتاق معامله خوش آمدید.
+                        لطفاً شرایط معامله را قبل از پرداخت به‌طور کامل بررسی کنید.
+                    </p>
+
+                </div>
+
+            </div>
+
+            <div class="input-area">
+
+                <input
+                    id="messageInput"
+                    type="text"
+                    placeholder="پیام خود را بنویسید..."
+                    autocomplete="off"
+                >
+
+                <button
+                    class="send"
+                    onclick="sendMessage()"
+                >
+                    ارسال
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <div class="actions">
+
+        <button class="action">
+            ✓ اعلام توافق
+        </button>
+
+        <button class="action">
+            💳 ثبت پرداخت
+        </button>
+
+        <button class="action danger">
+            ⚠ گزارش مشکل
+        </button>
+
+    </div>
+
+</div>
+
+
+<script>
+
+    // دریافت کد معامله از آدرس
+    const params = new URLSearchParams(window.location.search);
+
+    const dealId = params.get("id");
+
+    if (dealId) {
+        document.getElementById("dealCode").textContent = dealId;
+    } else {
+        document.getElementById("dealCode").textContent = "نامشخص";
+    }
+
+
+    // ارسال پیام آزمایشی
+    function sendMessage() {
+
+        const input = document.getElementById("messageInput");
+        const text = input.value.trim();
+
+        if (!text) return;
+
+        const messages = document.getElementById("messages");
+
+        const message = document.createElement("div");
+
+        message.className = "message me";
+
+        message.innerHTML = `
+            <div class="name">
+                شما
+            </div>
+
+            <p>
+                ${escapeHtml(text)}
+            </p>
+        `;
+
+        messages.appendChild(message);
+
+        input.value = "";
+
+        messages.scrollTop = messages.scrollHeight;
+    }
+
+
+    // جلوگیری از تزریق HTML داخل پیام
+    function escapeHtml(text) {
+
+        const div = document.createElement("div");
+
+        div.textContent = text;
+
+        return div.innerHTML;
+    }
+
+
+    // ارسال پیام با Enter
+    document
+        .getElementById("messageInput")
+        .addEventListener("keydown", function(event) {
+
+            if (event.key === "Enter") {
+                sendMessage();
+            }
+
+        });
+
+</script>
+
+</body>
+</html>
