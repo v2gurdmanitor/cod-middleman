@@ -128,18 +128,15 @@
             font-size: 15px;
             font-weight: bold;
             cursor: pointer;
-            transition: .2s;
         }
 
         .create-button:hover {
             background: #ff4444;
-            transform: translateY(-1px);
         }
 
         .create-button:disabled {
             opacity: .55;
             cursor: wait;
-            transform: none;
         }
 
         #result {
@@ -189,10 +186,6 @@
             border-radius: 9px;
             cursor: pointer;
             font-family: inherit;
-        }
-
-        .copy:hover {
-            background: #252525;
         }
 
         .open {
@@ -373,21 +366,15 @@
 
 <script>
 
-    /* ==============================
+    /* ============================
        SUPABASE
-    ============================== */
+    ============================ */
 
     const SUPABASE_URL =
+        "https://hctppmmaiqkzcgxncyhi.supabase.co";
+
+    const SUPABASE_KEY =
         "sb_publishable_wP43H8AKwtVcTUBwcEzTxg_qKdFxzNa";
-
-    /*
-       اینجا Publishable Key خودت را قرار بده.
-       Secret Key را قرار نده.
-    */
-
-   const SUPABASE_URL =
-    "https://hctppmmaiqkzcgxncyhi.supabase.co";
-
 
 
     const supabaseClient =
@@ -397,9 +384,9 @@
         );
 
 
-    /* ==============================
-       تولید کد معامله
-    ============================== */
+    /* ============================
+       ساخت کد معامله
+    ============================ */
 
     function generateDealCode() {
 
@@ -412,7 +399,8 @@
 
             code += characters.charAt(
                 Math.floor(
-                    Math.random() * characters.length
+                    Math.random() *
+                    characters.length
                 )
             );
 
@@ -422,9 +410,9 @@
     }
 
 
-    /* ==============================
+    /* ============================
        نمایش خطا
-    ============================== */
+    ============================ */
 
     function showError(message) {
 
@@ -445,212 +433,213 @@
     }
 
 
-    /* ==============================
+    /* ============================
        ایجاد معامله
-    ============================== */
+    ============================ */
 
     document
         .getElementById("createButton")
-        .addEventListener("click", async function () {
+        .addEventListener(
+            "click",
+            async function () {
 
-            hideError();
+                hideError();
 
-            const button = this;
+                const button = this;
 
-            const role =
-                document
-                    .getElementById("role")
-                    .value;
+                const role =
+                    document
+                        .getElementById("role")
+                        .value;
 
-            const name =
-                document
-                    .getElementById("name")
-                    .value
-                    .trim();
+                const name =
+                    document
+                        .getElementById("name")
+                        .value
+                        .trim();
 
-            const phone =
-                document
-                    .getElementById("phone")
-                    .value
-                    .trim();
+                const phone =
+                    document
+                        .getElementById("phone")
+                        .value
+                        .trim();
 
-            const price =
-                document
-                    .getElementById("price")
-                    .value
-                    .trim();
+                const price =
+                    document
+                        .getElementById("price")
+                        .value
+                        .trim();
 
-            const description =
-                document
-                    .getElementById("description")
-                    .value
-                    .trim();
-
-
-            if (!name || !phone || !price) {
-
-                showError(
-                    "لطفاً نام، شماره تماس و مبلغ معامله را وارد کنید."
-                );
-
-                return;
-            }
+                const description =
+                    document
+                        .getElementById("description")
+                        .value
+                        .trim();
 
 
-            button.disabled = true;
+                if (!name || !phone || !price) {
 
-            button.textContent =
-                "در حال ثبت معامله...";
-
-
-            try {
-
-                let dealCode;
-
-                let inserted = false;
-
-
-                /*
-                   در صورت برخورد اتفاقی کد تکراری،
-                   دوباره کد تولید می‌کنیم.
-                */
-
-                for (let attempt = 0; attempt < 5; attempt++) {
-
-                    dealCode =
-                        generateDealCode();
-
-
-                    const { error } =
-                        await supabaseClient
-                            .from("deals")
-                            .insert({
-
-                                deal_code: dealCode,
-
-                                role: role,
-
-                                name: name,
-
-                                phone: phone,
-
-                                price: Number(price),
-
-                                description:
-                                    description || null
-
-                            });
-
-
-                    if (!error) {
-
-                        inserted = true;
-
-                        break;
-                    }
-
-
-                    console.error(error);
-
-
-                    if (
-                        !error.message
-                            .toLowerCase()
-                            .includes("duplicate")
-                    ) {
-
-                        throw error;
-                    }
-                }
-
-
-                if (!inserted) {
-
-                    throw new Error(
-                        "ساخت کد یکتای معامله انجام نشد. دوباره تلاش کنید."
+                    showError(
+                        "لطفاً نام، شماره تماس و مبلغ معامله را وارد کنید."
                     );
+
+                    return;
                 }
 
 
-                /*
-                   ساخت لینک معامله
-                */
-
-                const dealLink =
-                    window.location.origin +
-                    window.location.pathname
-                        .replace(
-                            "create-deal.html",
-                            "deal.html"
-                        ) +
-                    "?id=" +
-                    encodeURIComponent(dealCode);
-
-
-                /*
-                   نمایش نتیجه
-                */
-
-                document
-                    .getElementById("dealCode")
-                    .textContent =
-                    dealCode;
-
-
-                document
-                    .getElementById("dealLink")
-                    .value =
-                    dealLink;
-
-
-                document
-                    .getElementById("openButton")
-                    .href =
-                    dealLink;
-
-
-                document
-                    .getElementById("result")
-                    .style.display =
-                    "block";
-
-
-                document
-                    .getElementById("result")
-                    .scrollIntoView({
-                        behavior: "smooth"
-                    });
-
-
-            } catch (error) {
-
-                console.error(
-                    "SUPABASE ERROR:",
-                    error
-                );
-
-
-                showError(
-                    "ثبت معامله انجام نشد: " +
-                    error.message
-                );
-
-
-            } finally {
-
-                button.disabled = false;
+                button.disabled = true;
 
                 button.textContent =
-                    "ایجاد اتاق معامله";
+                    "در حال ثبت معامله...";
+
+
+                try {
+
+                    let dealCode;
+
+                    let inserted = false;
+
+
+                    for (
+                        let attempt = 0;
+                        attempt < 5;
+                        attempt++
+                    ) {
+
+                        dealCode =
+                            generateDealCode();
+
+
+                        const { error } =
+                            await supabaseClient
+                                .from("deals")
+                                .insert({
+
+                                    deal_code:
+                                        dealCode,
+
+                                    role:
+                                        role,
+
+                                    name:
+                                        name,
+
+                                    phone:
+                                        phone,
+
+                                    price:
+                                        Number(price),
+
+                                    description:
+                                        description || null
+
+                                });
+
+
+                        if (!error) {
+
+                            inserted = true;
+
+                            break;
+                        }
+
+
+                        console.error(error);
+
+
+                        if (
+                            !error.message
+                                .toLowerCase()
+                                .includes("duplicate")
+                        ) {
+
+                            throw error;
+                        }
+
+                    }
+
+
+                    if (!inserted) {
+
+                        throw new Error(
+                            "ساخت کد یکتای معامله انجام نشد. دوباره تلاش کنید."
+                        );
+
+                    }
+
+
+                    const dealLink =
+                        window.location.origin +
+                        window.location.pathname
+                            .replace(
+                                "create-deal.html",
+                                "deal.html"
+                            ) +
+                        "?id=" +
+                        encodeURIComponent(
+                            dealCode
+                        );
+
+
+                    document
+                        .getElementById("dealCode")
+                        .textContent =
+                        dealCode;
+
+
+                    document
+                        .getElementById("dealLink")
+                        .value =
+                        dealLink;
+
+
+                    document
+                        .getElementById("openButton")
+                        .href =
+                        dealLink;
+
+
+                    document
+                        .getElementById("result")
+                        .style.display =
+                        "block";
+
+
+                    document
+                        .getElementById("result")
+                        .scrollIntoView({
+                            behavior: "smooth"
+                        });
+
+
+                } catch (error) {
+
+                    console.error(
+                        "SUPABASE ERROR:",
+                        error
+                    );
+
+                    showError(
+                        "ثبت معامله انجام نشد: " +
+                        error.message
+                    );
+
+                } finally {
+
+                    button.disabled = false;
+
+                    button.textContent =
+                        "ایجاد اتاق معامله";
+
+                }
 
             }
+        );
 
-        });
 
-
-    /* ==============================
+    /* ============================
        کپی لینک
-    ============================== */
+    ============================ */
 
     document
         .getElementById("copyButton")
@@ -690,6 +679,7 @@
                     alert(
                         "لینک انتخاب شد؛ آن را کپی کنید."
                     );
+
                 }
 
             }
