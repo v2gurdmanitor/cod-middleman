@@ -1,19 +1,14 @@
 <!DOCTYPE html>
 <html lang="fa" dir="rtl">
-
 <head>
-
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<meta name="viewport"
-content="width=device-width, initial-scale=1.0">
-
-<title>ایجاد معامله | V2GUARD</title>
+<title>ایجاد معامله | COD MOBILE</title>
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
 <style>
-
 *{
     box-sizing:border-box;
     margin:0;
@@ -23,13 +18,8 @@ content="width=device-width, initial-scale=1.0">
 body{
     font-family:Tahoma,Arial,sans-serif;
     background:
-    radial-gradient(
-        circle at top right,
-        #220808,
-        transparent 35%
-    ),
+    radial-gradient(circle at top right,#220808,transparent 35%),
     #050505;
-
     color:#fff;
     min-height:100vh;
 }
@@ -149,6 +139,18 @@ button:disabled{
     transform:none;
 }
 
+.error{
+    display:none;
+    margin-top:20px;
+    padding:15px;
+    border-radius:12px;
+    background:rgba(255,0,0,.08);
+    border:1px solid rgba(255,0,0,.25);
+    color:#ff7777;
+    font-size:12px;
+    line-height:1.8;
+}
+
 .result{
     display:none;
     margin-top:25px;
@@ -172,16 +174,10 @@ button:disabled{
     margin:15px 0;
 }
 
-.price-result{
-    text-align:center;
-    font-size:18px;
-    font-weight:bold;
-    margin:10px 0 20px;
-}
-
 .link-box{
     display:flex;
     gap:8px;
+    margin-top:10px;
 }
 
 .link-box input{
@@ -195,8 +191,8 @@ button:disabled{
     background:#222;
 }
 
-.copy-btn:hover{
-    background:#333;
+.open-btn{
+    margin-top:15px;
 }
 
 .back{
@@ -206,24 +202,6 @@ button:disabled{
     color:#777;
     text-decoration:none;
     font-size:13px;
-}
-
-.error{
-    display:none;
-    background:rgba(255,0,0,.08);
-    border:1px solid rgba(255,0,0,.25);
-    color:#ff7777;
-    padding:14px;
-    border-radius:12px;
-    margin-bottom:20px;
-    font-size:12px;
-    line-height:1.8;
-}
-
-.phone-help{
-    color:#666;
-    font-size:10px;
-    margin-top:7px;
 }
 
 @media(max-width:600px){
@@ -243,731 +221,620 @@ button:disabled{
     .copy-btn{
         width:100%;
     }
-
 }
-
 </style>
-
 </head>
-
 
 <body>
 
-
 <header>
-
-<div class="logo">
-
-V2<span>GUARD</span>
-
-</div>
-
+    <div class="logo">
+        COD <span>MOBILE</span>
+    </div>
 </header>
-
 
 <div class="container">
 
+    <div class="title">
+        <h1>ایجاد معامله</h1>
 
-<div class="title">
+        <p>
+            اطلاعات اولیه معامله را وارد کنید تا
+            اتاق اختصاصی برای شما ایجاد شود.
+        </p>
+    </div>
 
-<h1>
-ایجاد معامله
-</h1>
+    <div class="box">
 
-<p>
-اطلاعات اولیه معامله را وارد کنید تا
-اتاق اختصاصی برای شما ایجاد شود.
-</p>
+        <div class="notice">
+            ⚠️ اطلاعات ورود به اکانت را در این مرحله وارد نکنید.
+            این صفحه فقط برای ایجاد معامله و اتاق گفتگو است.
+        </div>
+
+        <div class="field">
+
+            <label>
+                نقش شما
+            </label>
+
+            <select id="role">
+
+                <option value="seller">
+                    فروشنده
+                </option>
+
+                <option value="buyer">
+                    خریدار
+                </option>
+
+            </select>
+
+        </div>
+
+        <div class="field">
+
+            <label>
+                نام یا شناسه شما
+            </label>
+
+            <input
+                id="name"
+                type="text"
+                placeholder="مثلاً Player"
+                autocomplete="name"
+            >
+
+        </div>
+
+        <div class="field">
+
+            <label>
+                شماره تماس
+            </label>
+
+            <input
+                id="phone"
+                type="tel"
+                inputmode="numeric"
+                maxlength="11"
+                placeholder="09xxxxxxxxx"
+            >
+
+        </div>
+
+        <div class="field">
+
+            <label>
+                مبلغ معامله (تومان)
+            </label>
+
+            <input
+                id="price"
+                type="number"
+                min="1"
+                placeholder="مثلاً 500000"
+            >
+
+        </div>
+
+        <div class="field">
+
+            <label>
+                توضیحات معامله
+            </label>
+
+            <textarea
+                id="description"
+                placeholder="توضیحات مربوط به معامله و شرایط آن..."
+            ></textarea>
+
+        </div>
+
+        <button
+            id="createButton"
+            onclick="createDeal()"
+        >
+            ایجاد اتاق معامله
+        </button>
+
+        <div
+            id="error"
+            class="error"
+        ></div>
+
+        <div
+            class="result"
+            id="result"
+        >
+
+            <h3>
+                ✅ معامله با موفقیت ایجاد شد
+            </h3>
+
+            <p>
+                کد معامله شما:
+            </p>
+
+            <div
+                class="deal-id"
+                id="dealId"
+            ></div>
+
+            <p style="color:#aaa;font-size:13px;line-height:1.8;">
+                مبلغ معامله:
+            </p>
+
+            <p
+                id="dealPrice"
+                style="color:#fff;font-weight:bold;margin:8px 0 15px;"
+            ></p>
+
+            <p style="color:#888;font-size:12px;">
+                لینک زیر را برای طرف مقابل ارسال کنید:
+            </p>
+
+            <div class="link-box">
+
+                <input
+                    id="dealLink"
+                    readonly
+                >
+
+                <button
+                    class="copy-btn"
+                    onclick="copyLink()"
+                >
+                    کپی
+                </button>
+
+            </div>
+
+            <button
+                class="open-btn"
+                onclick="openDeal()"
+            >
+                ورود به اتاق معامله
+            </button>
+
+        </div>
+
+        <a
+            href="index.html"
+            class="back"
+        >
+            ← بازگشت به صفحه اصلی
+        </a>
+
+    </div>
 
 </div>
-
-
-<div class="box">
-
-
-<div
-id="error"
-class="error">
-</div>
-
-
-<div class="notice">
-
-⚠️ اطلاعات ورود به اکانت را در این مرحله وارد نکنید.
-
-این صفحه فقط برای ایجاد معامله و ساخت اتاق گفتگو است.
-
-اطلاعات حساس حساب در مراحل بعدی و طبق روند معامله دریافت خواهد شد.
-
-</div>
-
-
-<!-- نقش -->
-
-<div class="field">
-
-<label>
-نقش شما
-</label>
-
-<select id="role">
-
-<option value="seller">
-فروشنده
-</option>
-
-<option value="buyer">
-خریدار
-</option>
-
-</select>
-
-</div>
-
-
-<!-- نام -->
-
-<div class="field">
-
-<label>
-نام یا شناسه شما
-</label>
-
-<input
-id="name"
-type="text"
-maxlength="50"
-placeholder="مثلاً V2GUARD"
->
-
-
-</div>
-
-
-<!-- تلفن -->
-
-<div class="field">
-
-<label>
-شماره تماس
-</label>
-
-<input
-id="phone"
-type="tel"
-inputmode="numeric"
-maxlength="11"
-placeholder="09xxxxxxxxx"
-autocomplete="tel"
->
-
-<div class="phone-help">
-
-شماره باید با 09 شروع شود و دقیقاً 11 رقم باشد.
-
-</div>
-
-</div>
-
-
-<!-- مبلغ -->
-
-<div class="field">
-
-<label>
-مبلغ معامله (تومان)
-</label>
-
-<input
-id="price"
-type="number"
-min="1"
-step="1"
-placeholder="مثلاً 500000"
->
-
-</div>
-
-
-<!-- توضیحات -->
-
-<div class="field">
-
-<label>
-توضیحات معامله
-</label>
-
-<textarea
-id="description"
-placeholder="توضیحات مربوط به اکانت و شرایط معامله..."
-></textarea>
-
-</div>
-
-
-<button
-id="createButton"
-onclick="createDeal()"
->
-
-ایجاد اتاق معامله
-
-</button>
-
-
-<!-- نتیجه -->
-
-<div
-class="result"
-id="result"
->
-
-
-<h3>
-✅ معامله با موفقیت ایجاد شد
-</h3>
-
-
-<p>
-کد معامله شما:
-</p>
-
-
-<div
-class="deal-id"
-id="dealId">
-</div>
-
-
-<div
-class="price-result"
-id="priceResult">
-</div>
-
-
-<p
-style="
-color:#888;
-font-size:12px;
-margin-bottom:10px;
-">
-
-لینک زیر را برای طرف مقابل ارسال کنید:
-
-</p>
-
-
-<div class="link-box">
-
-<input
-id="dealLink"
-readonly
->
-
-
-<button
-class="copy-btn"
-onclick="copyLink()"
->
-
-کپی
-
-</button>
-
-</div>
-
-
-<br>
-
-
-<button
-onclick="openDeal()"
->
-
-ورود به اتاق معامله
-
-</button>
-
-
-</div>
-
-
-<a
-href="index.html"
-class="back"
->
-
-← بازگشت به صفحه اصلی
-
-</a>
-
-
-</div>
-
-</div>
-
 
 <script>
 
-
-/* ==========================
-SUPABASE
-========================== */
-
+/* =========================
+   SUPABASE
+========================= */
 
 const SUPABASE_URL =
 "https://hctppmmaiqkzcgxncyhi.supabase.co";
 
-
 const SUPABASE_KEY =
 "sb_publishable_wP43H8AKwtVcTUBwcEzTxg_qKdFxzNa";
 
-
 const supabaseClient =
 window.supabase.createClient(
-SUPABASE_URL,
-SUPABASE_KEY
+    SUPABASE_URL,
+    SUPABASE_KEY
 );
 
 
-/* ==========================
-DEAL ID
-========================== */
+/* =========================
+   ساخت کد معامله
+========================= */
 
+function generateDealCode(){
 
-function generateDealId(){
+    const chars =
+    "ABCDEFGHJKLMNPQRSTUVWXYZ23456789";
 
-const chars =
-"ABCDEFGHJKLMNPQRSTUVWXYZ23456789";
+    let code = "COD-";
 
-let result =
-"V2G-";
+    for(let i = 0; i < 6; i++){
 
-for(
-let i=0;
-i<6;
-i++
-){
+        code += chars.charAt(
+            Math.floor(
+                Math.random() * chars.length
+            )
+        );
 
-result +=
-chars.charAt(
-Math.floor(
-Math.random() *
-chars.length
-)
-);
+    }
 
-}
-
-return result;
-
+    return code;
 }
 
 
-/* ==========================
-PHONE
-========================== */
-
-
-const phoneInput =
-document.getElementById(
-"phone"
-);
-
-
-phoneInput.addEventListener(
-"input",
-function(){
-
-let value =
-this.value.replace(
-/\D/g,
-""
-);
-
-
-if(
-value.length > 11
-){
-
-value =
-value.substring(
-0,
-11
-);
-
-}
-
-
-this.value =
-value;
-
-}
-);
-
-
-/* ==========================
-ERROR
-========================== */
-
+/* =========================
+   نمایش خطا
+========================= */
 
 function showError(message){
 
-const errorBox =
-document.getElementById(
-"error"
-);
+    const error =
+    document.getElementById("error");
 
-errorBox.textContent =
-message;
+    error.textContent = message;
 
-errorBox.style.display =
-"block";
+    error.style.display = "block";
+}
 
-errorBox.scrollIntoView({
-behavior:"smooth",
-block:"center"
-});
+
+/* =========================
+   حذف خطا
+========================= */
+
+function hideError(){
+
+    document.getElementById(
+        "error"
+    ).style.display = "none";
+}
+
+
+/* =========================
+   اعتبارسنجی شماره
+========================= */
+
+function validatePhone(phone){
+
+    return /^09\d{9}$/.test(phone);
 
 }
 
 
-/* ==========================
-CREATE DEAL
-========================== */
-
+/* =========================
+   ایجاد معامله
+========================= */
 
 async function createDeal(){
 
+    hideError();
 
-const button =
-document.getElementById(
-"createButton"
-);
+    const button =
+    document.getElementById(
+        "createButton"
+    );
 
+    const role =
+    document.getElementById(
+        "role"
+    ).value;
 
-const role =
-document.getElementById(
-"role"
-).value;
+    const name =
+    document.getElementById(
+        "name"
+    ).value.trim();
 
+    const phone =
+    document.getElementById(
+        "phone"
+    ).value.trim();
 
-const name =
-document.getElementById(
-"name"
-).value.trim();
+    const price =
+    document.getElementById(
+        "price"
+    ).value.trim();
 
-
-const phone =
-document.getElementById(
-"phone"
-).value.trim();
-
-
-const price =
-document.getElementById(
-"price"
-).value.trim();
-
-
-const description =
-document.getElementById(
-"description"
-).value.trim();
+    const description =
+    document.getElementById(
+        "description"
+    ).value.trim();
 
 
-/*
-پاک کردن خطای قبلی
-*/
+    if(!name){
 
-document
-.getElementById("error")
-.style.display =
-"none";
+        showError(
+            "لطفاً نام یا شناسه خود را وارد کنید."
+        );
+
+        return;
+    }
 
 
-/*
-بررسی نام
-*/
+    if(!validatePhone(phone)){
 
-if(!name){
+        showError(
+            "شماره تلفن باید با 09 شروع شود و دقیقاً 11 رقم باشد."
+        );
 
-showError(
-"لطفاً نام یا شناسه خود را وارد کنید."
-);
+        return;
+    }
 
-return;
+
+    if(!price || Number(price) <= 0){
+
+        showError(
+            "لطفاً مبلغ معتبر وارد کنید."
+        );
+
+        return;
+    }
+
+
+    button.disabled = true;
+
+    button.textContent =
+    "در حال ایجاد معامله...";
+
+
+    try{
+
+        let dealCode = null;
+
+
+        /* تولید کد یکتا */
+
+        for(let i = 0; i < 10; i++){
+
+            const candidate =
+            generateDealCode();
+
+            const check =
+            await supabaseClient
+            .from("deals")
+            .select("deal_code")
+            .eq(
+                "deal_code",
+                candidate
+            )
+            .maybeSingle();
+
+
+            if(check.error){
+
+                throw check.error;
+            }
+
+
+            if(!check.data){
+
+                dealCode =
+                candidate;
+
+                break;
+            }
+        }
+
+
+        if(!dealCode){
+
+            throw new Error(
+                "امکان ساخت کد معامله وجود ندارد."
+            );
+        }
+
+
+        /* ثبت در جدول deals */
+
+        const result =
+        await supabaseClient
+        .from("deals")
+        .insert({
+
+            deal_code: dealCode,
+
+            role: role,
+
+            name: name,
+
+            phone: phone,
+
+            price: Number(price),
+
+            description: description,
+
+            status: "در انتظار"
+
+        })
+        .select()
+        .single();
+
+
+        if(result.error){
+
+            console.error(
+                result.error
+            );
+
+            throw result.error;
+        }
+
+
+        const deal =
+        result.data;
+
+
+        /* ساخت لینک اتاق */
+
+        const dealLink =
+        window.location.origin +
+        window.location.pathname
+        .replace(
+            "create-deal.html",
+            "deal.html"
+        ) +
+        "?id=" +
+        encodeURIComponent(
+            deal.deal_code
+        );
+
+
+        /* نمایش اطلاعات */
+
+        document
+        .getElementById("dealId")
+        .textContent =
+        deal.deal_code;
+
+
+        document
+        .getElementById("dealPrice")
+        .textContent =
+        Number(
+            deal.price
+        ).toLocaleString("fa-IR")
+        + " تومان";
+
+
+        document
+        .getElementById("dealLink")
+        .value =
+        dealLink;
+
+
+        window.currentDealLink =
+        dealLink;
+
+
+        document
+        .getElementById("result")
+        .style.display =
+        "block";
+
+
+        document
+        .getElementById("result")
+        .scrollIntoView({
+            behavior:"smooth"
+        });
+
+
+    }catch(error){
+
+        console.error(
+            "CREATE DEAL ERROR:",
+            error
+        );
+
+        showError(
+            "ایجاد معامله انجام نشد: " +
+            (
+                error.message ||
+                "خطای نامشخص"
+            )
+        );
+
+    }finally{
+
+        button.disabled = false;
+
+        button.textContent =
+        "ایجاد اتاق معامله";
+
+    }
 
 }
 
 
-/*
-بررسی شماره
-*/
-
-const phoneRegex =
-/^09\d{9}$/;
-
-
-if(
-!phoneRegex.test(phone)
-){
-
-showError(
-"شماره تلفن باید با 09 شروع شود و دقیقاً 11 رقم باشد."
-);
-
-phoneInput.focus();
-
-return;
-
-}
-
-
-/*
-بررسی مبلغ
-*/
-
-if(
-!price ||
-Number(price) <= 0
-){
-
-showError(
-"لطفاً مبلغ معتبر معامله را وارد کنید."
-);
-
-return;
-
-}
-
-
-button.disabled =
-true;
-
-button.textContent =
-"در حال ایجاد معامله...";
-
-
-/*
-ساخت کد
-*/
-
-const dealId =
-generateDealId();
-
-
-/*
-ثبت در Supabase
-*/
-
-const result =
-await supabaseClient
-
-.from("deals")
-
-.insert({
-
-deal_code:
-dealId,
-
-role:
-role,
-
-name:
-name,
-
-phone:
-phone,
-
-price:
-Number(price),
-
-description:
-description,
-
-status:
-"در انتظار"
-
-})
-
-.select()
-.single();
-
-
-/*
-خطا
-*/
-
-if(result.error){
-
-console.error(
-result.error
-);
-
-showError(
-"ایجاد معامله انجام نشد: " +
-result.error.message
-);
-
-button.disabled =
-false;
-
-button.textContent =
-"ایجاد اتاق معامله";
-
-return;
-
-}
-
-
-/*
-لینک اتاق
-*/
-
-const dealLink =
-window.location.origin +
-
-window.location.pathname.replace(
-"create-deal.html",
-"deal.html"
-) +
-
-"?id=" +
-
-encodeURIComponent(
-dealId
-);
-
-
-/*
-نمایش نتیجه
-*/
-
-document
-.getElementById("dealId")
-.textContent =
-dealId;
-
-
-document
-.getElementById("priceResult")
-.textContent =
-Number(price)
-.toLocaleString("fa-IR")
-+
-" تومان";
-
-
-document
-.getElementById("dealLink")
-.value =
-dealLink;
-
-
-document
-.getElementById("result")
-.style.display =
-"block";
-
-
-/*
-ذخیره لینک
-*/
-
-window.currentDealLink =
-dealLink;
-
-
-/*
-اسکرول
-*/
-
-document
-.getElementById("result")
-.scrollIntoView({
-
-behavior:"smooth",
-
-block:"center"
-
-});
-
-
-button.disabled =
-false;
-
-button.textContent =
-"ایجاد اتاق معامله";
-
-}
-
-
-/* ==========================
-COPY
-========================== */
-
+/* =========================
+   کپی لینک
+========================= */
 
 async function copyLink(){
 
-const link =
-document.getElementById(
-"dealLink"
-).value;
+    const input =
+    document.getElementById(
+        "dealLink"
+    );
 
+    try{
 
-try{
+        await navigator.clipboard.writeText(
+            input.value
+        );
 
-await navigator.clipboard.writeText(
-link
-);
+        alert(
+            "✅ لینک معامله کپی شد."
+        );
 
-alert(
-"لینک معامله کپی شد."
-);
+    }catch(error){
 
-}catch(error){
+        input.select();
 
-const input =
-document.getElementById(
-"dealLink"
-);
+        document.execCommand(
+            "copy"
+        );
 
-input.select();
+        alert(
+            "✅ لینک معامله کپی شد."
+        );
 
-document.execCommand(
-"copy"
-);
-
-alert(
-"لینک معامله کپی شد."
-);
-
-}
-
+    }
 }
 
 
-/* ==========================
-OPEN DEAL
-========================== */
-
+/* =========================
+   ورود به اتاق
+========================= */
 
 function openDeal(){
 
-if(
-window.currentDealLink
-){
+    if(window.currentDealLink){
 
-window.location.href =
-window.currentDealLink;
+        window.location.href =
+        window.currentDealLink;
 
-}
+    }
 
 }
+
+
+/* =========================
+   فقط عدد برای شماره
+========================= */
+
+document
+.getElementById("phone")
+.addEventListener(
+    "input",
+    function(){
+
+        this.value =
+        this.value
+        .replace(
+            /[^0-9]/g,
+            ""
+        )
+        .slice(
+            0,
+            11
+        );
+
+    }
+);
+
+
+/* =========================
+   پشتیبانی از Enter
+========================= */
+
+document
+.getElementById("phone")
+.addEventListener(
+    "keydown",
+    function(event){
+
+        if(event.key === "Enter"){
+
+            event.preventDefault();
+
+            createDeal();
+
+        }
+
+    }
+);
 
 </script>
 
 </body>
-
 </html>
