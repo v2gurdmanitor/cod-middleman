@@ -1,13 +1,19 @@
-
 <!DOCTYPE html>
 <html lang="fa" dir="rtl">
+
 <head>
+
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
 
     <title>ایجاد معامله | V2GUARD</title>
 
     <style>
+
         * {
             box-sizing: border-box;
             margin: 0;
@@ -16,20 +22,23 @@
 
         body {
             font-family: Tahoma, Arial, sans-serif;
-            background:
-                radial-gradient(circle at top right, #1d0909, transparent 35%),
-                #050505;
-            color: #fff;
+            background: #050505;
+            color: white;
             min-height: 100vh;
         }
 
         header {
-            padding: 20px 7%;
-            border-bottom: 1px solid rgba(255,255,255,.08);
+            height: 70px;
+            padding: 0 7%;
+
+            display: flex;
+            align-items: center;
+
+            border-bottom: 1px solid #222;
         }
 
         .logo {
-            font-size: 23px;
+            font-size: 24px;
             font-weight: 900;
             letter-spacing: 2px;
         }
@@ -39,211 +48,630 @@
         }
 
         .container {
-            width: min(650px, 92%);
-            margin: 55px auto;
+            width: 92%;
+            max-width: 650px;
+
+            margin: 50px auto;
         }
 
-        .title {
+        h1 {
             text-align: center;
-            margin-bottom: 35px;
+            margin-bottom: 10px;
         }
 
-        .title h1 {
-            font-size: 34px;
-            margin-bottom: 12px;
-        }
-
-        .title p {
-            color: #888;
-            line-height: 1.8;
-            font-size: 14px;
+        .subtitle {
+            text-align: center;
+            color: #777;
+            font-size: 13px;
+            margin-bottom: 30px;
         }
 
         .box {
-            background: rgba(255,255,255,.035);
-            border: 1px solid rgba(255,255,255,.09);
-            border-radius: 20px;
-            padding: 30px;
-            box-shadow: 0 20px 70px rgba(0,0,0,.35);
+            background: #0d0d0d;
+
+            border: 1px solid #222;
+
+            border-radius: 18px;
+
+            padding: 25px;
         }
 
         .field {
-            margin-bottom: 22px;
+            margin-bottom: 20px;
         }
 
         label {
             display: block;
-            margin-bottom: 9px;
+
+            margin-bottom: 8px;
+
             font-size: 13px;
-            color: #ddd;
+
+            color: #ccc;
         }
 
         input,
-        textarea,
-        select {
+        select,
+        textarea {
+
             width: 100%;
-            background: #0d0d0d;
-            border: 1px solid #292929;
-            color: white;
+
             padding: 14px;
-            border-radius: 11px;
+
+            background: #050505;
+
+            color: white;
+
+            border: 1px solid #292929;
+
+            border-radius: 10px;
+
             outline: none;
+
             font-family: inherit;
-            transition: .2s;
+
         }
 
         input:focus,
-        textarea:focus,
-        select:focus {
+        select:focus,
+        textarea:focus {
             border-color: #ff3030;
-            box-shadow: 0 0 0 3px rgba(255,48,48,.08);
         }
 
         textarea {
-            min-height: 110px;
+            min-height: 100px;
             resize: vertical;
         }
 
         .notice {
-            background: rgba(255,48,48,.06);
+            background: rgba(255,48,48,.07);
+
             border: 1px solid rgba(255,48,48,.2);
+
             color: #aaa;
-            padding: 15px;
-            border-radius: 12px;
+
+            padding: 14px;
+
+            border-radius: 10px;
+
             font-size: 12px;
-            line-height: 1.9;
+
+            line-height: 1.8;
+
             margin-bottom: 25px;
         }
 
-        button {
+        .create-button {
+
             width: 100%;
-            border: none;
-            background: #ff3030;
-            color: white;
+
             padding: 16px;
-            border-radius: 12px;
+
+            border: none;
+
+            border-radius: 11px;
+
+            background: #ff3030;
+
+            color: white;
+
+            font-family: inherit;
+
             font-size: 15px;
+
             font-weight: bold;
+
             cursor: pointer;
-            transition: .25s;
+
         }
 
-        button:hover {
+        .create-button:hover {
             background: #ff4545;
-            transform: translateY(-2px);
-            box-shadow: 0 10px 30px rgba(255,48,48,.2);
+        }
+
+        /* نتیجه */
+
+        #result {
+
+            display: none;
+
+            margin-top: 25px;
+
+            padding: 20px;
+
+            background: rgba(60,255,100,.05);
+
+            border: 1px solid rgba(60,255,100,.25);
+
+            border-radius: 13px;
+
+        }
+
+        #result h3 {
+
+            color: #6dff82;
+
+            margin-bottom: 15px;
+
+        }
+
+        .deal-code {
+
+            direction: ltr;
+
+            text-align: center;
+
+            font-size: 24px;
+
+            font-weight: bold;
+
+            letter-spacing: 3px;
+
+            padding: 15px;
+
+            background: #080808;
+
+            border-radius: 10px;
+
+            margin: 15px 0;
+
+        }
+
+        .link {
+
+            direction: ltr;
+
+            width: 100%;
+
+            padding: 12px;
+
+            background: #050505;
+
+            border: 1px solid #222;
+
+            border-radius: 9px;
+
+            color: #aaa;
+
+            font-size: 11px;
+
+        }
+
+        .copy {
+
+            width: 100%;
+
+            margin-top: 10px;
+
+            padding: 12px;
+
+            background: #191919;
+
+            color: white;
+
+            border: 1px solid #333;
+
+            border-radius: 9px;
+
+            cursor: pointer;
+
+        }
+
+        .open {
+
+            display: block;
+
+            width: 100%;
+
+            margin-top: 10px;
+
+            padding: 13px;
+
+            text-align: center;
+
+            background: #ff3030;
+
+            color: white;
+
+            border-radius: 9px;
+
+            text-decoration: none;
+
+            font-size: 13px;
+
         }
 
         .back {
+
             display: block;
+
             text-align: center;
+
             margin-top: 20px;
-            color: #777;
+
+            color: #666;
+
             text-decoration: none;
-            font-size: 13px;
+
+            font-size: 12px;
+
         }
 
-        .back:hover {
-            color: #fff;
-        }
-
-        @media(max-width:600px) {
-            .container {
-                margin-top: 35px;
-            }
-
-            .box {
-                padding: 22px;
-            }
-
-            .title h1 {
-                font-size: 28px;
-            }
-        }
     </style>
+
 </head>
+
 
 <body>
 
+
 <header>
+
     <div class="logo">
+
         V2<span>GUARD</span>
+
     </div>
+
 </header>
+
 
 <div class="container">
 
-    <div class="title">
-        <h1>ایجاد معامله</h1>
 
-        <p>
-            اطلاعات اولیه معامله را وارد کنید تا
-            اتاق اختصاصی معامله ایجاد شود.
-        </p>
-    </div>
+    <h1>
+        ایجاد معامله
+    </h1>
+
+
+    <p class="subtitle">
+        اطلاعات معامله را وارد کنید
+    </p>
+
 
     <div class="box">
 
+
         <div class="notice">
-            ⚠️ توجه: اطلاعات ورود به اکانت را در این مرحله وارد نکنید.
-            اطلاعات حساس فقط در مرحله انتقال و پس از تأیید معامله مدیریت خواهد شد.
+
+            ⚠️ در این مرحله فقط اطلاعات اولیه معامله را
+            وارد کنید. اطلاعات حساس ورود به اکانت را وارد نکنید.
+
         </div>
 
-        <div class="field">
-            <label>نقش شما</label>
 
-            <select>
-                <option value="seller">فروشنده</option>
-                <option value="buyer">خریدار</option>
+        <!-- نقش -->
+
+        <div class="field">
+
+            <label>
+                نقش شما
+            </label>
+
+            <select id="role">
+
+                <option value="seller">
+                    فروشنده
+                </option>
+
+                <option value="buyer">
+                    خریدار
+                </option>
+
             </select>
+
         </div>
 
+
+        <!-- نام -->
+
         <div class="field">
-            <label>نام یا شناسه شما</label>
+
+            <label>
+                نام یا شناسه
+            </label>
 
             <input
+                id="name"
                 type="text"
-                placeholder="مثلاً V2GUARD"
+                placeholder="نام شما"
             >
+
         </div>
 
+
+        <!-- شماره -->
+
         <div class="field">
-            <label>شماره تماس</label>
+
+            <label>
+                شماره تماس
+            </label>
 
             <input
+                id="phone"
                 type="tel"
                 placeholder="09xxxxxxxxx"
             >
+
         </div>
 
+
+        <!-- مبلغ -->
+
         <div class="field">
-            <label>مبلغ معامله (تومان)</label>
+
+            <label>
+                مبلغ معامله (تومان)
+            </label>
 
             <input
+                id="price"
                 type="number"
                 placeholder="مثلاً 500000"
             >
+
         </div>
+
+
+        <!-- توضیحات -->
 
         <div class="field">
-            <label>توضیحات معامله</label>
+
+            <label>
+                توضیحات معامله
+            </label>
 
             <textarea
-                placeholder="توضیحات مربوط به اکانت و شرایط معامله..."
+                id="description"
+                placeholder="توضیحات مربوط به اکانت..."
             ></textarea>
+
         </div>
 
-        <button type="button">
+
+        <!-- دکمه -->
+
+        <button
+            type="button"
+            class="create-button"
+            id="createButton"
+        >
             ایجاد اتاق معامله
         </button>
 
-        <a href="index.html" class="back">
-            ← بازگشت به صفحه اصلی
+
+        <!-- RESULT -->
+
+        <div id="result">
+
+            <h3>
+                ✅ معامله ایجاد شد
+            </h3>
+
+            <div>
+                کد معامله:
+            </div>
+
+
+            <div
+                class="deal-code"
+                id="dealCode"
+            >
+                ---
+            </div>
+
+
+            <div>
+                لینک معامله:
+            </div>
+
+
+            <input
+                class="link"
+                id="dealLink"
+                readonly
+            >
+
+
+            <button
+                type="button"
+                class="copy"
+                id="copyButton"
+            >
+                📋 کپی لینک
+            </button>
+
+
+            <a
+                id="openButton"
+                class="open"
+                href="#"
+            >
+                ورود به اتاق معامله
+            </a>
+
+        </div>
+
+
+        <a
+            href="index.html"
+            class="back"
+        >
+            ← بازگشت
         </a>
+
 
     </div>
 
+
 </div>
 
+
+<script>
+
+    document
+        .getElementById("createButton")
+        .addEventListener("click", function () {
+
+
+            const name =
+                document
+                .getElementById("name")
+                .value
+                .trim();
+
+
+            const phone =
+                document
+                .getElementById("phone")
+                .value
+                .trim();
+
+
+            const price =
+                document
+                .getElementById("price")
+                .value
+                .trim();
+
+
+            /*
+             بررسی اطلاعات ضروری
+            */
+
+            if (
+                name === "" ||
+                phone === "" ||
+                price === ""
+            ) {
+
+                alert(
+                    "لطفاً نام، شماره تماس و مبلغ معامله را وارد کنید."
+                );
+
+                return;
+
+            }
+
+
+            /*
+             ساخت کد معامله
+            */
+
+            const characters =
+                "ABCDEFGHJKLMNPQRSTUVWXYZ23456789";
+
+
+            let code = "V2G-";
+
+
+            for (
+                let i = 0;
+                i < 6;
+                i++
+            ) {
+
+                code +=
+                    characters[
+                        Math.floor(
+                            Math.random() *
+                            characters.length
+                        )
+                    ];
+
+            }
+
+
+            /*
+             ساخت لینک اتاق
+            */
+
+            const dealLink =
+                window.location.origin +
+                window.location.pathname
+                    .replace(
+                        "create-deal.html",
+                        "deal.html"
+                    ) +
+                "?id=" +
+                code;
+
+
+            /*
+             نمایش نتیجه
+            */
+
+            document
+                .getElementById("dealCode")
+                .textContent = code;
+
+
+            document
+                .getElementById("dealLink")
+                .value = dealLink;
+
+
+            document
+                .getElementById("openButton")
+                .href = dealLink;
+
+
+            document
+                .getElementById("result")
+                .style.display = "block";
+
+
+            /*
+             رفتن به نتیجه
+            */
+
+            document
+                .getElementById("result")
+                .scrollIntoView({
+                    behavior: "smooth"
+                });
+
+        });
+
+
+    /*
+     کپی لینک
+    */
+
+    document
+        .getElementById("copyButton")
+        .addEventListener("click", function () {
+
+
+            const link =
+                document
+                .getElementById("dealLink")
+                .value;
+
+
+            navigator.clipboard
+                .writeText(link)
+                .then(function () {
+
+                    alert(
+                        "لینک معامله کپی شد."
+                    );
+
+                })
+                .catch(function () {
+
+                    alert(
+                        "کپی خودکار انجام نشد."
+                    );
+
+                });
+
+        });
+
+</script>
+
+
 </body>
+
 </html>
