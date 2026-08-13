@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="fa" dir="rtl">
-
 <head>
 
 <meta charset="UTF-8">
@@ -18,14 +17,19 @@
     padding:0;
 }
 
+html{
+    scroll-behavior:smooth;
+}
+
 body{
     font-family:Tahoma,Arial,sans-serif;
     background:
-        radial-gradient(circle at 85% 10%,rgba(255,40,40,.14),transparent 30%),
-        radial-gradient(circle at 10% 90%,rgba(255,40,40,.07),transparent 30%),
+        radial-gradient(circle at 85% 5%,rgba(255,30,30,.18),transparent 30%),
+        radial-gradient(circle at 10% 80%,rgba(255,30,30,.07),transparent 30%),
         #050505;
     color:#fff;
     min-height:100vh;
+    overflow-x:hidden;
 }
 
 button,
@@ -34,6 +38,157 @@ textarea,
 select{
     font-family:inherit;
 }
+
+
+/* =====================================================
+   INTRO
+===================================================== */
+
+#intro{
+    position:fixed;
+    inset:0;
+    background:#030303;
+    z-index:100000;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    overflow:hidden;
+    transition:1s;
+}
+
+.intro-bg{
+    position:absolute;
+    inset:0;
+    background:
+        radial-gradient(circle at center,
+        rgba(255,40,40,.20),
+        transparent 30%);
+    animation:introPulse 2.5s infinite;
+}
+
+.intro-lines{
+    position:absolute;
+    inset:0;
+    opacity:.15;
+    background:
+        linear-gradient(
+            transparent 95%,
+            rgba(255,255,255,.08) 96%
+        );
+    background-size:100% 7px;
+    animation:scan 8s linear infinite;
+}
+
+.intro-content{
+    position:relative;
+    text-align:center;
+    animation:introEnter 1.4s ease;
+}
+
+.intro-logo{
+    font-size:52px;
+    font-weight:900;
+    letter-spacing:7px;
+    text-shadow:
+        0 0 20px rgba(255,0,0,.5);
+}
+
+.intro-logo span{
+    color:#ff3030;
+}
+
+.intro-sub{
+    margin-top:15px;
+    color:#777;
+    font-size:12px;
+    letter-spacing:3px;
+}
+
+.intro-line{
+    width:0;
+    height:2px;
+    background:#ff3030;
+    margin:25px auto;
+    box-shadow:0 0 20px #ff3030;
+    animation:introLine 1.8s .4s forwards;
+}
+
+.intro-loading{
+    color:#555;
+    font-size:10px;
+    letter-spacing:2px;
+    opacity:0;
+    animation:fadeIn 1s 1.2s forwards;
+}
+
+@keyframes introEnter{
+
+    from{
+        opacity:0;
+        transform:scale(.8) translateY(25px);
+        filter:blur(10px);
+    }
+
+    to{
+        opacity:1;
+        transform:scale(1) translateY(0);
+        filter:blur(0);
+    }
+
+}
+
+@keyframes introLine{
+
+    to{
+        width:180px;
+    }
+
+}
+
+@keyframes introPulse{
+
+    0%,100%{
+        transform:scale(1);
+        opacity:.5;
+    }
+
+    50%{
+        transform:scale(1.3);
+        opacity:1;
+    }
+
+}
+
+@keyframes scan{
+
+    from{
+        transform:translateY(0);
+    }
+
+    to{
+        transform:translateY(100px);
+    }
+
+}
+
+@keyframes fadeIn{
+
+    to{
+        opacity:1;
+    }
+
+}
+
+.intro-hide{
+    opacity:0;
+    visibility:hidden;
+    pointer-events:none;
+}
+
+
+/* =====================================================
+   HEADER
+===================================================== */
 
 header{
     height:72px;
@@ -44,8 +199,8 @@ header{
     justify-content:space-between;
     position:sticky;
     top:0;
-    background:rgba(5,5,5,.92);
-    backdrop-filter:blur(12px);
+    background:rgba(5,5,5,.88);
+    backdrop-filter:blur(15px);
     z-index:100;
 }
 
@@ -64,38 +219,100 @@ header{
     font-size:10px;
 }
 
+
+/* =====================================================
+   CONTAINER
+===================================================== */
+
 .container{
     width:92%;
     max-width:1050px;
     margin:auto;
 }
 
-/* HERO */
+
+/* =====================================================
+   HERO
+===================================================== */
 
 .hero{
     text-align:center;
-    padding:75px 10px 45px;
+    padding:85px 10px 45px;
+}
+
+.hero-badge{
+    display:inline-block;
+    padding:8px 14px;
+    border:1px solid rgba(255,48,48,.3);
+    background:rgba(255,48,48,.06);
+    color:#ff6666;
+    border-radius:30px;
+    font-size:10px;
+    margin-bottom:22px;
 }
 
 .hero h1{
-    font-size:42px;
+    font-size:45px;
     font-weight:900;
+    line-height:1.4;
     margin-bottom:18px;
 }
 
 .hero h1 span{
     color:#ff3030;
+    text-shadow:0 0 25px rgba(255,0,0,.25);
 }
 
 .hero p{
-    max-width:650px;
+    max-width:700px;
     margin:auto;
     color:#888;
     font-size:14px;
-    line-height:2;
+    line-height:2.2;
 }
 
-/* BUTTONS */
+
+/* =====================================================
+   EXPERIENCE
+===================================================== */
+
+.experience{
+    max-width:650px;
+    margin:30px auto 45px;
+    padding:22px;
+    border:1px solid #252525;
+    border-radius:18px;
+    background:
+        linear-gradient(
+            135deg,
+            rgba(255,48,48,.07),
+            rgba(255,255,255,.02)
+        );
+    text-align:center;
+}
+
+.experience-number{
+    font-size:32px;
+    font-weight:900;
+    color:#ff3030;
+}
+
+.experience-title{
+    margin-top:7px;
+    font-size:14px;
+    font-weight:bold;
+}
+
+.experience-text{
+    color:#777;
+    font-size:11px;
+    margin-top:7px;
+}
+
+
+/* =====================================================
+   ACTIONS
+===================================================== */
 
 .actions{
     display:grid;
@@ -114,7 +331,7 @@ header{
     cursor:pointer;
     font-size:14px;
     font-weight:bold;
-    transition:.2s;
+    transition:.25s;
 }
 
 .btn:hover{
@@ -125,47 +342,119 @@ header{
 .btn.primary{
     background:#ff3030;
     border-color:#ff3030;
+    box-shadow:0 8px 30px rgba(255,0,0,.15);
 }
 
 .btn.primary:hover{
     background:#ff4545;
 }
 
-/* CARDS */
 
-.cards{
+/* =====================================================
+   HOW IT WORKS
+===================================================== */
+
+.section-title{
+    text-align:center;
+    margin:70px 0 25px;
+}
+
+.section-title h2{
+    font-size:25px;
+    margin-bottom:10px;
+}
+
+.section-title p{
+    color:#666;
+    font-size:11px;
+}
+
+.steps{
     display:grid;
     grid-template-columns:repeat(3,1fr);
     gap:15px;
-    margin:40px 0;
 }
 
-.card{
+.step{
+    position:relative;
     background:#0d0d0d;
     border:1px solid #222;
     border-radius:18px;
     padding:25px;
+    overflow:hidden;
+    transition:.25s;
 }
 
-.card-icon{
-    font-size:28px;
-    margin-bottom:15px;
+.step:hover{
+    transform:translateY(-5px);
+    border-color:#3a1717;
 }
 
-.card h3{
+.step-number{
+    font-size:40px;
+    font-weight:900;
+    color:rgba(255,48,48,.2);
+    position:absolute;
+    top:10px;
+    left:15px;
+}
+
+.step-icon{
+    font-size:30px;
+    margin-bottom:18px;
+}
+
+.step h3{
     font-size:15px;
     margin-bottom:10px;
 }
 
-.card p{
+.step p{
     color:#777;
     font-size:11px;
     line-height:2;
 }
 
-/* DEAL BOX */
 
-.deal-box{
+/* =====================================================
+   FEE
+===================================================== */
+
+.fee{
+    margin:45px auto;
+    max-width:700px;
+    padding:25px;
+    border-radius:18px;
+    border:1px solid rgba(255,48,48,.22);
+    background:rgba(255,48,48,.045);
+    text-align:center;
+}
+
+.fee h2{
+    font-size:19px;
+    margin-bottom:12px;
+}
+
+.fee-main{
+    color:#ff5555;
+    font-size:25px;
+    font-weight:900;
+}
+
+.fee p{
+    color:#888;
+    font-size:11px;
+    line-height:2;
+    margin-top:8px;
+}
+
+
+/* =====================================================
+   DEAL BOX
+===================================================== */
+
+.deal-box,
+.enter-box{
     display:none;
     background:#0d0d0d;
     border:1px solid #242424;
@@ -175,7 +464,8 @@ header{
     max-width:650px;
 }
 
-.deal-box h2{
+.deal-box h2,
+.enter-box h2{
     font-size:20px;
     margin-bottom:20px;
 }
@@ -203,15 +493,15 @@ header{
     outline:none;
 }
 
-.field textarea{
-    min-height:90px;
-    resize:vertical;
-}
-
 .field input:focus,
 .field textarea:focus,
 .field select:focus{
     border-color:#ff3030;
+}
+
+.field textarea{
+    min-height:90px;
+    resize:vertical;
 }
 
 .create-result{
@@ -244,23 +534,10 @@ header{
     font-size:10px;
 }
 
-/* ENTER */
 
-.enter-box{
-    display:none;
-    background:#0d0d0d;
-    border:1px solid #242424;
-    border-radius:20px;
-    padding:25px;
-    margin:30px auto;
-    max-width:650px;
-}
-
-.enter-box h2{
-    margin-bottom:20px;
-}
-
-/* SUPPORT */
+/* =====================================================
+   SUPPORT
+===================================================== */
 
 #supportButton{
     position:fixed;
@@ -277,10 +554,6 @@ header{
     cursor:pointer;
     z-index:9999;
     box-shadow:0 12px 40px rgba(255,0,0,.35);
-}
-
-#supportButton:hover{
-    transform:scale(1.08);
 }
 
 #supportBox{
@@ -411,32 +684,42 @@ header{
     border:0;
     border-radius:9px;
     cursor:pointer;
-    font-weight:bold;
 }
 
-/* FOOTER */
+
+/* =====================================================
+   FOOTER
+===================================================== */
 
 footer{
     text-align:center;
     color:#555;
     font-size:10px;
-    padding:50px 10px 30px;
+    padding:60px 10px 30px;
 }
 
-/* MOBILE */
+
+/* =====================================================
+   MOBILE
+===================================================== */
 
 @media(max-width:700px){
+
+    .hero{
+        padding-top:60px;
+    }
 
     .hero h1{
         font-size:32px;
     }
 
-    .actions{
+    .actions,
+    .steps{
         grid-template-columns:1fr;
     }
 
-    .cards{
-        grid-template-columns:1fr;
+    .intro-logo{
+        font-size:36px;
     }
 
 }
@@ -447,14 +730,62 @@ footer{
 
 <body>
 
+
+<!-- =====================================================
+     INTRO
+===================================================== -->
+
+<div id="intro">
+
+    <div class="intro-bg"></div>
+
+    <div class="intro-lines"></div>
+
+    <div class="intro-content">
+
+        <div class="intro-logo">
+
+            COD
+            <span>MOBILE</span>
+
+        </div>
+
+        <div class="intro-sub">
+
+            SECURE DEAL SYSTEM
+
+        </div>
+
+        <div class="intro-line"></div>
+
+        <div class="intro-loading">
+
+            SECURE CONNECTION...
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- =====================================================
+     HEADER
+===================================================== -->
+
 <header>
 
     <div class="logo">
-        COD <span>MOBILE</span>
+
+        COD
+        <span>MOBILE</span>
+
     </div>
 
     <div class="header-status">
+
         ● سیستم فعال
+
     </div>
 
 </header>
@@ -463,21 +794,66 @@ footer{
 <main class="container">
 
 
+<!-- =====================================================
+     HERO
+===================================================== -->
+
 <section class="hero">
 
+    <div class="hero-badge">
+
+        🔐 محیط اختصاصی معاملات
+
+    </div>
+
     <h1>
-        معامله <span>امن</span>
+
+        معامله
+        <span>امن و مطمئن</span>
+
     </h1>
 
     <p>
-        محیط اختصاصی برای هماهنگی خریدار و فروشنده،
-        همراه با اتاق معامله و پشتیبانی مستقیم مدیر.
+
+        فروشنده یا خریدار می‌تواند معامله را ایجاد کند.
+        پس از ایجاد معامله، لینک یا کد معامله را برای طرف مقابل ارسال کنید
+        تا وارد همان اتاق اختصاصی شود و مراحل معامله را دنبال کنید.
+
     </p>
 
 </section>
 
 
-<!-- ACTIONS -->
+<!-- =====================================================
+     EXPERIENCE
+===================================================== -->
+
+<section class="experience">
+
+    <div class="experience-number">
+
+        ۷ سال
+
+    </div>
+
+    <div class="experience-title">
+
+        سابقه کاری
+
+    </div>
+
+    <div class="experience-text">
+
+        تجربه، اعتماد و همراهی در مسیر معاملات
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     ACTIONS
+===================================================== -->
 
 <section class="actions">
 
@@ -485,7 +861,9 @@ footer{
         class="btn primary"
         onclick="showCreate()"
     >
+
         ➕ ایجاد معامله
+
     </button>
 
 
@@ -493,13 +871,149 @@ footer{
         class="btn"
         onclick="showEnter()"
     >
+
         🚪 ورود به اتاق معامله
+
     </button>
 
 </section>
 
 
-<!-- CREATE DEAL -->
+<!-- =====================================================
+     HOW IT WORKS
+===================================================== -->
+
+<section>
+
+    <div class="section-title">
+
+        <h2>
+            معامله چطور انجام می‌شود؟
+        </h2>
+
+        <p>
+            فقط سه مرحله تا ورود به اتاق معامله
+        </p>
+
+    </div>
+
+
+    <div class="steps">
+
+
+        <div class="step">
+
+            <div class="step-number">
+                01
+            </div>
+
+            <div class="step-icon">
+                📝
+            </div>
+
+            <h3>
+                ایجاد معامله
+            </h3>
+
+            <p>
+
+                خریدار یا فروشنده اطلاعات اولیه معامله
+                را وارد می‌کند و یک اتاق اختصاصی
+                برای معامله ساخته می‌شود.
+
+            </p>
+
+        </div>
+
+
+        <div class="step">
+
+            <div class="step-number">
+                02
+            </div>
+
+            <div class="step-icon">
+                🔗
+            </div>
+
+            <h3>
+                ارسال لینک یا کد
+            </h3>
+
+            <p>
+
+                ایجادکننده معامله، لینک یا کد معامله
+                را برای طرف مقابل ارسال می‌کند.
+
+            </p>
+
+        </div>
+
+
+        <div class="step">
+
+            <div class="step-number">
+                03
+            </div>
+
+            <div class="step-icon">
+                🚪
+            </div>
+
+            <h3>
+                ورود به اتاق
+            </h3>
+
+            <p>
+
+                طرف مقابل با استفاده از لینک یا وارد کردن
+                کد معامله وارد همان اتاق اختصاصی می‌شود.
+
+            </p>
+
+        </div>
+
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     FEE
+===================================================== -->
+
+<section class="fee">
+
+    <h2>
+        💰 حق واسط معامله
+    </h2>
+
+    <div class="fee-main">
+
+        ۱۰۰,۰۰۰ تومان
+
+    </div>
+
+    <p>
+
+        مبلغ حق واسط برای هر معامله ۱۰۰ هزار تومان است؛
+        این مبلغ به صورت نصف‌نصف بین دو طرف تقسیم می‌شود:
+        <br>
+        <b style="color:#fff;">
+            ۵۰,۰۰۰ تومان خریدار
+            +
+            ۵۰,۰۰۰ تومان فروشنده
+        </b>
+
+    </p>
+
+</section>
+
+
+<!-- =====================================================
+     CREATE
+===================================================== -->
 
 <section
     id="createBox"
@@ -540,7 +1054,7 @@ footer{
 
         <input
             id="createName"
-            placeholder="مثلاً player123"
+            placeholder="نام یا شناسه شما"
         >
 
     </div>
@@ -580,12 +1094,12 @@ footer{
     <div class="field">
 
         <label>
-            توضیحات
+            توضیحات معامله
         </label>
 
         <textarea
             id="createDescription"
-            placeholder="توضیحات معامله..."
+            placeholder="توضیحات مربوط به معامله..."
         ></textarea>
 
     </div>
@@ -596,7 +1110,9 @@ footer{
         style="width:100%"
         onclick="createDeal()"
     >
+
         ایجاد اتاق معامله
+
     </button>
 
 
@@ -606,7 +1122,7 @@ footer{
     >
 
         <b>
-            ✅ معامله با موفقیت ایجاد شد
+            ✅ معامله ایجاد شد
         </b>
 
 
@@ -628,7 +1144,9 @@ footer{
             style="width:100%;margin-top:12px"
             onclick="copyCreatedLink()"
         >
-            📋 کپی لینک
+
+            📋 کپی لینک معامله
+
         </button>
 
 
@@ -637,7 +1155,9 @@ footer{
             style="width:100%;margin-top:8px"
             onclick="openCreatedDeal()"
         >
-            ورود به اتاق
+
+            🚪 ورود به اتاق معامله
+
         </button>
 
     </div>
@@ -645,7 +1165,9 @@ footer{
 </section>
 
 
-<!-- ENTER DEAL -->
+<!-- =====================================================
+     ENTER
+===================================================== -->
 
 <section
     id="enterBox"
@@ -677,69 +1199,10 @@ footer{
         style="width:100%"
         onclick="enterDeal()"
     >
+
         ورود به اتاق
+
     </button>
-
-</section>
-
-
-<!-- CARDS -->
-
-<section class="cards">
-
-
-    <div class="card">
-
-        <div class="card-icon">
-            🔐
-        </div>
-
-        <h3>
-            اتاق اختصاصی
-        </h3>
-
-        <p>
-            هر معامله یک اتاق اختصاصی برای
-            خریدار و فروشنده دارد.
-        </p>
-
-    </div>
-
-
-    <div class="card">
-
-        <div class="card-icon">
-            💬
-        </div>
-
-        <h3>
-            گفت‌وگوی معامله
-        </h3>
-
-        <p>
-            طرفین می‌توانند داخل اتاق
-            درباره معامله گفتگو کنند.
-        </p>
-
-    </div>
-
-
-    <div class="card">
-
-        <div class="card-icon">
-            👑
-        </div>
-
-        <h3>
-            پشتیبانی مدیر
-        </h3>
-
-        <p>
-            برای ارتباط مستقیم با مدیریت
-            از چت پشتیبانی استفاده کنید.
-        </p>
-
-    </div>
 
 </section>
 
@@ -754,9 +1217,9 @@ footer{
 </footer>
 
 
-<!-- =========================
-     SUPPORT BUTTON
-========================= -->
+<!-- =====================================================
+     SUPPORT
+===================================================== -->
 
 <div
     id="supportButton"
@@ -765,10 +1228,6 @@ footer{
     💬
 </div>
 
-
-<!-- =========================
-     SUPPORT BOX
-========================= -->
 
 <div id="supportBox">
 
@@ -792,7 +1251,9 @@ footer{
             class="close-support"
             onclick="closeSupport()"
         >
+
             ✕
+
         </button>
 
     </div>
@@ -801,7 +1262,9 @@ footer{
     <div id="supportMessages">
 
         <div class="support-empty">
+
             هنوز پیامی ارسال نشده است.
+
         </div>
 
     </div>
@@ -820,7 +1283,9 @@ footer{
             id="supportSend"
             onclick="sendSupportMessage()"
         >
+
             ارسال
+
         </button>
 
     </div>
@@ -829,6 +1294,30 @@ footer{
 
 
 <script>
+
+/* =====================================================
+   INTRO
+===================================================== */
+
+window.addEventListener(
+    "load",
+    function(){
+
+        setTimeout(
+            function(){
+
+                document
+                .getElementById("intro")
+                .classList
+                .add("intro-hide");
+
+            },
+            2800
+        );
+
+    }
+);
+
 
 /* =====================================================
    SUPABASE
@@ -856,6 +1345,7 @@ localStorage.getItem(
     "cod_mobile_visitor_id"
 );
 
+
 if(!visitorId){
 
     visitorId =
@@ -870,46 +1360,32 @@ if(!visitorId){
 
 
 /* =====================================================
-   SUPPORT NAME
-===================================================== */
-
-let supportName =
-localStorage.getItem(
-    "cod_mobile_support_name"
-);
-
-if(!supportName){
-
-    supportName =
-    "کاربر";
-
-}
-
-
-/* =====================================================
    UI
 ===================================================== */
 
-function hideAll(){
+function hideBoxes(){
 
     document
     .getElementById("createBox")
-    .style.display="none";
+    .style.display =
+    "none";
 
     document
     .getElementById("enterBox")
-    .style.display="none";
+    .style.display =
+    "none";
 
 }
 
 
 function showCreate(){
 
-    hideAll();
+    hideBoxes();
 
     document
     .getElementById("createBox")
-    .style.display="block";
+    .style.display =
+    "block";
 
     document
     .getElementById("createBox")
@@ -922,11 +1398,12 @@ function showCreate(){
 
 function showEnter(){
 
-    hideAll();
+    hideBoxes();
 
     document
     .getElementById("enterBox")
-    .style.display="block";
+    .style.display =
+    "block";
 
     document
     .getElementById("enterBox")
@@ -938,7 +1415,7 @@ function showEnter(){
 
 
 /* =====================================================
-   DEAL ID
+   DEAL CODE
 ===================================================== */
 
 function generateDealId(){
@@ -1110,33 +1587,22 @@ async function createDeal(){
 
 
     document
-    .getElementById(
-        "createdCode"
-    )
+    .getElementById("createdCode")
     .textContent =
     dealCode;
 
 
     document
-    .getElementById(
-        "createdLink"
-    )
+    .getElementById("createdLink")
     .value =
     dealLink;
 
 
     document
-    .getElementById(
-        "createResult"
-    )
+    .getElementById("createResult")
     .style.display =
     "block";
 
-
-    /*
-       نقش سازنده معامله را
-       برای ورود بعدی ذخیره می‌کنیم.
-    */
 
     localStorage.setItem(
         "v2guard_role_" +
@@ -1150,10 +1616,6 @@ async function createDeal(){
         name
     );
 
-
-    /*
-       ثبت شخص در معامله
-    */
 
     const participant =
     await db
@@ -1178,7 +1640,6 @@ async function createDeal(){
     if(participant.error){
 
         console.warn(
-            "Participant:",
             participant.error
         );
 
@@ -1188,15 +1649,17 @@ async function createDeal(){
 
 
 /* =====================================================
-   COPY
+   COPY LINK
 ===================================================== */
 
 async function copyCreatedLink(){
 
-    const input =
-    document.getElementById(
+    const link =
+    document
+    .getElementById(
         "createdLink"
-    );
+    )
+    .value;
 
 
     try{
@@ -1204,14 +1667,20 @@ async function copyCreatedLink(){
         await navigator
         .clipboard
         .writeText(
-            input.value
+            link
         );
 
         alert(
-            "لینک کپی شد."
+            "لینک معامله کپی شد."
         );
 
     }catch{
+
+        const input =
+        document
+        .getElementById(
+            "createdLink"
+        );
 
         input.select();
 
@@ -1220,7 +1689,7 @@ async function copyCreatedLink(){
         );
 
         alert(
-            "لینک کپی شد."
+            "لینک معامله کپی شد."
         );
 
     }
@@ -1229,7 +1698,7 @@ async function copyCreatedLink(){
 
 
 /* =====================================================
-   OPEN CREATED DEAL
+   OPEN DEAL
 ===================================================== */
 
 function openCreatedDeal(){
@@ -1328,7 +1797,7 @@ async function enterDeal(){
 
 
 /* =====================================================
-   SUPPORT
+   SUPPORT OPEN
 ===================================================== */
 
 document
@@ -1365,7 +1834,7 @@ function closeSupport(){
 
 
 /* =====================================================
-   LOAD SUPPORT
+   SUPPORT LOAD
 ===================================================== */
 
 async function loadSupportMessages(){
@@ -1394,15 +1863,15 @@ async function loadSupportMessages(){
 
     if(result.error){
 
-        console.error(
-            result.error
-        );
-
         box.innerHTML = `
             <div class="support-empty">
                 خطا در دریافت پیام‌ها
             </div>
         `;
+
+        console.error(
+            result.error
+        );
 
         return;
 
@@ -1440,7 +1909,7 @@ async function loadSupportMessages(){
 
 
 /* =====================================================
-   RENDER SUPPORT
+   SUPPORT RENDER
 ===================================================== */
 
 function renderSupportMessage(message){
@@ -1483,6 +1952,7 @@ function renderSupportMessage(message){
 
         </div>
 
+
         <div class="support-text">
 
             ${escapeHtml(
@@ -1490,6 +1960,7 @@ function renderSupportMessage(message){
             )}
 
         </div>
+
 
         <div class="support-time">
 
@@ -1522,7 +1993,7 @@ function renderSupportMessage(message){
 
 
 /* =====================================================
-   SEND SUPPORT
+   SUPPORT SEND
 ===================================================== */
 
 async function sendSupportMessage(){
@@ -1563,7 +2034,7 @@ async function sendSupportMessage(){
         "user",
 
         sender_name:
-        supportName,
+        "کاربر",
 
         message:
         text
@@ -1574,10 +2045,6 @@ async function sendSupportMessage(){
 
 
     if(result.error){
-
-        console.error(
-            result.error
-        );
 
         alert(
             "ارسال پیام انجام نشد:\n" +
@@ -1606,9 +2073,6 @@ async function sendSupportMessage(){
 
     button.disabled =
     false;
-
-
-    input.focus();
 
 }
 
@@ -1641,7 +2105,7 @@ document
 
 
 /* =====================================================
-   REALTIME SUPPORT
+   SUPPORT REALTIME
 ===================================================== */
 
 db
@@ -1690,7 +2154,6 @@ function scrollSupport(){
     document.getElementById(
         "supportMessages"
     );
-
 
     box.scrollTop =
     box.scrollHeight;
