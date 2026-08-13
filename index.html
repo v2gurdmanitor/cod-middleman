@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html lang="fa" dir="rtl">
+
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
 
-<title>COD MOBILE</title>
+<title>COD MOBILE | معامله امن</title>
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
@@ -19,26 +21,36 @@
 body{
     font-family:Tahoma,Arial,sans-serif;
     background:
-        radial-gradient(circle at top right,rgba(255,48,48,.12),transparent 35%),
+        radial-gradient(circle at 85% 10%,rgba(255,40,40,.14),transparent 30%),
+        radial-gradient(circle at 10% 90%,rgba(255,40,40,.07),transparent 30%),
         #050505;
     color:#fff;
     min-height:100vh;
 }
 
-/* =========================
-   HEADER
-========================= */
+button,
+input,
+textarea,
+select{
+    font-family:inherit;
+}
 
 header{
-    height:70px;
+    height:72px;
     padding:0 7%;
+    border-bottom:1px solid #202020;
     display:flex;
     align-items:center;
-    border-bottom:1px solid #222;
+    justify-content:space-between;
+    position:sticky;
+    top:0;
+    background:rgba(5,5,5,.92);
+    backdrop-filter:blur(12px);
+    z-index:100;
 }
 
 .logo{
-    font-size:23px;
+    font-size:22px;
     font-weight:900;
     letter-spacing:2px;
 }
@@ -47,438 +59,699 @@ header{
     color:#ff3030;
 }
 
-
-/* =========================
-   CONTENT
-========================= */
+.header-status{
+    color:#62ff82;
+    font-size:10px;
+}
 
 .container{
     width:92%;
-    max-width:1000px;
-    margin:60px auto;
-    text-align:center;
+    max-width:1050px;
+    margin:auto;
 }
 
-.container h1{
-    font-size:35px;
+/* HERO */
+
+.hero{
+    text-align:center;
+    padding:75px 10px 45px;
+}
+
+.hero h1{
+    font-size:42px;
+    font-weight:900;
+    margin-bottom:18px;
+}
+
+.hero h1 span{
+    color:#ff3030;
+}
+
+.hero p{
+    max-width:650px;
+    margin:auto;
+    color:#888;
+    font-size:14px;
+    line-height:2;
+}
+
+/* BUTTONS */
+
+.actions{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:15px;
+    max-width:700px;
+    margin:35px auto;
+}
+
+.btn{
+    border:1px solid #292929;
+    background:#101010;
+    color:#fff;
+    padding:18px;
+    border-radius:14px;
+    cursor:pointer;
+    font-size:14px;
+    font-weight:bold;
+    transition:.2s;
+}
+
+.btn:hover{
+    transform:translateY(-3px);
+    border-color:#ff3030;
+}
+
+.btn.primary{
+    background:#ff3030;
+    border-color:#ff3030;
+}
+
+.btn.primary:hover{
+    background:#ff4545;
+}
+
+/* CARDS */
+
+.cards{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:15px;
+    margin:40px 0;
+}
+
+.card{
+    background:#0d0d0d;
+    border:1px solid #222;
+    border-radius:18px;
+    padding:25px;
+}
+
+.card-icon{
+    font-size:28px;
     margin-bottom:15px;
 }
 
-.container p{
-    color:#777;
-    line-height:2;
-    font-size:13px;
+.card h3{
+    font-size:15px;
+    margin-bottom:10px;
 }
 
+.card p{
+    color:#777;
+    font-size:11px;
+    line-height:2;
+}
 
-/* =========================
-   SUPPORT BUTTON
-========================= */
+/* DEAL BOX */
+
+.deal-box{
+    display:none;
+    background:#0d0d0d;
+    border:1px solid #242424;
+    border-radius:20px;
+    padding:25px;
+    margin:30px auto;
+    max-width:650px;
+}
+
+.deal-box h2{
+    font-size:20px;
+    margin-bottom:20px;
+}
+
+.field{
+    margin-bottom:17px;
+}
+
+.field label{
+    display:block;
+    color:#bbb;
+    font-size:11px;
+    margin-bottom:7px;
+}
+
+.field input,
+.field textarea,
+.field select{
+    width:100%;
+    background:#070707;
+    border:1px solid #292929;
+    color:#fff;
+    border-radius:10px;
+    padding:13px;
+    outline:none;
+}
+
+.field textarea{
+    min-height:90px;
+    resize:vertical;
+}
+
+.field input:focus,
+.field textarea:focus,
+.field select:focus{
+    border-color:#ff3030;
+}
+
+.create-result{
+    display:none;
+    margin-top:20px;
+    padding:18px;
+    border-radius:13px;
+    background:rgba(60,255,100,.05);
+    border:1px solid rgba(60,255,100,.2);
+}
+
+.deal-code{
+    direction:ltr;
+    text-align:center;
+    font-size:23px;
+    font-weight:bold;
+    margin:15px 0;
+    letter-spacing:2px;
+    color:#6dff82;
+}
+
+.link{
+    direction:ltr;
+    width:100%;
+    background:#070707;
+    color:#aaa;
+    border:1px solid #222;
+    padding:10px;
+    border-radius:8px;
+    font-size:10px;
+}
+
+/* ENTER */
+
+.enter-box{
+    display:none;
+    background:#0d0d0d;
+    border:1px solid #242424;
+    border-radius:20px;
+    padding:25px;
+    margin:30px auto;
+    max-width:650px;
+}
+
+.enter-box h2{
+    margin-bottom:20px;
+}
+
+/* SUPPORT */
 
 #supportButton{
-
     position:fixed;
-
-    bottom:22px;
     right:22px;
-
+    bottom:22px;
     width:60px;
     height:60px;
-
     border-radius:50%;
-
     background:#ff3030;
-
     display:flex;
     align-items:center;
     justify-content:center;
-
     font-size:25px;
-
     cursor:pointer;
-
     z-index:9999;
-
-    box-shadow:
-        0 10px 35px
-        rgba(255,0,0,.35);
-
-    transition:.2s;
-
+    box-shadow:0 12px 40px rgba(255,0,0,.35);
 }
 
 #supportButton:hover{
-
     transform:scale(1.08);
-
-    background:#ff4545;
-
 }
-
-
-/* =========================
-   SUPPORT BOX
-========================= */
 
 #supportBox{
-
     display:none;
-
     position:fixed;
-
     right:22px;
     bottom:95px;
-
     width:360px;
-
-    max-width:
-        calc(100vw - 44px);
-
+    max-width:calc(100vw - 40px);
     height:520px;
-
     background:#0d0d0d;
-
-    border:
-        1px solid #292929;
-
+    border:1px solid #292929;
     border-radius:20px;
-
     z-index:9998;
-
     overflow:hidden;
-
-    box-shadow:
-        0 25px 80px
-        rgba(0,0,0,.7);
-
+    box-shadow:0 25px 80px rgba(0,0,0,.7);
 }
-
-
-/* =========================
-   SUPPORT HEADER
-========================= */
 
 .support-header{
-
     height:70px;
-
-    padding:
-        0 16px;
-
-    border-bottom:
-        1px solid #222;
-
+    padding:0 15px;
+    border-bottom:1px solid #222;
     display:flex;
-
-    align-items:center;
-
     justify-content:space-between;
-
+    align-items:center;
 }
-
 
 .support-title{
-
-    font-size:14px;
-
     font-weight:bold;
-
+    font-size:14px;
 }
-
 
 .support-online{
-
     color:#62ff82;
-
     font-size:9px;
-
     margin-top:5px;
-
 }
-
 
 .close-support{
-
     background:#222;
-
     border:0;
-
-    color:#fff;
-
-    border-radius:8px;
-
+    color:white;
     padding:8px 11px;
-
+    border-radius:8px;
     cursor:pointer;
-
 }
-
-
-/* =========================
-   MESSAGES
-========================= */
 
 #supportMessages{
-
     height:390px;
-
     overflow-y:auto;
-
     padding:15px;
-
 }
-
 
 .support-empty{
-
     text-align:center;
-
     color:#555;
-
     padding-top:160px;
-
     font-size:11px;
-
 }
-
-
-/* =========================
-   MESSAGE
-========================= */
 
 .support-message{
-
     max-width:84%;
-
-    padding:
-        10px 12px;
-
+    padding:10px 12px;
     border-radius:12px;
-
     margin-bottom:10px;
-
     background:#171717;
-
-    border:
-        1px solid #242424;
-
+    border:1px solid #242424;
 }
-
 
 .support-message.user{
-
     margin-left:auto;
-
 }
-
 
 .support-message.admin{
-
     margin-right:auto;
-
     background:#2b1010;
-
     border-color:#652020;
-
 }
 
-
-.support-message-name{
-
+.support-name{
     font-size:10px;
-
-    margin-bottom:5px;
-
     font-weight:bold;
-
+    margin-bottom:5px;
 }
 
-
-.support-message.user
-.support-message-name{
-
+.support-message.user .support-name{
     color:#ff5555;
-
 }
 
-
-.support-message.admin
-.support-message-name{
-
+.support-message.admin .support-name{
     color:#ffcf5a;
-
 }
 
-
-.support-message-text{
-
+.support-text{
     font-size:12px;
-
     line-height:1.8;
-
     word-break:break-word;
-
 }
 
-
-.support-message-time{
-
+.support-time{
     color:#555;
-
     font-size:8px;
-
-    margin-top:6px;
-
+    margin-top:5px;
 }
-
-
-/* =========================
-   SEND
-========================= */
 
 .support-send{
-
     height:60px;
-
     padding:10px;
-
-    border-top:
-        1px solid #222;
-
+    border-top:1px solid #222;
     display:flex;
-
     gap:8px;
-
 }
-
 
 #supportInput{
-
     flex:1;
-
     background:#070707;
-
-    border:
-        1px solid #292929;
-
-    color:#fff;
-
-    padding:11px;
-
-    border-radius:10px;
-
+    color:white;
+    border:1px solid #292929;
+    border-radius:9px;
+    padding:10px;
     outline:none;
-
-    font-family:inherit;
-
-    font-size:12px;
-
 }
 
-
-#supportInput:focus{
-
-    border-color:
-        #ff3030;
-
-}
-
-
-#supportSendButton{
-
+#supportSend{
     width:70px;
-
-    border:0;
-
-    border-radius:10px;
-
     background:#ff3030;
-
-    color:#fff;
-
-    font-family:inherit;
-
-    font-weight:bold;
-
+    color:white;
+    border:0;
+    border-radius:9px;
     cursor:pointer;
-
+    font-weight:bold;
 }
 
+/* FOOTER */
 
-#supportSendButton:hover{
-
-    background:#ff4545;
-
+footer{
+    text-align:center;
+    color:#555;
+    font-size:10px;
+    padding:50px 10px 30px;
 }
 
+/* MOBILE */
 
-#supportSendButton:disabled{
+@media(max-width:700px){
 
-    opacity:.5;
-
-    cursor:not-allowed;
-
-}
-
-
-/* =========================
-   MOBILE
-========================= */
-
-@media(max-width:500px){
-
-    #supportBox{
-
-        right:10px;
-
-        bottom:85px;
-
-        width:
-            calc(100vw - 20px);
-
-        height:520px;
-
+    .hero h1{
+        font-size:32px;
     }
 
-    #supportMessages{
+    .actions{
+        grid-template-columns:1fr;
+    }
 
-        height:390px;
-
+    .cards{
+        grid-template-columns:1fr;
     }
 
 }
 
 </style>
+
 </head>
 
-
 <body>
-
 
 <header>
 
     <div class="logo">
+        COD <span>MOBILE</span>
+    </div>
 
-        COD
-        <span>MOBILE</span>
-
+    <div class="header-status">
+        ● سیستم فعال
     </div>
 
 </header>
 
 
-<div class="container">
+<main class="container">
+
+
+<section class="hero">
 
     <h1>
-        COD MOBILE
+        معامله <span>امن</span>
     </h1>
 
     <p>
-        برای دریافت راهنمایی و ارتباط با مدیریت،
-        از دکمه پشتیبانی استفاده کنید.
+        محیط اختصاصی برای هماهنگی خریدار و فروشنده،
+        همراه با اتاق معامله و پشتیبانی مستقیم مدیر.
     </p>
 
-</div>
+</section>
+
+
+<!-- ACTIONS -->
+
+<section class="actions">
+
+    <button
+        class="btn primary"
+        onclick="showCreate()"
+    >
+        ➕ ایجاد معامله
+    </button>
+
+
+    <button
+        class="btn"
+        onclick="showEnter()"
+    >
+        🚪 ورود به اتاق معامله
+    </button>
+
+</section>
+
+
+<!-- CREATE DEAL -->
+
+<section
+    id="createBox"
+    class="deal-box"
+>
+
+    <h2>
+        ایجاد معامله
+    </h2>
+
+
+    <div class="field">
+
+        <label>
+            نقش شما
+        </label>
+
+        <select id="createRole">
+
+            <option value="seller">
+                فروشنده
+            </option>
+
+            <option value="buyer">
+                خریدار
+            </option>
+
+        </select>
+
+    </div>
+
+
+    <div class="field">
+
+        <label>
+            نام یا شناسه
+        </label>
+
+        <input
+            id="createName"
+            placeholder="مثلاً player123"
+        >
+
+    </div>
+
+
+    <div class="field">
+
+        <label>
+            شماره تلفن
+        </label>
+
+        <input
+            id="createPhone"
+            type="tel"
+            maxlength="11"
+            placeholder="09xxxxxxxxx"
+        >
+
+    </div>
+
+
+    <div class="field">
+
+        <label>
+            مبلغ معامله
+        </label>
+
+        <input
+            id="createPrice"
+            type="number"
+            placeholder="مثلاً 500000"
+        >
+
+    </div>
+
+
+    <div class="field">
+
+        <label>
+            توضیحات
+        </label>
+
+        <textarea
+            id="createDescription"
+            placeholder="توضیحات معامله..."
+        ></textarea>
+
+    </div>
+
+
+    <button
+        class="btn primary"
+        style="width:100%"
+        onclick="createDeal()"
+    >
+        ایجاد اتاق معامله
+    </button>
+
+
+    <div
+        id="createResult"
+        class="create-result"
+    >
+
+        <b>
+            ✅ معامله با موفقیت ایجاد شد
+        </b>
+
+
+        <div
+            id="createdCode"
+            class="deal-code"
+        ></div>
+
+
+        <input
+            id="createdLink"
+            class="link"
+            readonly
+        >
+
+
+        <button
+            class="btn"
+            style="width:100%;margin-top:12px"
+            onclick="copyCreatedLink()"
+        >
+            📋 کپی لینک
+        </button>
+
+
+        <button
+            class="btn primary"
+            style="width:100%;margin-top:8px"
+            onclick="openCreatedDeal()"
+        >
+            ورود به اتاق
+        </button>
+
+    </div>
+
+</section>
+
+
+<!-- ENTER DEAL -->
+
+<section
+    id="enterBox"
+    class="enter-box"
+>
+
+    <h2>
+        ورود به اتاق معامله
+    </h2>
+
+
+    <div class="field">
+
+        <label>
+            کد معامله
+        </label>
+
+        <input
+            id="enterCode"
+            placeholder="مثلاً V2G-ABC123"
+            style="direction:ltr"
+        >
+
+    </div>
+
+
+    <button
+        class="btn primary"
+        style="width:100%"
+        onclick="enterDeal()"
+    >
+        ورود به اتاق
+    </button>
+
+</section>
+
+
+<!-- CARDS -->
+
+<section class="cards">
+
+
+    <div class="card">
+
+        <div class="card-icon">
+            🔐
+        </div>
+
+        <h3>
+            اتاق اختصاصی
+        </h3>
+
+        <p>
+            هر معامله یک اتاق اختصاصی برای
+            خریدار و فروشنده دارد.
+        </p>
+
+    </div>
+
+
+    <div class="card">
+
+        <div class="card-icon">
+            💬
+        </div>
+
+        <h3>
+            گفت‌وگوی معامله
+        </h3>
+
+        <p>
+            طرفین می‌توانند داخل اتاق
+            درباره معامله گفتگو کنند.
+        </p>
+
+    </div>
+
+
+    <div class="card">
+
+        <div class="card-icon">
+            👑
+        </div>
+
+        <h3>
+            پشتیبانی مدیر
+        </h3>
+
+        <p>
+            برای ارتباط مستقیم با مدیریت
+            از چت پشتیبانی استفاده کنید.
+        </p>
+
+    </div>
+
+</section>
+
+
+</main>
+
+
+<footer>
+
+    COD MOBILE © 2026
+
+</footer>
 
 
 <!-- =========================
@@ -489,9 +762,7 @@ header{
     id="supportButton"
     title="پشتیبانی"
 >
-
     💬
-
 </div>
 
 
@@ -507,15 +778,11 @@ header{
         <div>
 
             <div class="support-title">
-
                 پشتیبانی
-
             </div>
 
             <div class="support-online">
-
                 ● ارتباط خصوصی با مدیر
-
             </div>
 
         </div>
@@ -525,9 +792,7 @@ header{
             class="close-support"
             onclick="closeSupport()"
         >
-
             ✕
-
         </button>
 
     </div>
@@ -536,9 +801,7 @@ header{
     <div id="supportMessages">
 
         <div class="support-empty">
-
-            در حال دریافت پیام‌ها...
-
+            هنوز پیامی ارسال نشده است.
         </div>
 
     </div>
@@ -548,184 +811,273 @@ header{
 
         <input
             id="supportInput"
-            type="text"
             placeholder="پیام خود را بنویسید..."
             autocomplete="off"
         >
 
 
         <button
-            id="supportSendButton"
+            id="supportSend"
             onclick="sendSupportMessage()"
         >
-
             ارسال
-
         </button>
 
     </div>
-
 
 </div>
 
 
 <script>
 
-/* ==================================================
+/* =====================================================
    SUPABASE
-================================================== */
+===================================================== */
 
 const SUPABASE_URL =
-    "https://hctppmmaiqkzcgxncyhi.supabase.co";
-
+"https://hctppmmaiqkzcgxncyhi.supabase.co";
 
 const SUPABASE_KEY =
-    "sb_publishable_wP43H8AKwtVcTUBwcEzTxg_qKdFxzNa";
+"sb_publishable_wP43H8AKwtVcTUBwcEzTxg_qKdFxzNa";
+
+const db =
+window.supabase.createClient(
+    SUPABASE_URL,
+    SUPABASE_KEY
+);
 
 
-const supportSupabase =
-    window.supabase.createClient(
-        SUPABASE_URL,
-        SUPABASE_KEY
-    );
+/* =====================================================
+   VISITOR
+===================================================== */
 
+let visitorId =
+localStorage.getItem(
+    "cod_mobile_visitor_id"
+);
 
-/* ==================================================
-   USER ID
-================================================== */
+if(!visitorId){
 
-let supportVisitorId =
-    localStorage.getItem(
-        "cod_mobile_visitor_id"
-    );
-
-
-if(!supportVisitorId){
-
-    supportVisitorId =
-        crypto.randomUUID();
+    visitorId =
+    crypto.randomUUID();
 
     localStorage.setItem(
         "cod_mobile_visitor_id",
-        supportVisitorId
+        visitorId
     );
 
 }
 
 
-/* ==================================================
-   USER NAME
-================================================== */
+/* =====================================================
+   SUPPORT NAME
+===================================================== */
 
 let supportName =
-    localStorage.getItem(
-        "cod_mobile_support_name"
-    );
-
+localStorage.getItem(
+    "cod_mobile_support_name"
+);
 
 if(!supportName){
 
     supportName =
-        prompt(
-            "نام شما برای پشتیبانی:"
+    "کاربر";
+
+}
+
+
+/* =====================================================
+   UI
+===================================================== */
+
+function hideAll(){
+
+    document
+    .getElementById("createBox")
+    .style.display="none";
+
+    document
+    .getElementById("enterBox")
+    .style.display="none";
+
+}
+
+
+function showCreate(){
+
+    hideAll();
+
+    document
+    .getElementById("createBox")
+    .style.display="block";
+
+    document
+    .getElementById("createBox")
+    .scrollIntoView({
+        behavior:"smooth"
+    });
+
+}
+
+
+function showEnter(){
+
+    hideAll();
+
+    document
+    .getElementById("enterBox")
+    .style.display="block";
+
+    document
+    .getElementById("enterBox")
+    .scrollIntoView({
+        behavior:"smooth"
+    });
+
+}
+
+
+/* =====================================================
+   DEAL ID
+===================================================== */
+
+function generateDealId(){
+
+    const chars =
+    "ABCDEFGHJKLMNPQRSTUVWXYZ23456789";
+
+    let result =
+    "V2G-";
+
+    for(
+        let i=0;
+        i<6;
+        i++
+    ){
+
+        result +=
+        chars[
+            Math.floor(
+                Math.random()
+                * chars.length
+            )
+        ];
+
+    }
+
+    return result;
+
+}
+
+
+/* =====================================================
+   CREATE DEAL
+===================================================== */
+
+async function createDeal(){
+
+    const role =
+    document
+    .getElementById("createRole")
+    .value;
+
+
+    const name =
+    document
+    .getElementById("createName")
+    .value
+    .trim();
+
+
+    const phone =
+    document
+    .getElementById("createPhone")
+    .value
+    .trim();
+
+
+    const price =
+    document
+    .getElementById("createPrice")
+    .value
+    .trim();
+
+
+    const description =
+    document
+    .getElementById("createDescription")
+    .value
+    .trim();
+
+
+    if(!name){
+
+        alert(
+            "نام یا شناسه را وارد کنید."
         );
 
-
-    if(!supportName){
-
-        supportName =
-            "کاربر";
+        return;
 
     }
 
 
-    localStorage.setItem(
-        "cod_mobile_support_name",
-        supportName
-    );
+    if(
+        !/^09\d{9}$/.test(phone)
+    ){
 
-}
-
-
-/* ==================================================
-   OPEN SUPPORT
-================================================== */
-
-document
-    .getElementById(
-        "supportButton"
-    )
-    .addEventListener(
-        "click",
-        function(){
-
-            document
-                .getElementById(
-                    "supportBox"
-                )
-                .style.display =
-                "block";
-
-
-            loadSupportMessages();
-
-        }
-    );
-
-
-/* ==================================================
-   CLOSE SUPPORT
-================================================== */
-
-function closeSupport(){
-
-    document
-        .getElementById(
-            "supportBox"
-        )
-        .style.display =
-        "none";
-
-}
-
-
-/* ==================================================
-   LOAD MESSAGES
-================================================== */
-
-async function loadSupportMessages(){
-
-    const box =
-        document.getElementById(
-            "supportMessages"
+        alert(
+            "شماره تلفن باید ۱۱ رقمی و با 09 شروع شود."
         );
 
+        return;
 
-    box.innerHTML = `
+    }
 
-        <div class="support-empty">
 
-            در حال دریافت پیام‌ها...
+    if(!price){
 
-        </div>
+        alert(
+            "مبلغ معامله را وارد کنید."
+        );
 
-    `;
+        return;
+
+    }
+
+
+    const dealCode =
+    generateDealId();
 
 
     const result =
-        await supportSupabase
-        .from("support_messages")
-        .select("*")
-        .eq(
-            "visitor_id",
-            supportVisitorId
-        )
-        .order(
-            "created_at",
-            {
-                ascending:true
-            }
-        );
+    await db
+    .from("deals")
+    .insert({
+
+        deal_code:
+        dealCode,
+
+        role:
+        role,
+
+        name:
+        name,
+
+        phone:
+        phone,
+
+        price:
+        Number(price),
+
+        description:
+        description,
+
+        status:
+        "pending"
+
+    })
+    .select()
+    .single();
 
 
     if(result.error){
@@ -734,126 +1086,412 @@ async function loadSupportMessages(){
             result.error
         );
 
-
-        box.innerHTML = `
-
-            <div class="support-empty">
-
-                خطا در دریافت پیام‌ها
-
-            </div>
-
-        `;
+        alert(
+            "ایجاد معامله انجام نشد:\n" +
+            result.error.message
+        );
 
         return;
 
     }
 
 
-    box.innerHTML = "";
-
-
-    const messages =
-        result.data || [];
-
-
-    if(messages.length === 0){
-
-        box.innerHTML = `
-
-            <div class="support-empty">
-
-                هنوز پیامی ارسال نشده است.
-
-            </div>
-
-        `;
-
-        return;
-
-    }
-
-
-    messages.forEach(
-        renderSupportMessage
+    const dealLink =
+    window.location.origin +
+    window.location.pathname
+    .replace(
+        "index.html",
+        "deal.html"
+    ) +
+    "?id=" +
+    encodeURIComponent(
+        dealCode
     );
 
 
-    scrollSupportMessages();
+    document
+    .getElementById(
+        "createdCode"
+    )
+    .textContent =
+    dealCode;
+
+
+    document
+    .getElementById(
+        "createdLink"
+    )
+    .value =
+    dealLink;
+
+
+    document
+    .getElementById(
+        "createResult"
+    )
+    .style.display =
+    "block";
+
+
+    /*
+       نقش سازنده معامله را
+       برای ورود بعدی ذخیره می‌کنیم.
+    */
+
+    localStorage.setItem(
+        "v2guard_role_" +
+        dealCode,
+        role
+    );
+
+
+    localStorage.setItem(
+        "v2guard_sender_name",
+        name
+    );
+
+
+    /*
+       ثبت شخص در معامله
+    */
+
+    const participant =
+    await db
+    .from("deal_participants")
+    .insert({
+
+        deal_code:
+        dealCode,
+
+        visitor_id:
+        visitorId,
+
+        name:
+        name,
+
+        role:
+        role
+
+    });
+
+
+    if(participant.error){
+
+        console.warn(
+            "Participant:",
+            participant.error
+        );
+
+    }
 
 }
 
 
-/* ==================================================
-   RENDER MESSAGE
-================================================== */
+/* =====================================================
+   COPY
+===================================================== */
 
-function renderSupportMessage(message){
+async function copyCreatedLink(){
 
-    const box =
-        document.getElementById(
-            "supportMessages"
+    const input =
+    document.getElementById(
+        "createdLink"
+    );
+
+
+    try{
+
+        await navigator
+        .clipboard
+        .writeText(
+            input.value
         );
 
-
-    const empty =
-        box.querySelector(
-            ".support-empty"
+        alert(
+            "لینک کپی شد."
         );
 
+    }catch{
 
-    if(empty){
+        input.select();
 
-        empty.remove();
+        document.execCommand(
+            "copy"
+        );
+
+        alert(
+            "لینک کپی شد."
+        );
+
+    }
+
+}
+
+
+/* =====================================================
+   OPEN CREATED DEAL
+===================================================== */
+
+function openCreatedDeal(){
+
+    const link =
+    document
+    .getElementById(
+        "createdLink"
+    )
+    .value;
+
+
+    if(link){
+
+        window.location.href =
+        link;
+
+    }
+
+}
+
+
+/* =====================================================
+   ENTER DEAL
+===================================================== */
+
+async function enterDeal(){
+
+    let code =
+    document
+    .getElementById(
+        "enterCode"
+    )
+    .value
+    .trim()
+    .toUpperCase();
+
+
+    if(!code){
+
+        alert(
+            "کد معامله را وارد کنید."
+        );
+
+        return;
 
     }
 
 
-    const div =
-        document.createElement(
-            "div"
+    const result =
+    await db
+    .from("deals")
+    .select(
+        "deal_code"
+    )
+    .eq(
+        "deal_code",
+        code
+    )
+    .limit(1);
+
+
+    if(result.error){
+
+        alert(
+            "خطا در بررسی معامله:\n" +
+            result.error.message
         );
 
+        return;
 
-    const isAdmin =
-        message.sender_role ===
-        "admin";
+    }
+
+
+    if(
+        !result.data ||
+        result.data.length === 0
+    ){
+
+        alert(
+            "این معامله پیدا نشد."
+        );
+
+        return;
+
+    }
+
+
+    window.location.href =
+    "deal.html?id=" +
+    encodeURIComponent(
+        code
+    );
+
+}
+
+
+/* =====================================================
+   SUPPORT
+===================================================== */
+
+document
+.getElementById(
+    "supportButton"
+)
+.addEventListener(
+    "click",
+    function(){
+
+        document
+        .getElementById(
+            "supportBox"
+        )
+        .style.display =
+        "block";
+
+        loadSupportMessages();
+
+    }
+);
+
+
+function closeSupport(){
+
+    document
+    .getElementById(
+        "supportBox"
+    )
+    .style.display =
+    "none";
+
+}
+
+
+/* =====================================================
+   LOAD SUPPORT
+===================================================== */
+
+async function loadSupportMessages(){
+
+    const box =
+    document.getElementById(
+        "supportMessages"
+    );
+
+
+    const result =
+    await db
+    .from("support_messages")
+    .select("*")
+    .eq(
+        "visitor_id",
+        visitorId
+    )
+    .order(
+        "created_at",
+        {
+            ascending:true
+        }
+    );
+
+
+    if(result.error){
+
+        console.error(
+            result.error
+        );
+
+        box.innerHTML = `
+            <div class="support-empty">
+                خطا در دریافت پیام‌ها
+            </div>
+        `;
+
+        return;
+
+    }
+
+
+    box.innerHTML =
+    "";
+
+
+    if(
+        !result.data ||
+        result.data.length === 0
+    ){
+
+        box.innerHTML = `
+            <div class="support-empty">
+                هنوز پیامی ارسال نشده است.
+            </div>
+        `;
+
+        return;
+
+    }
+
+
+    result.data.forEach(
+        renderSupportMessage
+    );
+
+
+    scrollSupport();
+
+}
+
+
+/* =====================================================
+   RENDER SUPPORT
+===================================================== */
+
+function renderSupportMessage(message){
+
+    const box =
+    document.getElementById(
+        "supportMessages"
+    );
+
+
+    const div =
+    document.createElement(
+        "div"
+    );
+
+
+    const admin =
+    message.sender_role ===
+    "admin";
 
 
     div.className =
-        "support-message " +
-        (
-            isAdmin
-            ? "admin"
-            : "user"
-        );
-
-
-    const name =
-        isAdmin
-        ? "👑 مدیر"
-        : "👤 شما";
+    "support-message " +
+    (
+        admin
+        ? "admin"
+        : "user"
+    );
 
 
     div.innerHTML = `
 
-        <div class="support-message-name">
+        <div class="support-name">
 
-            ${escapeSupport(name)}
+            ${
+                admin
+                ? "👑 مدیر"
+                : "👤 شما"
+            }
 
         </div>
 
+        <div class="support-text">
 
-        <div class="support-message-text">
-
-            ${escapeSupport(
+            ${escapeHtml(
                 message.message
             )}
 
         </div>
 
-
-        <div class="support-message-time">
+        <div class="support-time">
 
             ${
                 message.created_at
@@ -876,31 +1514,33 @@ function renderSupportMessage(message){
     `;
 
 
-    box.appendChild(div);
+    box.appendChild(
+        div
+    );
 
 }
 
 
-/* ==================================================
-   SEND MESSAGE
-================================================== */
+/* =====================================================
+   SEND SUPPORT
+===================================================== */
 
 async function sendSupportMessage(){
 
     const input =
-        document.getElementById(
-            "supportInput"
-        );
+    document.getElementById(
+        "supportInput"
+    );
 
 
     const button =
-        document.getElementById(
-            "supportSendButton"
-        );
+    document.getElementById(
+        "supportSend"
+    );
 
 
     const text =
-        input.value.trim();
+    input.value.trim();
 
 
     if(!text)
@@ -908,29 +1548,29 @@ async function sendSupportMessage(){
 
 
     button.disabled =
-        true;
+    true;
 
 
     const result =
-        await supportSupabase
-        .from("support_messages")
-        .insert({
+    await db
+    .from("support_messages")
+    .insert({
 
-            visitor_id:
-                supportVisitorId,
+        visitor_id:
+        visitorId,
 
-            sender_role:
-                "user",
+        sender_role:
+        "user",
 
-            sender_name:
-                supportName,
+        sender_name:
+        supportName,
 
-            message:
-                text
+        message:
+        text
 
-        })
-        .select()
-        .single();
+    })
+    .select()
+    .single();
 
 
     if(result.error){
@@ -939,16 +1579,13 @@ async function sendSupportMessage(){
             result.error
         );
 
-
         alert(
             "ارسال پیام انجام نشد:\n" +
             result.error.message
         );
 
-
         button.disabled =
-            false;
-
+        false;
 
         return;
 
@@ -956,7 +1593,7 @@ async function sendSupportMessage(){
 
 
     input.value =
-        "";
+    "";
 
 
     renderSupportMessage(
@@ -964,11 +1601,11 @@ async function sendSupportMessage(){
     );
 
 
-    scrollSupportMessages();
+    scrollSupport();
 
 
     button.disabled =
-        false;
+    false;
 
 
     input.focus();
@@ -976,112 +1613,100 @@ async function sendSupportMessage(){
 }
 
 
-/* ==================================================
-   ENTER
-================================================== */
+/* =====================================================
+   SUPPORT ENTER
+===================================================== */
 
 document
-    .getElementById(
-        "supportInput"
-    )
-    .addEventListener(
-        "keydown",
-        function(event){
+.getElementById(
+    "supportInput"
+)
+.addEventListener(
+    "keydown",
+    function(event){
 
-            if(
-                event.key ===
-                "Enter"
-            ){
+        if(
+            event.key ===
+            "Enter"
+        ){
 
-                event.preventDefault();
+            event.preventDefault();
 
-                sendSupportMessage();
-
-            }
+            sendSupportMessage();
 
         }
+
+    }
+);
+
+
+/* =====================================================
+   REALTIME SUPPORT
+===================================================== */
+
+db
+.channel(
+    "support-" +
+    visitorId
+)
+.on(
+    "postgres_changes",
+    {
+        event:"INSERT",
+        schema:"public",
+        table:"support_messages",
+        filter:
+        "visitor_id=eq." +
+        visitorId
+    },
+    payload => {
+
+        if(
+            payload.new.sender_role
+            ===
+            "admin"
+        ){
+
+            renderSupportMessage(
+                payload.new
+            );
+
+            scrollSupport();
+
+        }
+
+    }
+)
+.subscribe();
+
+
+/* =====================================================
+   HELPERS
+===================================================== */
+
+function scrollSupport(){
+
+    const box =
+    document.getElementById(
+        "supportMessages"
     );
 
 
-/* ==================================================
-   REALTIME
-================================================== */
-
-supportSupabase
-    .channel(
-        "support-user-" +
-        supportVisitorId
-    )
-    .on(
-        "postgres_changes",
-        {
-            event:"INSERT",
-            schema:"public",
-            table:"support_messages",
-            filter:
-                "visitor_id=eq." +
-                supportVisitorId
-        },
-        payload => {
-
-            /*
-                پیام خود کاربر
-                قبلاً نمایش داده شده.
-            */
-
-            if(
-                payload.new.sender_role
-                ===
-                "admin"
-            ){
-
-                renderSupportMessage(
-                    payload.new
-                );
-
-
-                scrollSupportMessages();
-
-            }
-
-        }
-    )
-    .subscribe();
-
-
-/* ==================================================
-   SCROLL
-================================================== */
-
-function scrollSupportMessages(){
-
-    const box =
-        document.getElementById(
-            "supportMessages"
-        );
-
-
     box.scrollTop =
-        box.scrollHeight;
+    box.scrollHeight;
 
 }
 
 
-/* ==================================================
-   ESCAPE HTML
-================================================== */
-
-function escapeSupport(text){
+function escapeHtml(text){
 
     const div =
-        document.createElement(
-            "div"
-        );
-
+    document.createElement(
+        "div"
+    );
 
     div.textContent =
-        text || "";
-
+    text || "";
 
     return div.innerHTML;
 
