@@ -2,13 +2,14 @@
 <html lang="fa" dir="rtl">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
 
 <title>پنل مدیریت | COD MOBILE</title>
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
 <style>
+
 *{
     box-sizing:border-box;
     margin:0;
@@ -18,7 +19,7 @@
 body{
     font-family:Tahoma,Arial,sans-serif;
     background:
-        radial-gradient(circle at top right,#220808,transparent 35%),
+        radial-gradient(circle at top right,rgba(255,48,48,.14),transparent 35%),
         #050505;
     color:#fff;
     min-height:100vh;
@@ -58,7 +59,6 @@ header{
     display:flex;
     justify-content:space-between;
     align-items:center;
-    gap:15px;
     margin-bottom:25px;
 }
 
@@ -72,15 +72,24 @@ header{
     margin-top:7px;
 }
 
-.refresh{
-    width:auto;
-    padding:11px 18px;
-    background:#171717;
-    border:1px solid #292929;
+button{
+    border:none;
+    background:#ff3030;
+    color:#fff;
+    padding:12px 17px;
+    border-radius:10px;
+    cursor:pointer;
+    font-family:inherit;
+    font-weight:bold;
 }
 
-.refresh:hover{
-    background:#222;
+button:hover{
+    background:#ff4545;
+}
+
+.refresh{
+    background:#171717;
+    border:1px solid #292929;
 }
 
 .stats{
@@ -125,36 +134,6 @@ header{
     font-family:inherit;
 }
 
-.search button{
-    width:120px;
-}
-
-button{
-    border:none;
-    background:#ff3030;
-    color:#fff;
-    padding:13px 18px;
-    border-radius:10px;
-    cursor:pointer;
-    font-family:inherit;
-    font-weight:bold;
-}
-
-button:hover{
-    background:#ff4545;
-}
-
-.error{
-    display:none;
-    background:rgba(255,0,0,.08);
-    border:1px solid rgba(255,0,0,.25);
-    color:#ff7777;
-    border-radius:12px;
-    padding:15px;
-    margin-bottom:20px;
-    font-size:12px;
-}
-
 .table-box{
     background:#0d0d0d;
     border:1px solid #222;
@@ -194,8 +173,8 @@ tr:hover td{
 
 .code{
     direction:ltr;
-    font-weight:bold;
     color:#ff5555;
+    font-weight:bold;
 }
 
 .price{
@@ -242,19 +221,27 @@ tr:hover td{
     padding:60px 20px;
 }
 
+.loading{
+    text-align:center;
+    color:#777;
+    padding:40px;
+}
+
+/* MODAL */
+
 .modal{
     display:none;
     position:fixed;
     inset:0;
-    background:rgba(0,0,0,.75);
+    background:rgba(0,0,0,.78);
     z-index:100;
     padding:20px;
     overflow-y:auto;
 }
 
 .modal-box{
-    width:min(700px,100%);
-    margin:40px auto;
+    width:min(750px,100%);
+    margin:30px auto;
     background:#0d0d0d;
     border:1px solid #292929;
     border-radius:20px;
@@ -302,6 +289,8 @@ tr:hover td{
     grid-column:1/-1;
 }
 
+/* STATUS */
+
 .status-actions{
     margin-top:20px;
     display:flex;
@@ -314,50 +303,126 @@ tr:hover td{
     font-size:11px;
 }
 
+.status-pending{
+    background:#8a6900;
+}
+
+.status-active{
+    background:#16733b;
+}
+
+.status-completed{
+    background:#175b91;
+}
+
+.status-cancelled{
+    background:#8b2222;
+}
+
+/* CHAT */
+
 .chat-box{
-    margin-top:20px;
+    margin-top:25px;
     border-top:1px solid #222;
     padding-top:20px;
 }
 
 .chat-title{
-    margin-bottom:12px;
-    font-size:13px;
+    font-size:14px;
+    font-weight:bold;
+    margin-bottom:15px;
 }
 
 .messages{
-    max-height:300px;
+    height:320px;
     overflow-y:auto;
+    background:#070707;
+    border:1px solid #202020;
+    border-radius:13px;
+    padding:15px;
+}
+
+.no-message{
+    text-align:center;
+    color:#555;
+    padding-top:120px;
+    font-size:12px;
 }
 
 .message{
+    max-width:85%;
     background:#171717;
-    border-radius:10px;
-    padding:12px;
-    margin-bottom:8px;
+    border:1px solid #242424;
+    border-radius:12px;
+    padding:11px 13px;
+    margin-bottom:10px;
+}
+
+.message.admin{
+    margin-right:auto;
+    background:#2b1010;
+    border-color:#652020;
 }
 
 .message-name{
     color:#ff5555;
     font-size:10px;
     margin-bottom:5px;
+    font-weight:bold;
+}
+
+.message.admin .message-name{
+    color:#ffcf5a;
 }
 
 .message-text{
     font-size:12px;
     line-height:1.8;
+    word-break:break-word;
 }
 
 .message-time{
     color:#555;
     font-size:9px;
-    margin-top:5px;
+    margin-top:6px;
 }
 
-.loading{
-    text-align:center;
-    color:#777;
-    padding:40px;
+/* ADMIN SEND */
+
+.admin-send{
+    display:flex;
+    gap:8px;
+    margin-top:10px;
+}
+
+.admin-send input{
+    flex:1;
+    background:#070707;
+    border:1px solid #292929;
+    color:#fff;
+    padding:13px;
+    border-radius:10px;
+    outline:none;
+    font-family:inherit;
+}
+
+.admin-send input:focus{
+    border-color:#ff3030;
+}
+
+.admin-send button{
+    width:100px;
+}
+
+.error{
+    display:none;
+    background:rgba(255,0,0,.08);
+    border:1px solid rgba(255,0,0,.25);
+    color:#ff7777;
+    border-radius:12px;
+    padding:15px;
+    margin-bottom:20px;
+    font-size:12px;
 }
 
 @media(max-width:800px){
@@ -369,6 +434,7 @@ tr:hover td{
     .top{
         align-items:flex-start;
         flex-direction:column;
+        gap:15px;
     }
 
     .detail{
@@ -387,11 +453,12 @@ tr:hover td{
         flex-direction:column;
     }
 
-    .search button{
-        width:100%;
+    .admin-send button{
+        width:80px;
     }
 
 }
+
 </style>
 </head>
 
@@ -409,18 +476,21 @@ tr:hover td{
 
 </header>
 
+
 <div class="container">
 
     <div class="top">
 
         <div>
+
             <h1>
                 مدیریت معاملات
             </h1>
 
             <p>
-                مشاهده و مدیریت معاملات ثبت‌شده
+                مشاهده، مدیریت و گفت‌وگو با طرفین معامله
             </p>
+
         </div>
 
         <button
@@ -436,6 +506,7 @@ tr:hover td{
     <div class="stats">
 
         <div class="stat">
+
             <div class="stat-title">
                 کل معاملات
             </div>
@@ -446,10 +517,12 @@ tr:hover td{
             >
                 0
             </div>
+
         </div>
 
 
         <div class="stat">
+
             <div class="stat-title">
                 در انتظار
             </div>
@@ -460,10 +533,12 @@ tr:hover td{
             >
                 0
             </div>
+
         </div>
 
 
         <div class="stat">
+
             <div class="stat-title">
                 فعال
             </div>
@@ -474,10 +549,12 @@ tr:hover td{
             >
                 0
             </div>
+
         </div>
 
 
         <div class="stat">
+
             <div class="stat-title">
                 تکمیل شده
             </div>
@@ -488,6 +565,7 @@ tr:hover td{
             >
                 0
             </div>
+
         </div>
 
     </div>
@@ -508,12 +586,6 @@ tr:hover td{
             oninput="filterDeals()"
         >
 
-        <button
-            onclick="loadDeals()"
-        >
-            جستجو
-        </button>
-
     </div>
 
 
@@ -527,33 +599,13 @@ tr:hover td{
 
                     <tr>
 
-                        <th>
-                            کد معامله
-                        </th>
-
-                        <th>
-                            نقش
-                        </th>
-
-                        <th>
-                            نام
-                        </th>
-
-                        <th>
-                            شماره
-                        </th>
-
-                        <th>
-                            مبلغ
-                        </th>
-
-                        <th>
-                            وضعیت
-                        </th>
-
-                        <th>
-                            عملیات
-                        </th>
+                        <th>کد معامله</th>
+                        <th>نقش</th>
+                        <th>نام</th>
+                        <th>شماره</th>
+                        <th>مبلغ</th>
+                        <th>وضعیت</th>
+                        <th>عملیات</th>
 
                     </tr>
 
@@ -621,24 +673,28 @@ tr:hover td{
         <div class="status-actions">
 
             <button
+                class="status-pending"
                 onclick="changeStatus('pending')"
             >
                 ⏳ در انتظار
             </button>
 
             <button
+                class="status-active"
                 onclick="changeStatus('active')"
             >
                 🟢 فعال
             </button>
 
             <button
+                class="status-completed"
                 onclick="changeStatus('completed')"
             >
                 ✅ تکمیل شده
             </button>
 
             <button
+                class="status-cancelled"
                 onclick="changeStatus('cancelled')"
             >
                 ❌ لغو شده
@@ -647,17 +703,45 @@ tr:hover td{
         </div>
 
 
+        <!-- CHAT -->
+
         <div class="chat-box">
 
             <div class="chat-title">
-                💬 پیام‌های معامله
+                💬 گفت‌وگوی معامله
             </div>
+
 
             <div
                 class="messages"
                 id="modalMessages"
             >
-                در حال دریافت...
+
+                <div class="no-message">
+                    در حال دریافت پیام‌ها...
+                </div>
+
+            </div>
+
+
+            <!-- ADMIN SEND -->
+
+            <div class="admin-send">
+
+                <input
+                    id="adminMessageInput"
+                    type="text"
+                    placeholder="پیام مدیر را بنویسید..."
+                    autocomplete="off"
+                >
+
+                <button
+                    id="adminSendButton"
+                    onclick="sendAdminMessage()"
+                >
+                    ارسال
+                </button>
+
             </div>
 
         </div>
@@ -687,12 +771,14 @@ const supabaseClient =
 
 
 /* =====================================
-   DATA
+   VARIABLES
 ===================================== */
 
 let allDeals = [];
 
 let currentDeal = null;
+
+let currentChannel = null;
 
 
 /* =====================================
@@ -713,7 +799,7 @@ function showError(message){
 
 
 /* =====================================
-   STATUS TEXT
+   STATUS
 ===================================== */
 
 function statusText(status){
@@ -735,7 +821,7 @@ function statusText(status){
 
 
 /* =====================================
-   ROLE TEXT
+   ROLE
 ===================================== */
 
 function roleText(role){
@@ -745,6 +831,9 @@ function roleText(role){
 
     if(role === "buyer")
         return "🛒 خریدار";
+
+    if(role === "admin")
+        return "👑 مدیر";
 
     return role || "---";
 }
@@ -758,7 +847,8 @@ function formatPrice(price){
 
     if(
         price === null ||
-        price === undefined
+        price === undefined ||
+        price === ""
     ){
 
         return "---";
@@ -781,6 +871,7 @@ async function loadDeals(){
         document.getElementById(
             "dealTable"
         );
+
 
     table.innerHTML = `
         <tr>
@@ -805,22 +896,10 @@ async function loadDeals(){
 
     if(result.error){
 
-        console.error(
-            result.error
-        );
-
         showError(
             "دریافت معاملات انجام نشد: " +
             result.error.message
         );
-
-        table.innerHTML = `
-            <tr>
-                <td colspan="7" class="empty">
-                    دریافت اطلاعات ناموفق بود.
-                </td>
-            </tr>
-        `;
 
         return;
     }
@@ -845,30 +924,30 @@ async function loadDeals(){
 function updateStats(){
 
     document
-    .getElementById("totalCount")
-    .textContent =
+        .getElementById("totalCount")
+        .textContent =
         allDeals.length;
 
 
     document
-    .getElementById("pendingCount")
-    .textContent =
+        .getElementById("pendingCount")
+        .textContent =
         allDeals.filter(
             d => d.status === "pending"
         ).length;
 
 
     document
-    .getElementById("activeCount")
-    .textContent =
+        .getElementById("activeCount")
+        .textContent =
         allDeals.filter(
             d => d.status === "active"
         ).length;
 
 
     document
-    .getElementById("completedCount")
-    .textContent =
+        .getElementById("completedCount")
+        .textContent =
         allDeals.filter(
             d => d.status === "completed"
         ).length;
@@ -877,7 +956,7 @@ function updateStats(){
 
 
 /* =====================================
-   RENDER
+   RENDER DEALS
 ===================================== */
 
 function renderDeals(deals){
@@ -939,11 +1018,13 @@ function renderDeals(deals){
                 </td>
 
                 <td>
+
                     <span class="status ${deal.status}">
                         ${statusText(
                             deal.status
                         )}
                     </span>
+
                 </td>
 
                 <td>
@@ -952,7 +1033,7 @@ function renderDeals(deals){
                         class="view-btn"
                         onclick="viewDeal('${deal.deal_code}')"
                     >
-                        مشاهده
+                        👁 مشاهده
                     </button>
 
                 </td>
@@ -1069,7 +1150,7 @@ async function viewDeal(code){
                 dir="ltr"
             >
                 ${escapeHtml(
-                    deal.deal_code
+                    deal.deal_code || "---"
                 )}
             </div>
 
@@ -1162,7 +1243,8 @@ async function viewDeal(code){
 
             <div class="detail-value">
                 ${escapeHtml(
-                    deal.description || "توضیحاتی ثبت نشده است."
+                    deal.description ||
+                    "توضیحاتی ثبت نشده است."
                 )}
             </div>
 
@@ -1172,12 +1254,17 @@ async function viewDeal(code){
 
 
     document
-    .getElementById("modal")
-    .style.display =
+        .getElementById("modal")
+        .style.display =
         "block";
 
 
-    await loadModalMessages(
+    await loadMessages(
+        deal.deal_code
+    );
+
+
+    startMessageRealtime(
         deal.deal_code
     );
 }
@@ -1187,7 +1274,7 @@ async function viewDeal(code){
    LOAD MESSAGES
 ===================================== */
 
-async function loadModalMessages(code){
+async function loadMessages(code){
 
     const box =
         document.getElementById(
@@ -1195,8 +1282,11 @@ async function loadModalMessages(code){
         );
 
 
-    box.innerHTML =
-        "در حال دریافت پیام‌ها...";
+    box.innerHTML = `
+        <div class="no-message">
+            در حال دریافت پیام‌ها...
+        </div>
+    `;
 
 
     const result =
@@ -1217,8 +1307,11 @@ async function loadModalMessages(code){
 
     if(result.error){
 
-        box.innerHTML =
-            "دریافت پیام‌ها انجام نشد.";
+        box.innerHTML = `
+            <div class="no-message">
+                خطا در دریافت پیام‌ها
+            </div>
+        `;
 
         console.error(
             result.error
@@ -1232,55 +1325,285 @@ async function loadModalMessages(code){
         result.data || [];
 
 
+    box.innerHTML = "";
+
+
     if(!messages.length){
 
-        box.innerHTML =
-            `<div style="color:#555;">
+        box.innerHTML = `
+            <div class="no-message">
                 هنوز پیامی ارسال نشده است.
-            </div>`;
+            </div>
+        `;
 
         return;
     }
 
 
-    box.innerHTML =
-        messages.map(
-            message => `
+    messages.forEach(
+        renderMessage
+    );
 
-            <div class="message">
 
-                <div class="message-name">
-                    ${escapeHtml(
-                        message.sender_name || "کاربر"
-                    )}
-                    -
-                    ${roleText(
-                        message.sender_role
-                    )}
-                </div>
+    scrollMessages();
+}
 
-                <div class="message-text">
-                    ${escapeHtml(
-                        message.message || ""
-                    )}
-                </div>
 
-                <div class="message-time">
-                    ${message.created_at
-                        ? new Date(
-                            message.created_at
-                          ).toLocaleString(
-                            "fa-IR"
-                          )
-                        : ""
-                    }
-                </div>
+/* =====================================
+   RENDER MESSAGE
+===================================== */
 
-            </div>
+function renderMessage(message){
 
-            `
+    const box =
+        document.getElementById(
+            "modalMessages"
+        );
+
+
+    const div =
+        document.createElement(
+            "div"
+        );
+
+
+    div.className =
+        "message";
+
+
+    if(
+        message.sender_role === "admin"
+    ){
+
+        div.classList.add(
+            "admin"
+        );
+
+    }
+
+
+    const name =
+        message.sender_role === "admin"
+            ? "👑 مدیر"
+            : (
+                message.sender_name ||
+                "کاربر"
+            );
+
+
+    div.innerHTML = `
+
+        <div class="message-name">
+            ${escapeHtml(name)}
+        </div>
+
+        <div class="message-text">
+            ${escapeHtml(
+                message.message || ""
+            )}
+        </div>
+
+        <div class="message-time">
+            ${
+                message.created_at
+                ?
+                new Date(
+                    message.created_at
+                ).toLocaleString(
+                    "fa-IR"
+                )
+                :
+                ""
+            }
+        </div>
+
+    `;
+
+
+    box.appendChild(div);
+}
+
+
+/* =====================================
+   SEND ADMIN MESSAGE
+===================================== */
+
+async function sendAdminMessage(){
+
+    if(!currentDeal){
+
+        alert(
+            "ابتدا یک معامله را باز کنید."
+        );
+
+        return;
+    }
+
+
+    const input =
+        document.getElementById(
+            "adminMessageInput"
+        );
+
+
+    const button =
+        document.getElementById(
+            "adminSendButton"
+        );
+
+
+    const text =
+        input.value.trim();
+
+
+    if(!text)
+        return;
+
+
+    button.disabled =
+        true;
+
+
+    const result =
+        await supabaseClient
+        .from("messages")
+        .insert({
+
+            deal_code:
+                currentDeal.deal_code,
+
+            sender_name:
+                "مدیر",
+
+            sender_role:
+                "admin",
+
+            message:
+                text,
+
+            visitor_id:
+                "ADMIN"
+
+        })
+        .select()
+        .single();
+
+
+    if(result.error){
+
+        console.error(
+            result.error
+        );
+
+        alert(
+            "ارسال پیام انجام نشد:\n" +
+            result.error.message
+        );
+
+        button.disabled =
+            false;
+
+        return;
+    }
+
+
+    input.value =
+        "";
+
+
+    renderMessage(
+        result.data
+    );
+
+
+    scrollMessages();
+
+
+    button.disabled =
+        false;
+
+
+    input.focus();
+}
+
+
+/* =====================================
+   REALTIME CHAT
+===================================== */
+
+function startMessageRealtime(code){
+
+    if(currentChannel){
+
+        supabaseClient.removeChannel(
+            currentChannel
+        );
+
+    }
+
+
+    currentChannel =
+        supabaseClient
+        .channel(
+            "admin-chat-" + code
         )
-        .join("");
+        .on(
+            "postgres_changes",
+            {
+                event:"INSERT",
+                schema:"public",
+                table:"messages",
+                filter:
+                    "deal_code=eq." + code
+            },
+            payload => {
+
+                const message =
+                    payload.new;
+
+
+                /*
+                پیام خود مدیر قبلاً
+                در صفحه اضافه شده است.
+                */
+
+                if(
+                    message.sender_role === "admin"
+                ){
+
+                    return;
+
+                }
+
+
+                renderMessage(
+                    message
+                );
+
+
+                scrollMessages();
+
+            }
+        )
+        .subscribe();
+
+}
+
+
+/* =====================================
+   SCROLL CHAT
+===================================== */
+
+function scrollMessages(){
+
+    const box =
+        document.getElementById(
+            "modalMessages"
+        );
+
+
+    box.scrollTop =
+        box.scrollHeight;
 }
 
 
@@ -1290,15 +1613,24 @@ async function loadModalMessages(code){
 
 async function changeStatus(status){
 
-    if(!currentDeal)
+    if(!currentDeal){
+
+        alert(
+            "معامله‌ای انتخاب نشده است."
+        );
+
         return;
+    }
 
 
     const result =
         await supabaseClient
         .from("deals")
         .update({
-            status: status
+
+            status:
+                status
+
         })
         .eq(
             "deal_code",
@@ -1343,9 +1675,21 @@ async function changeStatus(status){
 function hideModal(){
 
     document
-    .getElementById("modal")
-    .style.display =
+        .getElementById("modal")
+        .style.display =
         "none";
+
+
+    if(currentChannel){
+
+        supabaseClient.removeChannel(
+            currentChannel
+        );
+
+        currentChannel =
+            null;
+    }
+
 
     currentDeal =
         null;
@@ -1380,6 +1724,32 @@ function escapeHtml(text){
 
     return div.innerHTML;
 }
+
+
+/* =====================================
+   ENTER SEND
+===================================== */
+
+document
+    .getElementById(
+        "adminMessageInput"
+    )
+    .addEventListener(
+        "keydown",
+        function(event){
+
+            if(
+                event.key === "Enter"
+            ){
+
+                event.preventDefault();
+
+                sendAdminMessage();
+
+            }
+
+        }
+    );
 
 
 /* =====================================
